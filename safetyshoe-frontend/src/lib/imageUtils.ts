@@ -32,7 +32,7 @@ export function isValidImageUrl(url: string | null | undefined): boolean {
  */
 export function getSafeImageUrl(
   url: string | null | undefined, 
-  fallback: string = '/images/placeholder.svg'
+  fallback: string = '/images/products/steel-toe-boot.jpg'
 ): string {
   return isValidImageUrl(url) ? url!.trim() : fallback;
 }

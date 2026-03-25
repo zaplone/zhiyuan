@@ -3,7 +3,7 @@ import { fetchProducts, transformProduct, fetchAllNewsIds } from '@/lib/siteApi'
 import { locales } from '@/locales';
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.slsafetyshoes.com';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com';
 
 /** 固定页面配置：路径 / 更新频率 / 优先级 */
 const STATIC_PAGES: Array<{

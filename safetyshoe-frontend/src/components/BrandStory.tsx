@@ -10,11 +10,11 @@ export function BrandStory() {
   
   // 图片轮播数据
   const SLIDES = [
-    '/images/about/home-about.jpg',
-    '/images/about/factory-slide-1.png',
-    '/images/about/factory-slide-2.png',
-    '/images/about/factory-slide-3.png',
-    '/images/about/factory-slide-4.png'
+    '/images/about/gongchang.jpg',
+    '/images/about/steel-toe-boot.jpg',
+    '/images/about/composite-shoe.jpg',
+    '/images/about/slip-resistant.jpg',
+    '/images/about/winter-boot.jpg',
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);

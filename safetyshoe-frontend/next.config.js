@@ -28,8 +28,8 @@ const nextConfig = {
 
   // 环境变量
   env: {
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://www.slsafetyshoes.com',
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.slsafetyshoes.com',
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'https://zhiyuansafety.com',
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com',
   },
 
   // 重写规则（静态导出不支持 rewrites，已注释）

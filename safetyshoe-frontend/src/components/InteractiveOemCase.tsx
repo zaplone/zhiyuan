@@ -12,7 +12,7 @@ const STEP_IMAGES = [
   '/images/oem/step1.png',
   '/images/oem/step2.png',
   '/images/oem/step3.png',
-  '/images/oem/step4.png',
+  '/images/oem/hero-shoe.jpg',
   '/images/oem/step5.png',
 ];
 

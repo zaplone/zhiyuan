@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Search, Globe, Factory } from 'lucide-react';
+import { Menu, X, Globe, Factory } from 'lucide-react';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -23,9 +23,6 @@ export function Header() {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const mouseNearTopRef = useRef(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
 
   const navigation = [
@@ -39,35 +36,6 @@ export function Header() {
   /** 当前仅开放英文站；其它语言文案就绪后，可恢复多语言列表与下拉切换 */
   const siteLocaleLabel = 'English';
   const siteLocaleCode = 'en';
-
-  // Close search when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (searchInputRef.current && !searchInputRef.current.contains(event.target as Node) && isSearchOpen) {
-        setTimeout(() => setIsSearchOpen(false), 100);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isSearchOpen]);
-
-  // Focus input when opened
-  useEffect(() => {
-    if (isSearchOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
-    }
-  }, [isSearchOpen]);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      // 使用原生跳转，静态导出模式下更可靠
-      window.location.href = `/${locale}/products?search=${encodeURIComponent(searchQuery)}`;
-      setIsSearchOpen(false);
-      setSearchQuery('');
-    }
-  };
 
   // Check if we are on the homepage or OEM page or About page (which has dark hero)
   // Remove the locale prefix to check the path safely
@@ -128,10 +96,6 @@ export function Header() {
   const navItemActiveColor = isTransparent 
     ? 'text-white font-bold' 
     : 'text-primary-600 font-bold';
-
-  const buttonClass = isTransparent
-    ? 'bg-white hover:bg-slate-100 text-slate-900'
-    : 'bg-primary-600 hover:bg-primary-700 text-white';
 
   return (
     <>
@@ -198,42 +162,8 @@ export function Header() {
               </div>
             </div>
 
-            {/* Search, Lang, and CTA */}
+            {/* Lang + CTA（搜索入口暂隐藏） */}
             <div className="hidden md:flex items-center gap-4">
-              {/* Search Button */}
-              <div className="relative">
-                {isSearchOpen ? (
-                   <form onSubmit={handleSearch} className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
-                     <input
-                       ref={searchInputRef}
-                       type="text"
-                       value={searchQuery}
-                       onChange={(e) => setSearchQuery(e.target.value)}
-                       placeholder={t('searchPlaceholder')}
-                       className="w-60 px-4 py-2 rounded-full border border-slate-200 shadow-sm text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500 animate-in fade-in slide-in-from-right-10 duration-200"
-                     />
-                     <button 
-                       type="button"
-                       onClick={() => setIsSearchOpen(false)}
-                       className="absolute right-3 text-slate-400 hover:text-slate-600"
-                     >
-                       <X className="w-4 h-4" />
-                     </button>
-                   </form>
-                ) : (
-                  <button
-                    onClick={() => setIsSearchOpen(true)}
-                    className={cn(
-                      "p-2 rounded-full transition-colors",
-                      isTransparent ? "text-white/90 hover:bg-white/10" : "text-slate-500 hover:bg-slate-100 text-slate-600"
-                    )}
-                    aria-label="Search"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                )}
-              </div>
-
               <Link
                 href={`/${locale}/#contact`}
                 onClick={handleContactClick}
@@ -316,16 +246,16 @@ export function Header() {
       <div className="fixed right-6 bottom-24 z-40">
         <div className="relative group">
           <a
-            href="https://wa.me/8615726062996"
+            href="https://wa.me/8615610214670"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 hover:shadow-[#25D366]/50"
-            aria-label="WhatsApp: +86 157 2606 2996"
+            aria-label="WhatsApp: +86 156 1021 4670"
           >
             <WhatsAppIcon className="h-7 w-7" />
           </a>
           <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-slate-800 text-white text-xs font-medium px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
-            WhatsApp: +86 157 2606 2996
+            WhatsApp: +86 156 1021 4670
             <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
           </div>
         </div>

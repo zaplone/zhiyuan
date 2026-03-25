@@ -27,7 +27,7 @@ export function GlobalFootprint() {
       challenge: t('cases.usa.challenge'),
       solution: t('cases.usa.solution'),
       icon: Truck,
-      image: '/images/footprint/usa.png',
+      image: '/images/products/steel-toe-boot.jpg',
       stats: t('cases.usa.stats')
     },
     {

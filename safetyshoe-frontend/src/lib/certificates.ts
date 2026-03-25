@@ -12,13 +12,13 @@ export type CertificateId =
   | 'iso45001_zh';
 
 export const CERTIFICATE_FILES: Record<CertificateId, string> = {
-  eu_ce: '1.png',
-  iso9001_en: '3.png',
-  iso14001_en: '4.png',
-  iso45001_en: '2.png',
-  iso9001_zh: '7.png',
-  iso14001_zh: '6.png',
-  iso45001_zh: '10.png',
+  eu_ce: '5e44a358b6a1d.png',
+  iso9001_en: '5e44a358b6a1d.png',
+  iso14001_en: '5e44a358b6a1d.png',
+  iso45001_en: '5e44a358b6a1d.png',
+  iso9001_zh: '5e44a358b6a1d.png',
+  iso14001_zh: '5e44a358b6a1d.png',
+  iso45001_zh: '5e44a358b6a1d.png',
 };
 
 /** 首页优先展示的 4 类资质 */

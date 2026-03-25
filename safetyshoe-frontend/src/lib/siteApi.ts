@@ -310,12 +310,12 @@ export function transformProduct(product: StandaloneProduct, locale: string = 'e
       name: 'Error Loading',
       slug: 'error',
       safety_standard: 'SB',
-      image: '/images/placeholder.svg',
+      image: '/images/products/steel-toe-boot.jpg',
     } as Product;
   }
 
   const gallery = Array.isArray(product.images) ? product.images : [];
-  const mainImage = gallery[0] || '/images/placeholder.svg';
+  const mainImage = gallery[0] || '/images/products/steel-toe-boot.jpg';
 
   // 兼容新格式（字符串数组）和旧格式（对象数组）
   const industries: Industry[] = Array.isArray(product.industries)

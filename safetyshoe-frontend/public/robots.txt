@@ -6,4 +6,4 @@ Disallow: /test/
 Disallow: /simple/
 Disallow: /test-standalone/
 
-Sitemap: https://www.slsafetyshoes.com/sitemap.xml
+Sitemap: https://zhiyuansafety.com/sitemap.xml

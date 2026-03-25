@@ -7,9 +7,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const SLIDE_IMAGES = [
-  'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2070',
-  'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070',
-  'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=2071'
+  '/images/about/gongchang.jpg',
+  '/images/products/steel-toe-boot.jpg',
+  '/images/products/composite-shoe.jpg',
 ] as const;
 
 /** 与 messages 中 Hero.slide1 / slide2 / slide3 一一对应 */
@@ -19,8 +19,11 @@ const SLIDE_ALT_KEYS = ['slides.alt1', 'slides.alt2', 'slides.alt3'] as const;
 
 const AUTO_MS = 6000;
 
-/** 与 Header 的 pt-20（80px）对齐：首屏高度 = 视口 − 顶栏占位，避免 Hero 超出首屏还要滚动才看到下一区块 */
-const HERO_VIEWPORT = 'min-h-0 lg:h-[calc(100dvh-5rem)] lg:max-h-[calc(100dvh-5rem)]';
+/**
+ * 桌面首屏铺满整视口（100dvh），避免下方白底区块露在「第一屏」里。
+ * pt-20 仅在内容区为固定顶栏留白，背景仍从页面顶部铺满。
+ */
+const HERO_VIEWPORT = 'min-h-0 lg:h-[100dvh] lg:max-h-[100dvh]';
 
 export function Hero() {
   const t = useTranslations('Hero');
@@ -120,7 +123,6 @@ export function Hero() {
               src={SLIDE_IMAGES[slide]} 
               alt={t(SLIDE_ALT_KEYS[slide])}
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
-              referrerPolicy="no-referrer"
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent lg:block hidden" />

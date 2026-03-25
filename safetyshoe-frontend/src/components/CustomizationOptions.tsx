@@ -59,7 +59,7 @@ export function CustomizationOptions() {
             <div className="relative bg-white rounded-2xl p-4 shadow-2xl border-4 border-white rotate-1 hover:rotate-0 transition-transform duration-500">
                <div className="aspect-[4/3] bg-slate-100 rounded-lg relative overflow-hidden">
                  <Image
-                   src="/images/oem/custom-options.png"
+                   src="/images/oem/step5.png"
                    alt="Customization details"
                    fill
                    className="object-cover"
@@ -90,4 +90,3 @@ export function CustomizationOptions() {
     </section>
   );
 }
-

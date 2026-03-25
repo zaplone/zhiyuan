@@ -251,7 +251,7 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
                   className="h-full w-full relative"
                 >
                   <Image
-                    src={selectedProduct.images?.[currentImageIndex] || selectedProduct.image || '/images/placeholder.svg'}
+                    src={selectedProduct.images?.[currentImageIndex] || selectedProduct.image || '/images/products/steel-toe-boot.jpg'}
                     alt={selectedProduct.name}
                     fill
                     className="object-contain p-4"

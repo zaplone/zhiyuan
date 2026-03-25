@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     siteName: 'Zhiyuan Safety Shoes',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/images/about/gongchang.jpg',
         width: 1200,
         height: 630,
         alt: 'Zhiyuan Safety Shoes',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Zhiyuan · Safety Shoes',
     description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
-    images: ['/images/og-image.jpg'],
+    images: ['/images/about/gongchang.jpg'],
   },
   robots: {
     index: true,
@@ -117,11 +117,11 @@ export default async function RootLayout({
             name: 'Zhiyuan Safety Shoes',
             description:
               'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2 million pairs annual output.',
-            url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-            logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/logo.png`,
+            url: process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com',
+            logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com'}/images/about/gongchang.jpg`,
             contactPoint: {
               '@type': 'ContactPoint',
-              telephone: '+86 157 2606 2996',
+              telephone: '+86 156 1021 4670',
               email: 'sales@slsafetyshoes.com',
               contactType: 'customer service',
               availableLanguage: ['English', 'Chinese', 'German', 'Russian', 'Arabic'],
