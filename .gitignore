@@ -1,0 +1,49 @@
+# System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node Modules
+node_modules/
+**/node_modules/
+
+# Next.js build
+.next/
+**/out/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+**/.env.production
+
+# 文档、AI 配置与参考稿（不参与 Cloudflare 构建，仅本地保留）
+.claude/
+1-重要文档/
+AGENTS.md
+CLAUDE.md
+xiangqingye.md
+参考html.html
+safetyshoe-frontend/README.md
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Legacy / local artifacts
+safetyshoe-admin/
+safetyshoe-api/
+database/
+dengtai-website/
+temp_server_deploy/
+作废-1015/
+*.tar.gz
+
+# Strapi
+.tmp/
+**/build/
+**/dist/

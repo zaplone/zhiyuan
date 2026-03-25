@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# 屏蔽开发/测试路径
+Disallow: /test/
+Disallow: /simple/
+Disallow: /test-standalone/
+
+Sitemap: https://www.slsafetyshoes.com/sitemap.xml

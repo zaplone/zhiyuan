@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>钢盾科技 | 工业安全防护鞋制造商</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0f1623;
+  --navy2:   #18202f;
+  --navy3:   #1e2840;
+  --steel:   #2c3550;
+  --mid:     #4a5568;
+  --silver:  #8896a8;
+  --border:  #e2e8f0;
+  --bg:      #f7f8fa;
+  --white:   #ffffff;
+  --text:    #1a202c;
+  --muted:   #64748b;
+  --gold:    #e8a820;
+  --gold2:   #f5c842;
+  --orange:  #d4460a;
+  --orange2: #e85c20;
+  --green:   #16a34a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans SC', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(15,22,35,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 68px;
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: 5px;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+}
+.logo-sub { font-family: 'Noto Sans SC', sans-serif; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 3px; font-weight: 300; }
+nav ul { display: flex; gap: 36px; list-style: none; align-items: center; }
+nav a { font-size: 13px; letter-spacing: 1px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+nav a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--gold) !important; color: var(--navy) !important;
+  padding: 9px 22px; font-weight: 700 !important;
+  font-size: 12px !important; letter-spacing: 1.5px;
+  border-radius: 2px; transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--gold2) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 55%, #1a2540 100%);
+  padding: 68px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero-glow {
+  position: absolute; top: -200px; right: -200px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,168,32,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; bottom: -150px; left: 100px;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,70,10,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Hero top: headline + trust */
+.hero-top {
+  max-width: 1280px; margin: 0 auto;
+  padding: 72px 64px 56px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; align-items: end;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: var(--gold);
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--gold); opacity: 0.7; }
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 6.5vw, 92px);
+  line-height: 0.95; letter-spacing: 1px;
+  color: var(--white);
+}
+h1 em { color: var(--gold); font-style: normal; }
+.hero-lead {
+  font-size: 15px; color: rgba(255,255,255,0.55);
+  line-height: 1.85; max-width: 520px;
+  font-weight: 300; margin-top: 20px;
+}
+.hero-actions { display: flex; gap: 16px; margin-top: 36px; align-items: center; }
+.btn-gold {
+  background: var(--gold); color: var(--navy);
+  font-weight: 900; font-size: 13px;
+  letter-spacing: 2px; padding: 14px 36px;
+  border: none; cursor: pointer; border-radius: 2px;
+  text-decoration: none; display: inline-block;
+  transition: all 0.22s;
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(232,168,32,0.35); }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.75);
+  font-size: 13px; letter-spacing: 1.5px; padding: 13px 28px;
+  border-radius: 2px; text-decoration: none; display: inline-block;
+  transition: all 0.22s;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+.hero-trust {
+  display: flex; flex-direction: column; gap: 10px;
+  align-items: flex-end;
+}
+.trust-badge {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 18px; border-radius: 4px;
+  display: flex; align-items: center; gap: 10px;
+  white-space: nowrap;
+}
+.trust-badge-icon { font-size: 18px; }
+.trust-badge-text { font-size: 12px; color: rgba(255,255,255,0.7); letter-spacing: 0.5px; }
+.trust-badge-text strong { color: var(--white); display: block; font-size: 13px; }
+
+/* Hero products strip */
+.hero-products-strip {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 64px 64px;
+}
+.strip-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: rgba(255,255,255,0.35);
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.strip-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+.products-strip {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3px;
+}
+.pcard {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 28px 28px 24px;
+  position: relative; overflow: hidden;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 220px;
+}
+.pcard:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(232,168,32,0.4);
+  transform: translateY(-3px);
+}
+.pcard.main { min-height: 240px; }
+.pcard-icon {
+  position: absolute; top: 20px; right: 24px;
+  font-size: 52px; opacity: 0.12;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.pcard:hover .pcard-icon { opacity: 0.22; transform: scale(1.1) rotate(-5deg); }
+.pcard-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 2px;
+}
+.badge-gold { background: rgba(232,168,32,0.2); color: var(--gold); border: 1px solid rgba(232,168,32,0.35); }
+.badge-orange { background: rgba(212,70,10,0.2); color: #f07040; border: 1px solid rgba(212,70,10,0.35); }
+.badge-blue { background: rgba(96,165,250,0.15); color: #7bb8f8; border: 1px solid rgba(96,165,250,0.3); }
+.badge-green { background: rgba(22,163,74,0.15); color: #4ade80; border: 1px solid rgba(22,163,74,0.3); }
+.pcard h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.pcard.main h3 { font-size: 19px; }
+.pcard p { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.pcard-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.pcard-moq { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+.pcard-arrow {
+  width: 28px; height: 28px;
+  background: rgba(232,168,32,0.15);
+  border: 1px solid rgba(232,168,32,0.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 13px; border-radius: 2px;
+  transition: background 0.2s;
+}
+.pcard:hover .pcard-arrow { background: var(--gold); color: var(--navy); }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--navy3);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 3px solid var(--gold);
+}
+.stats-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 64px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 32px 0;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px; color: var(--gold); line-height: 1;
+  letter-spacing: 1px;
+}
+.stat-n sup { font-size: 24px; }
+.stat-l { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+
+/* ── MARQUEE ── */
+.marquee-wrap { background: var(--orange); overflow: hidden; padding: 12px 0; }
+.marquee-track { display: flex; animation: marquee 28s linear infinite; white-space: nowrap; }
+.marquee-item {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.9); padding: 0 36px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.marquee-item::after { content: '✦'; color: rgba(255,255,255,0.4); font-size: 8px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SHARED SECTION ── */
+.section { padding: 100px 0; }
+.section-inner { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+.section-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: var(--orange);
+  letter-spacing: 4px; text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-tag::before { content: ''; width: 24px; height: 2px; background: var(--orange); }
+h2.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 4vw, 60px);
+  line-height: 1; letter-spacing: 1px; color: var(--text);
+  margin-bottom: 16px;
+}
+h2.sec-title em { color: var(--orange); font-style: normal; }
+h2.sec-title.light { color: var(--white); }
+h2.sec-title.light em { color: var(--gold); }
+
+/* ── FEATURES (light bg) ── */
+.features-section { background: var(--bg); }
+.features-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 60px; }
+.features-desc { font-size: 15px; color: var(--muted); line-height: 1.85; }
+.features-cta-text { font-size: 13px; color: var(--muted); margin-top: 24px; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 36px 32px;
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+}
+.feat-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.feat-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s;
+}
+.feat-card:hover::after { transform: scaleX(1); }
+.feat-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; color: var(--silver);
+  letter-spacing: 3px; margin-bottom: 20px;
+}
+.feat-icon {
+  width: 52px; height: 52px; border-radius: 6px;
+  background: linear-gradient(135deg, #fff8e7, #fef3c7);
+  border: 1px solid #fcd34d;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 20px;
+}
+.feat-card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.feat-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+/* ── PRODUCTS (white bg) ── */
+.products-section { background: var(--white); }
+.products-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+.products-header a { font-size: 13px; color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); padding-bottom: 2px; }
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.prod-card {
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.prod-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.prod-visual {
+  height: 200px;
+  background: linear-gradient(135deg, #1e2840 0%, #0f1623 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.prod-visual-icon { font-size: 80px; opacity: 0.25; transition: opacity 0.3s, transform 0.3s; }
+.prod-card:hover .prod-visual-icon { opacity: 0.4; transform: scale(1.08) rotate(-3deg); }
+.prod-level {
+  position: absolute; top: 16px; left: 16px;
+  background: var(--gold); color: var(--navy);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; letter-spacing: 2px; font-weight: 700;
+  padding: 5px 12px; border-radius: 2px;
+}
+.prod-industry {
+  position: absolute; bottom: 16px; right: 16px;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
+  font-size: 11px; padding: 4px 10px; border-radius: 2px;
+  backdrop-filter: blur(4px);
+}
+.prod-body { padding: 24px 24px 20px; }
+.prod-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.prod-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.prod-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  background: #f1f5f9; color: var(--muted); border: 1px solid var(--border);
+}
+.prod-body p { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 18px; }
+.prod-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 16px; border-top: 1px solid var(--border);
+}
+.prod-moq { font-size: 12px; color: var(--muted); }
+.prod-moq strong { color: var(--text); font-weight: 700; }
+.prod-link {
+  font-size: 12px; color: var(--orange); font-weight: 700;
+  letter-spacing: 1px; text-decoration: none;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* ── PROCESS (dark bg) ── */
+.process-section { background: var(--navy); }
+.process-layout { display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: start; }
+.process-intro p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.9; margin-top: 16px; max-width: 300px; }
+.process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.proc-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 32px 28px;
+  position: relative;
+  transition: background 0.25s, border-color 0.25s;
+}
+.proc-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(232,168,32,0.3); }
+.proc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px; color: rgba(232,168,32,0.2);
+  line-height: 1; margin-bottom: 16px;
+  transition: color 0.25s;
+}
+.proc-card:hover .proc-num { color: rgba(232,168,32,0.5); }
+.proc-card h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.proc-card p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
+.proc-tag {
+  display: inline-block; margin-bottom: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; color: var(--orange2);
+  border: 1px solid rgba(232,92,32,0.4);
+  padding: 2px 8px; letter-spacing: 2px; text-transform: uppercase;
+  border-radius: 2px;
+}
+
+/* ── CERTS (light) ── */
+.certs-section { background: var(--bg); }
+.certs-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cert-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 28px 24px;
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+.cert-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: var(--gold); }
+.cert-card-icon { font-size: 32px; margin-bottom: 12px; }
+.cert-card-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.cert-card-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+.cert-card-tag {
+  display: inline-block; margin-top: 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; color: var(--orange);
+  border: 1px solid rgba(212,70,10,0.35);
+  padding: 2px 8px; letter-spacing: 2px; border-radius: 2px;
+}
+.certs-right p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-top: 16px; margin-bottom: 40px; }
+.metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.metric-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px;
+  text-align: center;
+  transition: border-color 0.25s;
+}
+.metric-box:hover { border-color: var(--gold); }
+.metric-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px; line-height: 1; letter-spacing: 1px;
+}
+.metric-n.gold { color: var(--gold); }
+.metric-n.orange { color: var(--orange); }
+.metric-l { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+
+/* ── TESTIMONIALS (white) ── */
+.testi-section { background: var(--white); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.testi-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 36px 32px;
+  position: relative; transition: box-shadow 0.25s;
+}
+.testi-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+.testi-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 16px; }
+.testi-text { font-size: 14px; color: var(--muted); line-height: 1.85; margin-bottom: 28px; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+.testi-av {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--steel));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold);
+  flex-shrink: 0;
+}
+.testi-name { font-weight: 700; font-size: 14px; color: var(--text); }
+.testi-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── CTA + FORM ── */
+.cta-section { background: var(--navy); }
+.cta-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.cta-left { padding-top: 8px; }
+.cta-left p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.85; margin-top: 20px; margin-bottom: 40px; }
+.contact-info { display: flex; flex-direction: column; gap: 16px; }
+.ci-item { display: flex; align-items: center; gap: 16px; }
+.ci-icon {
+  width: 40px; height: 40px; border-radius: 4px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.ci-label { font-size: 10px; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; font-family: 'Share Tech Mono', monospace; }
+.ci-val { font-size: 14px; color: var(--white); font-weight: 500; margin-top: 2px; }
+.cta-hotline {
+  margin-top: 40px; padding: 24px;
+  background: rgba(232,168,32,0.1); border: 1px solid rgba(232,168,32,0.25);
+  border-radius: 6px;
+}
+.cta-hotline-label { font-size: 11px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; font-family: 'Share Tech Mono', monospace; }
+.cta-hotline-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: var(--white); letter-spacing: 3px; margin-top: 6px; }
+.cta-hotline-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+/* Form */
+.form-wrap {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 40px;
+}
+.form-wrap h3 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 28px; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.f-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.f-field label { font-size: 10px; color: var(--silver); letter-spacing: 2px; text-transform: uppercase; font-family: 'Share Tech Mono', monospace; }
+.f-field input,
+.f-field select,
+.f-field textarea {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: var(--white); padding: 11px 14px;
+  font-family: 'Noto Sans SC', sans-serif; font-size: 14px;
+  outline: none; border-radius: 3px;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-appearance: none;
+}
+.f-field input:focus, .f-field select:focus, .f-field textarea:focus {
+  border-color: var(--gold); background: rgba(255,255,255,0.07);
+}
+.f-field input::placeholder, .f-field textarea::placeholder { color: rgba(255,255,255,0.25); }
+.f-field select option { background: var(--navy2); }
+.f-field textarea { min-height: 72px; resize: vertical; }
+.btn-submit {
+  width: 100%; background: var(--gold); color: var(--navy);
+  font-family: 'Noto Sans SC', sans-serif; font-weight: 900;
+  font-size: 13px; letter-spacing: 2px;
+  padding: 15px; border: none; cursor: pointer; border-radius: 3px;
+  transition: all 0.22s; margin-top: 6px;
+}
+.btn-submit:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(232,168,32,0.35); }
+
+/* ── FOOTER ── */
+footer { background: #080d17; padding: 64px 0 32px; }
+.footer-inner { max-width: 1280px; margin: 0 auto; padding: 0 64px; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 5px; color: var(--gold); margin-bottom: 14px; display: block; }
+.footer-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.8; max-width: 240px; }
+.footer-col h4 { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: rgba(255,255,255,0.8); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+.footer-badges { display: flex; gap: 10px; }
+.f-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; color: rgba(232,168,32,0.6);
+  border: 1px solid rgba(232,168,32,0.2);
+  padding: 4px 10px; border-radius: 2px; letter-spacing: 1px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.au { opacity: 0; animation: fadeUp 0.75s ease forwards; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.18s; }
+.d3 { animation-delay: 0.32s; } .d4 { animation-delay: 0.48s; }
+.d5 { animation-delay: 0.62s; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.on { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div>
+    <div class="logo">钢盾科技</div>
+    <div class="logo-sub">SAFETY FOOTWEAR MANUFACTURER</div>
+  </div>
+  <ul>
+    <li><a href="#features">核心优势</a></li>
+    <li><a href="#products">产品系列</a></li>
+    <li><a href="#process">生产流程</a></li>
+    <li><a href="#certs">认证资质</a></li>
+    <li><a href="#contact" class="nav-cta">立即询价</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-top">
+    <div>
+      <div class="hero-eyebrow au d1">专业安全防护鞋 OEM/ODM 制造商 · 深耕行业 28 年</div>
+      <h1 class="au d2">
+        每一步<br>
+        都有<em>钢盾</em><br>
+        守护
+      </h1>
+      <p class="hero-lead au d3">服务全球 3,200+ 企业客户，覆盖建筑、冶炼、化工、物流等 12 大行业场景。通过 GB 12011 国标与 EN ISO 20345 欧盟双认证，为每一位产线工人提供可靠的足部安全防护。</p>
+      <div class="hero-actions au d4">
+        <a href="#contact" class="btn-gold">获取定制报价</a>
+        <a href="#products" class="btn-outline">查看产品目录</a>
+      </div>
+    </div>
+    <div class="hero-trust au d5">
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🇨🇳</div>
+        <div class="trust-badge-text"><strong>GB 12011 国标认证</strong>中国市场准入资质</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🇪🇺</div>
+        <div class="trust-badge-text"><strong>EN ISO 20345 欧盟认证</strong>TÜV 机构认证</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">✅</div>
+        <div class="trust-badge-text"><strong>ISO 9001:2015</strong>质量管理体系认证</div>
+      </div>
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🏭</div>
+        <div class="trust-badge-text"><strong>年产能 120 万双</strong>快速响应大批量订单</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product strip -->
+  <div class="hero-products-strip">
+    <div class="strip-label">主力产品系列</div>
+    <div class="products-strip">
+      <!-- Main card -->
+      <div class="pcard main">
+        <div class="pcard-icon">🥾</div>
+        <div class="pcard-badges">
+          <span class="badge badge-gold">S3 全防护</span>
+          <span class="badge badge-orange">畅销款</span>
+          <span class="badge badge-blue">EN ISO 20345</span>
+        </div>
+        <h3>高帮全防护安全靴</h3>
+        <p>钢包头 + 防刺穿钢板 + 防水牛皮面 + 防静电，适用于建筑、港口、冶炼等高危环境，年出货最大单品。</p>
+        <div class="pcard-footer">
+          <span class="pcard-moq">MOQ 500 双起 · 35天交期</span>
+          <div class="pcard-arrow">→</div>
+        </div>
+      </div>
+      <!-- Small cards -->
+      <div class="pcard">
+        <div class="pcard-icon">⚡</div>
+        <div class="pcard-badges"><span class="badge badge-blue">ESD 防静电</span></div>
+        <h3>防静电安全鞋</h3>
+        <p>电阻 10⁵–10⁹Ω，适合电子、半导体厂房。</p>
+        <div class="pcard-footer">
+          <span class="pcard-moq">MOQ 500 双</span>
+          <div class="pcard-arrow">→</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">🔥</div>
+        <div class="pcard-badges"><span class="badge badge-orange">耐 300°C</span></div>
+        <h3>高温作业安全鞋</h3>
+        <p>铝箔反射面料，HI 级接触热，适合冶炼铸造。</p>
+        <div class="pcard-footer">
+          <span class="pcard-moq">MOQ 300 双</span>
+          <div class="pcard-arrow">→</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">💧</div>
+        <div class="pcard-badges"><span class="badge badge-green">全橡胶防化</span></div>
+        <h3>防化学品橡胶靴</h3>
+        <p>无缝全橡胶，通过硫酸/盐酸渗透测试，食品化工适用。</p>
+        <div class="pcard-footer">
+          <span class="pcard-moq">MOQ 300 双</span>
+          <div class="pcard-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-n">28<sup>年</sup></div><div class="stat-l">行业经验</div></div>
+    <div class="stat-item"><div class="stat-n">3200<sup>+</sup></div><div class="stat-l">企业客户</div></div>
+    <div class="stat-item"><div class="stat-n">120<sup>万双</sup></div><div class="stat-l">年产能</div></div>
+    <div class="stat-item"><div class="stat-n">46<sup>国</sup></div><div class="stat-l">出口覆盖</div></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">防砸 S3 级</span><span class="marquee-item">防刺穿底</span>
+    <span class="marquee-item">ESD 防静电</span><span class="marquee-item">防化学品渗透</span>
+    <span class="marquee-item">耐高温 300°C</span><span class="marquee-item">防滑橡胶外底</span>
+    <span class="marquee-item">EN ISO 20345</span><span class="marquee-item">GB 12011 国标</span>
+    <span class="marquee-item">OEM / ODM 定制</span><span class="marquee-item">最低起订 500 双</span>
+    <span class="marquee-item">防砸 S3 级</span><span class="marquee-item">防刺穿底</span>
+    <span class="marquee-item">ESD 防静电</span><span class="marquee-item">防化学品渗透</span>
+    <span class="marquee-item">耐高温 300°C</span><span class="marquee-item">防滑橡胶外底</span>
+    <span class="marquee-item">EN ISO 20345</span><span class="marquee-item">GB 12011 国标</span>
+    <span class="marquee-item">OEM / ODM 定制</span><span class="marquee-item">最低起订 500 双</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section features-section" id="features">
+  <div class="section-inner">
+    <div class="features-header reveal">
+      <div>
+        <div class="section-tag">为什么选择钢盾</div>
+        <h2 class="sec-title">专业制造，<em>品质保障</em></h2>
+      </div>
+      <p class="features-desc">从原材料入厂到成品出库，每个环节严格品控。我们不是中间商——我们是真正的制造商，这意味着您在质量与价格上都能拿到最好的结果。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal">
+        <div class="feat-num">01</div>
+        <div class="feat-icon">🛡️</div>
+        <h3>双重国际认证</h3>
+        <p>同步持有中国 GB 12011 国标与欧盟 EN ISO 20345 认证，产品可直接进入中国与欧洲市场，无需二次送检。</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-num">02</div>
+        <div class="feat-icon">⚙️</div>
+        <h3>全链路自主制造</h3>
+        <p>自有鞋楦、注塑、硫化、缝帮四大车间，全程无外包，品质稳定可追溯，交期承诺有保障。</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-num">03</div>
+        <div class="feat-icon">✏️</div>
+        <h3>深度 OEM/ODM 定制</h3>
+        <p>支持楦型开发、面料配色、Logo 绣花至包装一体化定制，标准打样周期 15 个工作日。</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-num">04</div>
+        <div class="feat-icon">🔬</div>
+        <h3>CNAS 认证实验室</h3>
+        <p>内建独立检测实验室，100% 钢包头压力测试、防刺穿、电阻检测，每批次附随出厂检验报告。</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-num">05</div>
+        <div class="feat-icon">📦</div>
+        <h3>灵活起订与备货</h3>
+        <p>单款最低 500 双起订，支持多款混单备货，大客户可签年框协议享阶梯优惠，库存可视化管理。</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-num">06</div>
+        <div class="feat-icon">🚢</div>
+        <h3>全球快速发运</h3>
+        <p>与 DHL、MSC、中远海运长期合作，支持 FOB/CIF/DDP 多种贸易条款，覆盖 46 个国家和地区。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section products-section" id="products">
+  <div class="section-inner">
+    <div class="products-header reveal">
+      <div>
+        <div class="section-tag">产品系列</div>
+        <h2 class="sec-title">覆盖全场景<em>防护需求</em></h2>
+      </div>
+      <a href="#">查看完整产品目录 →</a>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <div class="prod-visual">
+          <div class="prod-visual-icon">🥾</div>
+          <div class="prod-level">S3 级</div>
+          <div class="prod-industry">建筑 · 港口 · 冶炼</div>
+        </div>
+        <div class="prod-body">
+          <h3>高帮全防护安全靴</h3>
+          <div class="prod-tags">
+            <span class="prod-tag">钢包头</span>
+            <span class="prod-tag">防刺穿</span>
+            <span class="prod-tag">防静电</span>
+            <span class="prod-tag">防水牛皮</span>
+          </div>
+          <p>最畅销款，适用高危作业环境。钢包头承压 ≥200J，防刺穿力 ≥1100N，附防水处理。</p>
+          <div class="prod-footer">
+            <div class="prod-moq">MOQ <strong>500 双</strong> · 35天交期</div>
+            <a href="#" class="prod-link">了解详情 →</a>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-visual">
+          <div class="prod-visual-icon">⚡</div>
+          <div class="prod-level">ESD</div>
+          <div class="prod-industry">电子 · 半导体</div>
+        </div>
+        <div class="prod-body">
+          <h3>防静电安全鞋</h3>
+          <div class="prod-tags">
+            <span class="prod-tag">ESD 防静电</span>
+            <span class="prod-tag">复合包头</span>
+            <span class="prod-tag">轻量化</span>
+          </div>
+          <p>表面电阻 10⁵–10⁹Ω，满足 EN 61340 标准，适合精密电子元器件作业环境。</p>
+          <div class="prod-footer">
+            <div class="prod-moq">MOQ <strong>500 双</strong> · 30天交期</div>
+            <a href="#" class="prod-link">了解详情 →</a>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-visual">
+          <div class="prod-visual-icon">🔥</div>
+          <div class="prod-level">HI 耐热</div>
+          <div class="prod-industry">冶炼 · 铸造</div>
+        </div>
+        <div class="prod-body">
+          <h3>高温作业安全鞋</h3>
+          <div class="prod-tags">
+            <span class="prod-tag">耐300°C</span>
+            <span class="prod-tag">铝箔反射面</span>
+            <span class="prod-tag">隔热内底</span>
+          </div>
+          <p>铝箔反射面料配合多层隔热内里，通过 HI 级接触热测试，守护高温炉前作业安全。</p>
+          <div class="prod-footer">
+            <div class="prod-moq">MOQ <strong>300 双</strong> · 35天交期</div>
+            <a href="#" class="prod-link">了解详情 →</a>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-visual">
+          <div class="prod-visual-icon">💧</div>
+          <div class="prod-level">化学防护</div>
+          <div class="prod-industry">化工 · 食品</div>
+        </div>
+        <div class="prod-body">
+          <h3>防化学品橡胶靴</h3>
+          <div class="prod-tags">
+            <span class="prod-tag">全橡胶</span>
+            <span class="prod-tag">无缝设计</span>
+            <span class="prod-tag">耐酸碱</span>
+          </div>
+          <p>全橡胶模压成型，无接缝设计，通过硫酸、盐酸耐渗透测试，清洁易维护。</p>
+          <div class="prod-footer">
+            <div class="prod-moq">MOQ <strong>300 双</strong> · 28天交期</div>
+            <a href="#" class="prod-link">了解详情 →</a>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card reveal">
+        <div class="prod-visual">
+          <div class="prod-visual-icon">🌧️</div>
+          <div class="prod-level">轻量款</div>
+          <div class="prod-industry">物流 · 仓储</div>
+        </div>
+        <div class="prod-body">
+          <h3>轻量复合包头运动款</h3>
+          <div class="prod-tags">
+            <span class="prod-tag">玻纤复合头</span>
+            <span class="prod-tag">减重30%</span>
+            <span class="prod-tag">运动鞋底</span>
+          </div>
+          <p>以玻璃纤维复合包头替代传统钢头，重量减轻 30%，全天穿着舒适度大幅提升。</p>
+          <div class="prod-footer">
+            <div class="prod-moq">MOQ <strong>500 双</strong> · 30天交期</div>
+            <a href="#" class="prod-link">了解详情 →</a>
+          </div>
+        </div>
+      </div>
+      <div class="prod-card reveal" style="border: 2px dashed var(--border); background: var(--bg); display:flex; align-items:center; justify-content:center; min-height:360px; flex-direction:column; gap:16px; cursor:pointer;">
+        <div style="font-size:48px; opacity:0.3;">✏️</div>
+        <div style="text-align:center;">
+          <div style="font-size:16px; font-weight:700; color:var(--mid);">没有找到合适的款式？</div>
+          <div style="font-size:13px; color:var(--muted); margin-top:8px; max-width:200px; line-height:1.7;">告诉我们您的需求，工程师团队为您定制开发</div>
+        </div>
+        <a href="#contact" class="btn-gold" style="font-size:12px; padding:12px 28px;">联系定制 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process-section" id="process">
+  <div class="section-inner">
+    <div class="process-layout">
+      <div class="reveal">
+        <div class="section-tag" style="color:var(--gold);">
+          <span style="background:var(--gold); width:24px; height:2px; display:inline-block;"></span>
+          生产流程
+        </div>
+        <h2 class="sec-title light">从订单到<em>交付</em></h2>
+        <p style="font-size:14px; color:rgba(255,255,255,0.45); line-height:1.9; margin-top:16px; max-width:300px;">每一双劳保鞋背后是一套精密工业体系。标准化流程确保每批次品质如一，交期有保障。</p>
+        <div style="margin-top:40px; padding:24px; background:rgba(232,168,32,0.08); border:1px solid rgba(232,168,32,0.2); border-radius:6px;">
+          <div style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:3px; margin-bottom:8px;">平均交付周期</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:52px; color:var(--white); letter-spacing:2px; line-height:1;">35<span style="font-size:24px; color:rgba(255,255,255,0.5)"> 天</span></div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.35); margin-top:4px;">确认样品 → 大货出厂</div>
+        </div>
+      </div>
+      <div class="process-grid reveal">
+        <div class="proc-card">
+          <div class="proc-num">01</div>
+          <div class="proc-tag">需求确认</div>
+          <h3>防护等级与场景分析</h3>
+          <p>工程师深入了解使用环境，精确匹配防护标准与材料选型，出具选型建议书。</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-num">02</div>
+          <div class="proc-tag">开发打样</div>
+          <h3>3D 建模 + 快速打样</h3>
+          <p>CAD 楦型设计，15 个工作日内交付标准样品，确认后即进入大货开模流程。</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-num">03</div>
+          <div class="proc-tag">原料采购</div>
+          <h3>优质原材料溯源管控</h3>
+          <p>宝钢 Q235 钢包头、≥1.1mm 防刺穿板，帮面皮革通过 REACH/RoHS 检测。</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-num">04</div>
+          <div class="proc-tag">生产制造</div>
+          <h3>自动化缝帮与硫化成型</h3>
+          <p>德国 Desma 注射成型设备，PU+橡胶双密度一次成型，良品率 ≥99.2%。</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-num">05</div>
+          <div class="proc-tag">质量检测</div>
+          <h3>200+ 道工序全程抽检</h3>
+          <p>IPQC 过程检验 + FQC 成品全检，每批附出厂报告，可提供 SGS 第三方服务。</p>
+        </div>
+        <div class="proc-card">
+          <div class="proc-num">06</div>
+          <div class="proc-tag">出货交付</div>
+          <h3>安全包装 + 准时发运</h3>
+          <p>五层加强纸箱防压，条码追溯，准时交付率 97.8%，支持多种贸易条款。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section class="section certs-section" id="certs">
+  <div class="section-inner">
+    <div class="certs-layout">
+      <div class="reveal">
+        <div class="section-tag">认证资质</div>
+        <h2 class="sec-title">国际<em>认可</em>品质</h2>
+        <p style="font-size:14px; color:var(--muted); line-height:1.85; margin-top:16px; margin-bottom:40px; max-width:380px;">完整的认证体系是进入国际市场的通行证，也是我们对每一位工人安全承诺的有力背书。</p>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-card-icon">🇨🇳</div>
+            <div class="cert-card-name">GB 12011-2009</div>
+            <div class="cert-card-desc">中国国家强制标准，国家认监委认可实验室出具，中国市场准入资质。</div>
+            <span class="cert-card-tag">中国市场</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-card-icon">🇪🇺</div>
+            <div class="cert-card-name">EN ISO 20345</div>
+            <div class="cert-card-desc">CE 认证，覆盖欧洲 27 国，德国 TÜV 机构认证，S1–S3 全等级。</div>
+            <span class="cert-card-tag">欧洲市场</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-card-icon">🌐</div>
+            <div class="cert-card-name">ANSI Z41</div>
+            <div class="cert-card-desc">北美市场准入，与 ASTM F2413 等效，满足美国/加拿大进口要求。</div>
+            <span class="cert-card-tag">北美市场</span>
+          </div>
+          <div class="cert-card">
+            <div class="cert-card-icon">✅</div>
+            <div class="cert-card-name">ISO 9001:2015</div>
+            <div class="cert-card-desc">覆盖全供应链的质量管理体系认证，第三方年度审核，持续改进。</div>
+            <span class="cert-card-tag">质量管理</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-tag">核心数据</div>
+        <h2 class="sec-title">数字背后的<em>实力</em></h2>
+        <p style="font-size:14px; color:var(--muted); line-height:1.85; margin-top:16px; margin-bottom:40px;">这些数字不是宣传口号，是 28 年来每一个订单、每一次质检积累下来的真实记录。</p>
+        <div class="metrics">
+          <div class="metric-box">
+            <div class="metric-n gold">99.2<span style="font-size:20px">%</span></div>
+            <div class="metric-l">成品良品率</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-n orange">97.8<span style="font-size:20px">%</span></div>
+            <div class="metric-l">准时交付率</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-n gold">12</div>
+            <div class="metric-l">国际认证</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-n orange">0</div>
+            <div class="metric-l">质量召回记录</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">客户评价</div>
+      <h2 class="sec-title">3,200+ 企业的<em>共同选择</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">与钢盾合作三年，ESD 防静电系列完全满足我们半导体工厂的使用要求，从未出现质量投诉，复购率极高。</p>
+        <div class="testi-author">
+          <div class="testi-av">李</div>
+          <div>
+            <div class="testi-name">李志远</div>
+            <div class="testi-role">采购总监 · 某半导体制造商</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">向德国、荷兰出口劳保鞋，钢盾是唯一能同时提供 CE + REACH 全套文件的供应商，大幅降低了我们的认证成本。</p>
+        <div class="testi-author">
+          <div class="testi-av">王</div>
+          <div>
+            <div class="testi-name">王丽华</div>
+            <div class="testi-role">外贸经理 · 某劳保用品贸易公司</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">35 天拿到样品并顺利通过客户审厂，最终签下年框 8 万双订单。打样速度是我合作过的供应商里最快的。</p>
+        <div class="testi-author">
+          <div class="testi-av">张</div>
+          <div>
+            <div class="testi-name">张建国</div>
+            <div class="testi-role">总经理 · 某石油化工集团采购中心</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + FORM -->
+<section class="section cta-section" id="contact">
+  <div class="section-inner">
+    <div class="cta-layout">
+      <div class="cta-left reveal">
+        <div class="section-tag" style="color:var(--gold);"><span style="background:var(--gold); width:24px; height:2px; display:inline-block;"></span>联系我们</div>
+        <h2 class="sec-title light">24 小时内<em>响应</em>您的需求</h2>
+        <p>无论是标准款采购询价，还是全新款型开发，我们的工程师与销售团队都将在 24 小时内给您专业回复。</p>
+        <div class="contact-info">
+          <div class="ci-item">
+            <div class="ci-icon">📞</div>
+            <div><div class="ci-label">服务热线</div><div class="ci-val">400-888-2024</div></div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">✉️</div>
+            <div><div class="ci-label">邮件询价</div><div class="ci-val">sales@gangdun.com</div></div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">📍</div>
+            <div><div class="ci-label">工厂地址</div><div class="ci-val">浙江省温州市鹿城区安全工业园 A3 栋</div></div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon">🕘</div>
+            <div><div class="ci-label">工作时间</div><div class="ci-val">周一至周六 09:00–18:00</div></div>
+          </div>
+        </div>
+        <div class="cta-hotline">
+          <div class="cta-hotline-label">免费样品申请</div>
+          <div class="cta-hotline-num">首单免费打样</div>
+          <div class="cta-hotline-sub">新客户专享 · 确认合作意向后即可申请</div>
+        </div>
+      </div>
+      <div class="form-wrap reveal">
+        <h3>快速询价表单</h3>
+        <div class="f-row">
+          <div class="f-field"><label>姓名</label><input type="text" placeholder="您的姓名"></div>
+          <div class="f-field"><label>公司</label><input type="text" placeholder="公司全称"></div>
+        </div>
+        <div class="f-row">
+          <div class="f-field"><label>电话</label><input type="tel" placeholder="手机 / 座机"></div>
+          <div class="f-field"><label>邮箱</label><input type="email" placeholder="your@email.com"></div>
+        </div>
+        <div class="f-field">
+          <label>所需产品类型</label>
+          <select>
+            <option>请选择防护类型</option>
+            <option>S3 级高帮全防护安全靴</option>
+            <option>ESD 防静电安全鞋</option>
+            <option>耐高温安全鞋</option>
+            <option>防化学品橡胶靴</option>
+            <option>轻量复合包头款</option>
+            <option>其他 / 定制款</option>
+          </select>
+        </div>
+        <div class="f-row">
+          <div class="f-field">
+            <label>采购数量</label>
+            <select>
+              <option>500–1,000 双</option>
+              <option>1,000–5,000 双</option>
+              <option>5,000–20,000 双</option>
+              <option>20,000 双以上</option>
+            </select>
+          </div>
+          <div class="f-field">
+            <label>是否需要定制</label>
+            <select>
+              <option>Logo / 配色定制</option>
+              <option>结构 / 防护定制</option>
+              <option>使用现有款式</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-field">
+          <label>补充说明（选填）</label>
+          <textarea placeholder="使用场景、特殊要求或参考款式..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="this.textContent='✓ 已提交，我们将在24小时内联系您'; this.style.background='#16a34a'; this.disabled=true;">
+          提交询价 · 24小时响应
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <span class="footer-logo">钢盾科技</span>
+        <p class="footer-desc">专注工业安全防护鞋 OEM/ODM 制造，28 年匠心，为全球工人守护足部安全。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品系列</h4>
+        <ul>
+          <li><a href="#">S3 全防护系列</a></li>
+          <li><a href="#">ESD 防静电系列</a></li>
+          <li><a href="#">耐高温系列</a></li>
+          <li><a href="#">防化学品系列</a></li>
+          <li><a href="#">轻量运动系列</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>服务支持</h4>
+        <ul>
+          <li><a href="#">OEM/ODM 流程</a></li>
+          <li><a href="#">认证文件下载</a></li>
+          <li><a href="#">尺码对照表</a></li>
+          <li><a href="#">常见问题</a></li>
+          <li><a href="#">审厂预约</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系我们</h4>
+        <ul>
+          <li><a href="#">📞 400-888-2024</a></li>
+          <li><a href="#">✉️ sales@gangdun.com</a></li>
+          <li><a href="#">💬 微信公众号</a></li>
+          <li><a href="#">in LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 钢盾科技有限公司 · 浙ICP备XXXXXXXX号</p>
+      <div class="footer-badges">
+        <span class="f-badge">ISO 9001</span>
+        <span class="f-badge">CE CERT</span>
+        <span class="f-badge">GB 12011</span>
+        <span class="f-badge">EN ISO 20345</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 90);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
