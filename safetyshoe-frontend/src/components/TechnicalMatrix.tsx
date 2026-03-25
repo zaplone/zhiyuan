@@ -60,26 +60,33 @@ function mapToProductFormat(product: any) {
 
 export function TechnicalMatrix() {
   const t = useTranslations('TechnicalMatrix');
-  const locale = useLocale();
+  const locale = useLocale() || 'en';
   const [products, setProducts] = useState<any[]>([]);
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadProducts() {
       try {
+        setError(null);
         const data = await fetchProducts(locale, { limit: 50 });
-        const transformed = data.map((p: any) => mapToProductFormat(p));
-        setProducts(transformed);
-      } catch (error) {
-        console.error('Error loading products:', error);
+        if (data && Array.isArray(data)) {
+          const transformed = data.map((p: any) => mapToProductFormat(p));
+          setProducts(transformed);
+        }
+      } catch (err) {
+        console.error('Error loading products:', err);
+        setError('Failed to load products');
       } finally {
         setLoading(false);
       }
     }
-    loadProducts();
+    if (locale) {
+      loadProducts();
+    }
   }, [locale]);
 
   const filteredProducts = activeCategory === "all" 
@@ -110,6 +117,16 @@ export function TechnicalMatrix() {
       <section id="matrix" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-slate-500">Loading products...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="matrix" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-red-500">{error}</p>
         </div>
       </section>
     );
