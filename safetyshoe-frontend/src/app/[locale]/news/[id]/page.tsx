@@ -3,10 +3,10 @@ import { fetchNewsItem, transformNews, fetchAllNewsIds } from '@/lib/siteApi';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Calendar, User, ArrowLeft, Play } from 'lucide-react';
+import { Calendar, User, ArrowLeft } from 'lucide-react';
 
-// 允许动态参数（静态导出模式下需要）
-export const dynamicParams = true;
+// output: 'export' 需要静态参数，禁用动态参数
+export const dynamicParams = false;
 
 // 生成所有静态路径
 export async function generateStaticParams() {
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
     const newsIds = await fetchAllNewsIds();
     
     if (!newsIds || newsIds.length === 0) {
-      return [];
+      return locales.map((locale) => ({ locale, id: 'demo' }));
     }
 
     const params = [];
@@ -26,7 +26,7 @@ export async function generateStaticParams() {
     return params;
   } catch (error) {
     console.error('Error generating static params for news:', error);
-    return [];
+    return locales.map((locale) => ({ locale, id: 'demo' }));
   }
 }
 
@@ -34,9 +34,26 @@ type NewsPageProps = {
   params: Promise<{ id: string; locale: string }>;
 };
 
+function getDemoNews() {
+  return {
+    id: 0,
+    documentId: 'demo',
+    title: 'Factory News (Demo)',
+    excerpt: 'Latest factory updates will be published here soon.',
+    content:
+      'Our latest factory updates are being prepared and will be available shortly. Please check back soon for new announcements.',
+    image: '/images/about/gongchang.jpg',
+    date: new Date().toISOString().split('T')[0],
+    author: 'Admin',
+    category: 'Factory News',
+    media_type: 'Article' as const,
+    video_url: '',
+  };
+}
+
 export default async function NewsDetailPage({ params }: NewsPageProps) {
   const { id, locale } = await params;
-  const newsData = await fetchNewsItem(id);
+  const newsData = id === 'demo' ? getDemoNews() : await fetchNewsItem(id);
 
   if (!newsData) {
     notFound();
