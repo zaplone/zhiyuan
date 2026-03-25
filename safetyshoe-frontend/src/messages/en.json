@@ -992,5 +992,94 @@
       "MX": "Mexico",
       "other": "Other"
     }
+  },
+  "TechnicalMatrix": {
+    "title": "Technical Matrix",
+    "titleHighlight": "Product",
+    "titleHighlight2": "Showcase.",
+    "subtitle": "Precision engineered safety solutions for global industry.",
+    "featured": "Hot Products",
+    "newArrivals": "New Arrivals",
+    "flagship": "Flagship",
+    "viewSpecs": "View Specs",
+    "viewAll": "View All Products",
+    "viewDetail": "View Details",
+    "next": "Next"
+  },
+  "Manufacturing": {
+    "subtitle": "Manufacturing Power",
+    "title": "Precision",
+    "titleHighlight": "Engineering.",
+    "desc1": "With over two decades of specialized experience in safety footwear, our manufacturing facility stands as a benchmark of industrial excellence. We don't just assemble shoes; we engineer protection.",
+    "desc2": "Our 12 fully automated production lines integrate the latest injection technology and robotic precision, ensuring that every pair meets the exact specifications required for high-risk industrial environments. From material sourcing to final stress testing, our in-house laboratory monitors every stage of the lifecycle.",
+    "stats": {
+      "automation": "Automated Lines",
+      "rd": "R&D Engineers",
+      "output": "Annual Output",
+      "export": "Export Regions"
+    },
+    "continuous": "Continuous Production"
+  },
+  "GlobalCompliance": {
+    "subtitle": "Global Compliance",
+    "title": "Certified",
+    "titleHighlight": "Authority.",
+    "certs": {
+      "astm": "Impact & Compression resistance testing.",
+      "ce": "Full S1P/S3 certification for Europe.",
+      "iso": "International manufacturing quality control.",
+      "ukca": "Post-Brexit market access for UK."
+    },
+    "verified": "Original Document Verified"
+  },
+  "GlobalReach": {
+    "subtitle": "Global Scale",
+    "title": "Exporting",
+    "titleHighlight": "Excellence.",
+    "desc": "From our centralized manufacturing hub, we power industrial safety across 6 continents. Our scale is built on consistent quality and a robust international supply chain.",
+    "stats": {
+      "export": "Annual Export",
+      "reach": "Global Reach",
+      "compliance": "Compliance",
+      "patents": "Technical Patents"
+    },
+    "hub": "Live Manufacturing Hub: East Asia",
+    "production": "Current Production Load",
+    "shipping": "Global Shipping Status",
+    "destinations": "Export Destinations",
+    "optimal": "Optimal",
+    "nations": "85 Nations",
+    "corridors": "Major Export Corridors"
+  },
+  "TechnicalOEM": {
+    "subtitle": "Engineering Core",
+    "title": "Technical",
+    "titleHighlight": "Foundation.",
+    "desc": "Our OEM capability is rooted in our mastery of core components. We manufacture our own safety elements to ensure total quality control.",
+    "components": {
+      "toe": "Steel Toe Cap",
+      "toeDesc": "200J Impact resistance.",
+      "midsole": "Kevlar Midsole",
+      "midsoleDesc": "Zero-penetration protection.",
+      "sole": "PU/Rubber Sole",
+      "soleDesc": "SRC slip resistance.",
+      "lining": "Breathable Lining",
+      "liningDesc": "Moisture-wicking mesh."
+    },
+    "steps": {
+      "1": "Technical Brief",
+      "1desc": "Market standards & safety analysis.",
+      "2": "R&D Prototyping",
+      "2desc": "Rapid sample development.",
+      "3": "Tooling & Mold",
+      "3desc": "Precision custom molds.",
+      "4": "Mass Production",
+      "4desc": "ISO-certified high volume.",
+      "5": "Global Logistics",
+      "5desc": "Seamless supply chain."
+    },
+    "workflow": "OEM/ODM",
+    "workflowHighlight": "Workflow.",
+    "cta": "Start Custom Project"
   }
 }
