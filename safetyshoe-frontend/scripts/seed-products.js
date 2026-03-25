@@ -1,5 +1,5 @@
-// 本地脚本示例；生产数据 API 为 https://luyuan.zwstone.cn/api
-const API_BASE = process.env.NEXT_PUBLIC_SITE_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL || 'https://luyuan.zwstone.cn/api';
+// 本地脚本示例；生产数据 API 为 https://dtxy.zwstone.cn/api
+const API_BASE = process.env.NEXT_PUBLIC_SITE_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL || 'https://dtxy.zwstone.cn/api';
 
 const categories = ['Construction', 'Oil & Gas', 'Food Service', 'Heavy Industry', 'Logistics', 'Mining'];
 const styles = ['Low Cut', 'Mid Cut', 'High Boot'];

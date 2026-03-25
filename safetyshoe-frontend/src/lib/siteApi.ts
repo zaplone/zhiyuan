@@ -2,7 +2,7 @@
  * 独立站数据 API（鹿原 Nest 服务）。
  * 生产基地址：https://dtxy.zwstone.cn/api
  */
-const SITE_API_BASE_URL = 'https://luyuan.zwstone.cn/api';
+const SITE_API_BASE_URL = 'https://dtxy.zwstone.cn/api';
 
 import { Product, SafetyStandard, Certification, MaterialSpec, ShoeStyle, Industry } from '@/types';
 

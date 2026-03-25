@@ -13,7 +13,7 @@ const nextConfig = {
   // 图片配置
   images: {
     unoptimized: true, // 静态导出必须开启此项
-    domains: ['localhost', 'luyuan.zwstone.cn', 'pub-9a6ce20adf6d44c499aad464d60190a1.r2.dev'],
+    domains: ['localhost', 'dtxy.zwstone.cn', 'pub-9a6ce20adf6d44c499aad464d60190a1.r2.dev'],
     remotePatterns: [
       {
         protocol: 'https',

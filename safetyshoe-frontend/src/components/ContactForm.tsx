@@ -30,18 +30,14 @@ export function ContactForm() {
   const onSubmit = async (data: ContactFormData) => {
     try {
       setIsSubmitting(true);
-      
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contacts`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit');
-      }
+      await inquiriesApi.submitInquiry({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        message: `[Contact Subject] ${data.subject}\n${data.message}`,
+      });
       
       setIsSubmitted(true);
       reset();

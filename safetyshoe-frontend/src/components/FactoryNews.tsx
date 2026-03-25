@@ -14,7 +14,7 @@ interface FactoryNewsProps {
 const SITE_API_BASE_URL =
   process.env.NEXT_PUBLIC_SITE_API_URL ||
   process.env.NEXT_PUBLIC_STRAPI_URL ||
-  'https://luyuan.zwstone.cn/api';
+  'https://dtxy.zwstone.cn/api';
 
 // NestJS 响应格式接口
 interface NestJSResponse<T> {

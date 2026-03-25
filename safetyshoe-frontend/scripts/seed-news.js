@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_SITE_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL || 'https://luyuan.zwstone.cn/api';
+const API_BASE = process.env.NEXT_PUBLIC_SITE_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL || 'https://dtxy.zwstone.cn/api';
 
 const newsItems = [
   {
