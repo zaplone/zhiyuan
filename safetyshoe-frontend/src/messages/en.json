@@ -166,6 +166,13 @@
     }
   },
   "Hero": {
+    "badge": "Direct Manufacturing Hub",
+    "title": "5 Million Pairs",
+    "highlight": "Annual Capacity.",
+    "description": "Your reliable global OEM/ODM partner. Precision-engineered safety footwear built for international industrial standards.",
+    "cta1": "View Products",
+    "cta2": "OEM Solutions",
+    "certified": "Certified Factory",
     "cta_primary": "Get a quote",
     "cta_secondary": "Browse catalog",
     "slide1": {
