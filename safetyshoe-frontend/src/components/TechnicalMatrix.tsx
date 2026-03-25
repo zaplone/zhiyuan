@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Globe, 
@@ -10,9 +11,12 @@ import {
   Flame, 
   ChevronRight, 
   X,
-  ArrowRight 
+  ArrowRight,
+  CheckCircle2
 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
+import { ProductCertBadges } from '@/components/ProductCertBadges';
+import { heroSellingLine } from '@/lib/productCardHighlights';
 
 interface TechnicalMatrixProps {
   products?: any[];
@@ -25,66 +29,84 @@ const categories = [
   { id: 'specialty', label: 'Specialty', icon: <Flame className="w-3 h-3" /> }
 ];
 
+function heroImageUrl(p: any): string | null {
+  const main = p.image;
+  if (main && (main.startsWith('http') || main.startsWith('/'))) return main;
+  const first = p.images?.[0];
+  if (first && (first.startsWith('http') || first.startsWith('/'))) return first;
+  return null;
+}
+
 export function TechnicalMatrix({ products = [] }: TechnicalMatrixProps) {
   const t = useTranslations('TechnicalMatrix');
   const locale = useLocale();
   const [activeCategory, setActiveCategory] = useState('all');
+  const [activeTab, setActiveTab] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const SHOWCASE_TABS = [
+    { key: 'featured', mode: 'featured' as const },
+    { key: 'newArrivals', mode: 'new' as const },
+  ];
 
   const filteredProducts = activeCategory === 'all' 
     ? products 
     : products.filter((p: any) => p.category === activeCategory);
 
-  const flagship = products.find((p: any) => p.isFlagship);
-  const gridItems = filteredProducts.filter((p: any) => !p.isFlagship || activeCategory !== 'all');
+  const pool = useMemo(() => {
+    const mode = SHOWCASE_TABS[activeTab].mode;
+    if (mode === 'featured') {
+      return filteredProducts.filter((p: any) => p.is_hot || p.featured);
+    } else if (mode === 'new') {
+      return filteredProducts.filter((p: any) => p.is_new);
+    }
+    return filteredProducts;
+  }, [filteredProducts, activeTab]);
+
+  const hero = pool[0] || filteredProducts[0];
+  const side = pool.slice(1, 5) || filteredProducts.slice(1, 5);
+
+  const handleProductClick = (product: any) => {
+    setSelectedProduct(product);
+    setCurrentImageIndex(0);
+  };
 
   const handleNext = () => {
     if (!selectedProduct) return;
-    const currentIndex = products.findIndex((p: any) => p.id === selectedProduct.id);
-    const nextIndex = (currentIndex + 1) % products.length;
-    setSelectedProduct(products[nextIndex]);
+    const allProducts = filteredProducts;
+    const currentIndex = allProducts.findIndex((p: any) => p.id === selectedProduct.id);
+    const nextIndex = (currentIndex + 1) % allProducts.length;
+    setSelectedProduct(allProducts[nextIndex]);
     setCurrentImageIndex(0);
   };
 
   const handlePrev = () => {
     if (!selectedProduct) return;
-    const currentIndex = products.findIndex((p: any) => p.id === selectedProduct.id);
-    const prevIndex = (currentIndex - 1 + products.length) % products.length;
-    setSelectedProduct(products[prevIndex]);
+    const allProducts = filteredProducts;
+    const currentIndex = allProducts.findIndex((p: any) => p.id === selectedProduct.id);
+    const prevIndex = (currentIndex - 1 + allProducts.length) % allProducts.length;
+    setSelectedProduct(allProducts[prevIndex]);
     setCurrentImageIndex(0);
   };
+
+  const heroImg = heroImageUrl(hero);
 
   return (
     <section id="matrix" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col md:flex-row justify-between items-center mb-16 pb-8 border-b border-slate-100 gap-8">
-          <div className="flex items-center gap-6">
-            <h3 className="text-4xl font-black text-slate-900 uppercase tracking-tighter italic">
-              {t('title') || 'Technical'} <span className="text-orange-600">{t('titleHighlight') || 'Matrix.'}</span>
-            </h3>
-            <div className="hidden md:block h-8 w-px bg-slate-200" />
-            <p className="hidden md:block text-[10px] font-bold text-slate-400 uppercase tracking-widest max-w-[200px] leading-tight">
-              {t('subtitle') || 'Precision engineered safety solutions for global industry.'}
-            </p>
+        <div className="text-center mb-12">
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <div className="w-8 h-px bg-slate-300" />
+            <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
+              {t('title') || 'Technical Matrix'}
+            </h2>
+            <div className="w-8 h-px bg-slate-300" />
           </div>
-          
-          <div className="flex bg-slate-50 p-1 border border-slate-200">
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2 text-[9px] font-black uppercase tracking-widest transition-all ${
-                  activeCategory === cat.id 
-                    ? "bg-slate-900 text-white shadow-lg" 
-                    : "text-slate-400 hover:text-slate-600"
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
+          <h3 className="text-5xl font-black text-slate-900 uppercase tracking-tighter italic">
+            {t('titleHighlight') || 'Product'} <span className="text-orange-600">{t('titleHighlight2') || 'Showcase.'}</span>
+          </h3>
         </div>
 
         {products.length === 0 ? (
@@ -92,89 +114,114 @@ export function TechnicalMatrix({ products = [] }: TechnicalMatrixProps) {
             <p className="text-slate-500">Loading products...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {activeCategory === 'all' && flagship && (
-              <div 
-                onClick={() => setSelectedProduct(flagship)}
-                className="lg:col-span-2 bg-slate-900 group relative flex flex-col sm:flex-row overflow-hidden cursor-pointer"
-              >
-                <div className="sm:w-1/2 relative overflow-hidden">
-                  <img 
-                    src={(flagship as any).image || (flagship as any).images?.[0] || '/images/placeholder.svg'} 
-                    alt={(flagship as any).name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-4 left-4 bg-orange-600 text-white px-3 py-1 text-[8px] font-black uppercase tracking-widest italic">
-                    {t('flagship') || 'Flagship'}
-                  </div>
-                </div>
-                <div className="sm:w-1/2 p-8 flex flex-col justify-center">
-                  <h4 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-3">{(flagship as any).name}</h4>
-                  <p className="text-slate-400 text-[11px] mb-6 leading-relaxed font-medium line-clamp-2">
-                    {(flagship as any).description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {(flagship as any).certifications?.slice(0, 3).map((tag: string, i: number) => (
-                      <span key={i} className="px-2 py-0.5 bg-white/10 text-white text-[8px] font-black uppercase tracking-widest">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <button className="w-full py-3 bg-white text-slate-900 text-[9px] font-black uppercase tracking-widest hover:bg-orange-600 hover:text-white transition-all">
-                    {t('viewSpecs') || 'View Specs'}
+          <>
+            <div className="mb-8 flex flex-wrap justify-center gap-2">
+              {SHOWCASE_TABS.map((item, idx) => {
+                const active = idx === activeTab;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => setActiveTab(idx)}
+                    className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
+                      active
+                        ? 'bg-orange-600 text-white shadow-md'
+                        : 'border border-slate-200 bg-white text-slate-600 hover:border-orange-300 hover:text-orange-600'
+                    }`}
+                  >
+                    {item.key === 'featured' ? (t('featured') || 'Hot Products') : (t('newArrivals') || 'New Arrivals')}
                   </button>
-                </div>
-              </div>
-            )}
+                );
+              })}
+            </div>
 
-            {gridItems.slice(0, 7).map((p: any) => (
-              <motion.div 
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                key={p.id} 
-                onClick={() => setSelectedProduct(p)}
-                className="bg-white border border-slate-100 group hover:border-orange-600 transition-all duration-300 flex flex-col cursor-pointer"
-              >
-                <div className="aspect-[4/3] overflow-hidden relative bg-slate-50">
-                  <img 
-                    src={p.image || p.images?.[0] || '/images/placeholder.svg'} 
-                    alt={p.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" 
-                    referrerPolicy="no-referrer" 
-                  />
-                  <div className="absolute top-3 left-3 bg-slate-900 text-white px-2 py-0.5 text-[7px] font-black uppercase tracking-widest">
-                    {p.model_code || p.id}
+            <motion.div
+              className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 lg:gap-3"
+            >
+              {hero && (
+                <div
+                  onClick={() => handleProductClick(hero)}
+                  className="group relative block min-h-[360px] overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-sm transition-all hover:border-orange-200 hover:shadow-md sm:col-span-2 sm:min-h-[400px] lg:col-span-2 lg:row-span-2 lg:min-h-[min(560px,58vh)] cursor-pointer"
+                >
+                  <div className="absolute inset-0 bg-white">
+                    {heroImg ? (
+                      <Image
+                        src={heroImg}
+                        alt={hero.name}
+                        fill
+                        className="object-contain object-center p-4 transition duration-500 group-hover:scale-[1.02]"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-sm text-slate-400">No Image</div>
+                    )}
                   </div>
-                  <div className="absolute bottom-3 left-3 flex gap-1">
-                    {p.certifications?.slice(0, 2).map((tag: string, i: number) => (
-                      <span key={i} className="px-1.5 py-0.5 bg-white/90 text-slate-900 text-[7px] font-black uppercase tracking-tighter">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="p-5 flex-grow flex flex-col">
-                  <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight mb-2 group-hover:text-orange-600 transition-colors">{p.name}</h4>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-1 h-1 bg-orange-600 rounded-full" />
-                    <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">{p.category}</span>
-                  </div>
-                  <div className="mt-auto pt-3 border-t border-slate-50 flex justify-between items-center">
-                    <span className="text-[7px] font-black text-slate-400 uppercase tracking-widest">
-                      {p.safety_standard || 'EN ISO'}
+
+                  <div className="absolute left-3 top-3 z-10">
+                    <span className="rounded-full bg-orange-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
+                      {t('flagship') || 'Flagship'}
                     </span>
-                    <ChevronRight className="w-3 h-3 text-slate-300 group-hover:text-orange-600 transition-all" />
+                  </div>
+
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
+                    <ProductCertBadges product={hero} compact inline />
+                    <h3 className="mt-2 text-lg font-bold leading-snug text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.65)] sm:text-xl lg:text-2xl">
+                      {hero.name}
+                    </h3>
+                    {hero.model_code && (
+                      <p className="mt-1 font-mono text-xs text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]">
+                        {hero.model_code}
+                      </p>
+                    )}
+                    <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.85)]">
+                      {t('viewDetail') || 'View Details'} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                    </span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              )}
+
+              {side.map((product: any) => (
+                <motion.div
+                  key={product.id}
+                  layout
+                  className="group flex min-h-[220px] flex-col overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-sm transition-all hover:border-orange-200 hover:shadow-md"
+                  onClick={() => handleProductClick(product)}
+                >
+                  <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-white ring-1 ring-inset ring-slate-100">
+                    {product.image || product.images?.[0] ? (
+                      <Image
+                        src={product.image || product.images[0]}
+                        alt={product.name}
+                        fill
+                        className="object-contain object-center p-2 transition duration-300 group-hover:scale-[1.02]"
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-xs text-slate-400">No Image</div>
+                    )}
+                    <ProductCertBadges product={product} compact />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-1 p-3">
+                    <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-slate-900">{product.name}</h4>
+                    {product.model_code && (
+                      <p className="truncate font-mono text-[10px] text-slate-400">{product.model_code}</p>
+                    )}
+                    <div className="mt-auto flex items-center justify-between border-t border-slate-50 pt-2 text-[11px] text-slate-500">
+                      <span>
+                        MOQ <span className="font-semibold text-slate-800">{product.moq || '500'}</span>
+                      </span>
+                      <ChevronRight
+                        className={`h-4 w-4 shrink-0 text-orange-600`}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
         )}
 
-        <div className="text-center mt-16">
+        <div className="text-center mt-12">
           <Link 
             href={`/${locale}/products`}
             className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-600 transition-all"
@@ -186,7 +233,7 @@ export function TechnicalMatrix({ products = [] }: TechnicalMatrixProps) {
 
       <AnimatePresence mode="wait">
         {selectedProduct && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 overflow-hidden">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 overflow-hidden">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -197,16 +244,14 @@ export function TechnicalMatrix({ products = [] }: TechnicalMatrixProps) {
             
             <motion.div 
               key={selectedProduct.id}
-              initial={{ scale: 0.95, opacity: 0, x: 50, rotateY: -10 }}
-              animate={{ scale: 1, opacity: 1, x: 0, rotateY: 0 }}
-              exit={{ scale: 0.95, opacity: 0, x: -50, rotateY: 10 }}
-              transition={{ type: "spring", damping: 25, stiffness: 120 }}
-              className="relative w-full max-w-6xl aspect-[16/10] bg-white shadow-[0_60px_120px_-20px_rgba(0,0,0,0.7)] flex overflow-hidden origin-center rounded-sm"
-              style={{ perspective: "2500px" }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-6xl max-h-[90vh] bg-white shadow-2xl flex overflow-hidden rounded-lg"
             >
               <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-900/10 text-slate-400 flex items-center justify-center z-[100] hover:bg-orange-600 hover:text-white transition-all"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900/10 text-slate-400 flex items-center justify-center z-50 hover:bg-orange-600 hover:text-white transition-all"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -218,86 +263,147 @@ export function TechnicalMatrix({ products = [] }: TechnicalMatrixProps) {
                   animate={{ opacity: 1 }}
                   className="h-full w-full relative"
                 >
-                  <img 
-                    src={selectedProduct.image || selectedProduct.images?.[currentImageIndex] || '/images/placeholder.svg'} 
+                  <Image 
+                    src={selectedProduct.images?.[currentImageIndex] || selectedProduct.image || '/images/placeholder.svg'} 
                     alt={selectedProduct.name} 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
+                    fill
+                    className="object-contain p-4"
                   />
                 </motion.div>
+
+                {selectedProduct.images && selectedProduct.images.length > 1 && (
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="flex gap-2 justify-center">
+                      {selectedProduct.images.map((img: string, i: number) => (
+                        <button 
+                          key={i}
+                          onClick={() => setCurrentImageIndex(i)}
+                          className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                            i === currentImageIndex ? 'border-orange-600' : 'border-transparent opacity-60 hover:opacity-100'
+                          }`}
+                        >
+                          <Image src={img} alt="" width={64} height={64} className="w-full h-full object-cover" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <button 
+                  onClick={() => setCurrentImageIndex((prev) => (prev - 1 + (selectedProduct.images?.length || 1)) % (selectedProduct.images?.length || 1))}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-all shadow-lg"
+                >
+                  <ChevronRight className="w-6 h-6 rotate-180" />
+                </button>
+                <button 
+                  onClick={() => setCurrentImageIndex((prev) => (prev + 1) % (selectedProduct.images?.length || 1))}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 text-slate-900 flex items-center justify-center hover:bg-orange-600 hover:text-white transition-all shadow-lg"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
               </div>
 
-              <div className="w-1/2 h-full bg-white p-16 flex flex-col relative overflow-y-auto">
-                <div className="relative z-20">
-                  <div className="flex justify-between items-start mb-14">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-px bg-orange-600" />
-                        <span className="text-[9px] font-black text-orange-600 uppercase tracking-[0.4em]">{selectedProduct.model_code}</span>
-                      </div>
-                      <h4 className="text-5xl font-black text-slate-900 uppercase tracking-tighter italic leading-none">{selectedProduct.name}</h4>
+              <div className="w-1/2 h-full bg-white p-8 overflow-y-auto">
+                <div className="space-y-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[10px] font-black text-orange-600 uppercase tracking-widest">{selectedProduct.model_code}</span>
                     </div>
-                    <div className="bg-slate-900 text-white px-3 py-1 text-[8px] font-black uppercase tracking-widest">
-                      {selectedProduct.category}
-                    </div>
+                    <h4 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">{selectedProduct.name}</h4>
                   </div>
 
-                  <div className="space-y-14">
-                    <section>
-                      <h5 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.5em] mb-6 flex items-center gap-4">
-                        01. Overview <div className="flex-grow h-px bg-slate-100" />
-                      </h5>
-                      <p className="text-slate-600 text-[13px] leading-relaxed font-medium italic border-l-2 border-slate-100 pl-6">
-                        "{selectedProduct.description}"
-                      </p>
-                    </section>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {selectedProduct.description}
+                  </p>
 
-                    <section>
-                      <h5 className="text-[9px] font-black text-slate-400 uppercase tracking-[0.5em] mb-4">Logistics</h5>
-                      <div className="space-y-1">
-                        <div className="text-[10px] font-bold text-slate-900 uppercase">MOQ: 500 Pairs</div>
-                        <div className="text-[10px] font-bold text-slate-900 uppercase">Lead: 35-45 Days</div>
-                      </div>
-                    </section>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProduct.additional_certs?.map((cert: string, i: number) => (
+                      <span key={i} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-full">
+                        {cert}
+                      </span>
+                    ))}
+                    {selectedProduct.certifications?.map((cert: string, i: number) => (
+                      <span key={i} className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full">
+                        {cert}
+                      </span>
+                    ))}
                   </div>
 
-                  <div className="mt-24 pt-10 border-t border-slate-200 flex justify-between items-center">
-                    <div className="flex gap-2">
-                      {selectedProduct.certifications?.slice(0, 5).map((tag: string, i: number) => (
-                        <span key={i} className="px-2 py-1 border border-slate-200 text-slate-400 text-[8px] font-black uppercase tracking-widest">
-                          {tag}
+                  {(selectedProduct.materials || selectedProduct.specs_extra) && (
+                    <div className="border-t border-slate-200 pt-6">
+                      <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Specifications</h5>
+                      <div className="space-y-3">
+                        {selectedProduct.materials && Object.entries(selectedProduct.materials).map(([key, value]: [string, any]) => (
+                          <div key={key} className="flex justify-between items-center text-sm">
+                            <span className="text-slate-500 font-medium capitalize">{key}</span>
+                            <span className="text-slate-900 font-semibold">{String(value)}</span>
+                          </div>
+                        ))}
+                        {selectedProduct.specs_extra && (
+                          <>
+                            {selectedProduct.specs_extra.toe && (
+                              <div className="flex justify-between items-center text-sm">
+                                <span className="text-slate-500 font-medium">Toe Protection</span>
+                                <span className="text-slate-900 font-semibold">{selectedProduct.specs_extra.toe}</span>
+                              </div>
+                            )}
+                            {selectedProduct.specs_extra.sole && (
+                              <div className="flex justify-between items-center text-sm">
+                                <span className="text-slate-500 font-medium">Sole</span>
+                                <span className="text-slate-900 font-semibold">{selectedProduct.specs_extra.sole}</span>
+                              </div>
+                            )}
+                            {selectedProduct.specs_extra.midsole && (
+                              <div className="flex justify-between items-center text-sm">
+                                <span className="text-slate-500 font-medium">Midsole</span>
+                                <span className="text-slate-900 font-semibold">{selectedProduct.specs_extra.midsole}</span>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="border-t border-slate-200 pt-6">
+                    <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Features</h5>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProduct.features?.map((feature: string, i: number) => (
+                        <span key={i} className="flex items-center gap-1 px-3 py-1 bg-slate-50 text-slate-600 text-xs">
+                          <CheckCircle2 className="w-3 h-3 text-green-500" /> {feature}
                         </span>
                       ))}
                     </div>
+                  </div>
+
+                  <div className="pt-6">
                     <Link 
-                      href={`/${locale}/products/${selectedProduct.slug}`}
-                      className="bg-slate-900 text-white px-8 py-4 text-[10px] font-black uppercase tracking-widest shadow-xl hover:bg-orange-600 transition-all flex items-center gap-3"
+                      href={`/${locale}/products/${selectedProduct.slug || selectedProduct.model_code}`}
+                      className="w-full bg-orange-600 text-white py-4 text-center font-black text-xs uppercase tracking-widest hover:bg-slate-900 transition-all block"
                     >
-                      {t('viewDetail') || 'View Detail'} <ArrowRight className="w-4 h-4" />
+                      {t('viewDetail') || 'View Full Details'}
                     </Link>
                   </div>
                 </div>
               </div>
-
-              <div className="absolute right-0 top-0 w-1 h-full bg-slate-100 z-[70]" />
             </motion.div>
 
-            <div className="absolute inset-y-0 left-8 flex items-center z-[110]">
+            <div className="absolute inset-y-0 left-4 flex items-center z-[110]">
               <button 
                 onClick={handlePrev}
-                className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all shadow-2xl group"
+                className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all shadow-xl"
               >
-                <ChevronRight className="w-8 h-8 rotate-180 group-hover:-translate-x-1 transition-transform" />
+                <ChevronRight className="w-7 h-7 rotate-180" />
               </button>
             </div>
 
-            <div className="absolute bottom-12 right-12 z-[110]">
+            <div className="absolute bottom-8 right-8 z-[110]">
               <button 
                 onClick={handleNext}
-                className="px-6 h-14 rounded-full bg-orange-600 text-white flex items-center gap-3 hover:bg-white hover:text-orange-600 transition-all shadow-xl group"
+                className="px-6 h-12 rounded-full bg-orange-600 text-white flex items-center gap-3 hover:bg-white hover:text-orange-600 transition-all shadow-xl"
               >
-                <span className="text-[10px] font-black uppercase tracking-widest">{t('next') || 'Next Product'}</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span className="text-[10px] font-black uppercase tracking-widest">{t('next') || 'Next'}</span>
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>

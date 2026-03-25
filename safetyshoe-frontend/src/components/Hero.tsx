@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ArrowRight, ChevronRight, CheckCircle2 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SLIDE_IMAGES = [
   'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2070',
@@ -25,10 +25,10 @@ export function Hero() {
     setSlide((s) => (s - 1 + SLIDE_IMAGES.length) % SLIDE_IMAGES.length);
   };
 
-  useState(() => {
+  useEffect(() => {
     const id = setInterval(nextSlide, AUTO_MS);
     return () => clearInterval(id);
-  });
+  }, [nextSlide]);
 
   const stats = [
     { value: '20+', label: 'Years Experience' },
