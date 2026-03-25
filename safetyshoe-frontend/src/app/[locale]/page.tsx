@@ -1,13 +1,11 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
-import { TrustBar } from '@/components/TrustBar';
-import { Marquee } from '@/components/Marquee';
-import { WhyChooseUs } from '@/components/WhyChooseUs';
-import { ProductCategories } from '@/components/ProductCategories';
-import { ProductionProcess } from '@/components/ProductionProcess';
-import { Certifications } from '@/components/Certifications';
-import { HomeOemCta } from '@/components/HomeOemCta';
-import { GlobalFootprint } from '@/components/GlobalFootprint';
+import { ManufacturingExcellence } from '@/components/ManufacturingExcellence';
+import { GlobalCompliance } from '@/components/GlobalCompliance';
+import { TechnicalMatrix } from '@/components/TechnicalMatrix';
+import { GlobalReach } from '@/components/GlobalReach';
+import { TechnicalOEM } from '@/components/TechnicalOEM';
+import { Testimonials } from '@/components/Testimonials';
 import { FAQAndContact } from '@/components/FAQAndContact';
 import { locales } from '@/locales';
 import { loadHomeProducts } from '@/lib/homepageData';
@@ -38,18 +36,12 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <Hero />
-      <TrustBar />
-      <Marquee />
-      <WhyChooseUs />
-      <ProductCategories
-        initialProducts={galleryProducts.length > 0 ? galleryProducts : undefined}
-        initialGalleryProducts={galleryProducts}
-        hideFilters
-      />
-      <ProductionProcess />
-      <Certifications />
-      <HomeOemCta />
-      <GlobalFootprint />
+      <ManufacturingExcellence />
+      <GlobalCompliance />
+      <TechnicalMatrix products={galleryProducts} />
+      <GlobalReach />
+      <TechnicalOEM />
+      <Testimonials />
       <FAQAndContact />
     </>
   );
