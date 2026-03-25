@@ -8,7 +8,6 @@ import { TechnicalOEM } from '@/components/TechnicalOEM';
 import { Testimonials } from '@/components/Testimonials';
 import { FAQAndContact } from '@/components/FAQAndContact';
 import { locales } from '@/locales';
-import { loadHomeProducts } from '@/lib/homepageData';
 
 export const metadata: Metadata = {
   title: 'Shenglei Safety Shoes - Your Trusted Partner for Safety Footwear',
@@ -30,15 +29,13 @@ export function generateStaticParams() {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
-  const { gallery } = await loadHomeProducts(locale);
-  const galleryProducts = gallery;
 
   return (
     <>
       <Hero />
       <ManufacturingExcellence />
       <GlobalCompliance />
-      <TechnicalMatrix products={galleryProducts} />
+      <TechnicalMatrix />
       <GlobalReach />
       <TechnicalOEM />
       <Testimonials />
