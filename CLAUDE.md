@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Project**: safetyshoe-frontend - Next.js 14 e-commerce website for industrial safety shoes
 - **Stack**: Next.js 14, React 18, TypeScript 5, Tailwind CSS, next-intl (i18n)
 - **Output**: Static export (no server-side features in production)
+- **Hosting**: Cloudflare Pages
 
 ## Commands
 
