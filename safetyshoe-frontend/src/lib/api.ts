@@ -13,7 +13,7 @@ import {
 import { submitInquiry as postStandaloneInquiry } from '@/lib/siteApi';
 
 // API基础URL（NestJS 后端地址）
-const API_BASE_URL = 'https://dtxy.zwstone.cn/api';
+const API_BASE_URL = 'https://luyuan.zwstone.cn/api';
 
 // 通用API请求函数
 async function apiRequest<T>(

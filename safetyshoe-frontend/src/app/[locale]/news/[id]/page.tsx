@@ -10,15 +10,24 @@ export const dynamicParams = true;
 
 // 生成所有静态路径
 export async function generateStaticParams() {
-  const newsIds = await fetchAllNewsIds();
-
-  const params = [];
-  for (const locale of locales) {
-    for (const id of newsIds) {
-      params.push({ locale, id });
+  try {
+    const newsIds = await fetchAllNewsIds();
+    
+    if (!newsIds || newsIds.length === 0) {
+      return [];
     }
+
+    const params = [];
+    for (const locale of locales) {
+      for (const id of newsIds) {
+        params.push({ locale, id });
+      }
+    }
+    return params;
+  } catch (error) {
+    console.error('Error generating static params for news:', error);
+    return [];
   }
-  return params;
 }
 
 type NewsPageProps = {
