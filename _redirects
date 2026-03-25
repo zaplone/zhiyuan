@@ -1,0 +1,12 @@
+# Cloudflare Pages configuration
+[build]
+  command = "cd safetyshoe-frontend && npm run build"
+  cwd = "."
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

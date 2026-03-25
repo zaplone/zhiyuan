@@ -1,0 +1,10 @@
+{
+  "build": {
+    "command": "cd safetyshoe-frontend && npm run build",
+    "cwd": ".",
+    "watch_dir": "safetyshoe-frontend"
+  },
+  "site": {
+    "bucket": "safetyshoe-frontend/out"
+  }
+}
