@@ -1,17 +1,8 @@
 /**
  * 独立站数据 API（鹿原 Nest 服务）。
  * 生产基地址：https://dtxy.zwstone.cn/api
- * 环境变量优先顺序：NEXT_PUBLIC_SITE_API_URL → NEXT_PUBLIC_STRAPI_URL（旧名兼容）→ 默认线上地址。
  */
-const SITE_API_BASE_URL =
-  typeof window !== 'undefined'
-    ? process.env.NEXT_PUBLIC_SITE_API_URL ||
-      process.env.NEXT_PUBLIC_STRAPI_URL ||
-      'https://dtxy.zwstone.cn/api'
-    : process.env.SITE_API_URL ||
-      process.env.NEXT_PUBLIC_SITE_API_URL ||
-      process.env.NEXT_PUBLIC_STRAPI_URL ||
-      'https://dtxy.zwstone.cn/api';
+const SITE_API_BASE_URL = 'https://dtxy.zwstone.cn/api';
 
 import { Product, SafetyStandard, Certification, MaterialSpec, ShoeStyle, Industry } from '@/types';
 

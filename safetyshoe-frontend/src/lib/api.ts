@@ -12,8 +12,8 @@ import {
 } from '@/types';
 import { submitInquiry as postStandaloneInquiry } from '@/lib/siteApi';
 
-// API基础URL（优先使用 NestJS 后端地址）
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_STRAPI_URL || 'https://dtxy.zwstone.cn/api';
+// API基础URL（NestJS 后端地址）
+const API_BASE_URL = 'https://dtxy.zwstone.cn/api';
 
 // 通用API请求函数
 async function apiRequest<T>(
