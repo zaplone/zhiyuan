@@ -347,7 +347,8 @@
       "outsole": "Outsole",
       "industry": "Industry",
       "wholesale": "Wholesale",
-      "from": "From"
+      "from": "From",
+      "moq": "MOQ"
     },
     "filter": {
       "label": "Filter By:",
@@ -372,6 +373,13 @@
         "all": "All toe types",
         "label": "Toe protection"
       }
+    },
+    "noProductsLoaded": "No products loaded.",
+    "noImage": "No image",
+    "emptyState": {
+      "title": "No products found",
+      "description": "Try adjusting your filters or browse all categories.",
+      "clearFilters": "Clear Filters"
     }
   },
   "FactoryNews": {
@@ -889,6 +897,10 @@
       "Executive": {
         "pain": "Professional image plus basic site or warehouse protection.",
         "solution": "Low-cut or sporty style with safety toe. Office-to-site versatility."
+      },
+      "Forestry": {
+        "pain": "Chainsaw hazards, uneven terrain, mud, and moisture in woodland work.",
+        "solution": "Robust upper and sole, slip resistance, ankle support; specify cut protection class where required."
       }
     },
     "oem": {
@@ -1000,6 +1012,40 @@
       "other": "Other"
     }
   },
+  "HomeMeta": {
+    "title": "Zhiyuan · Safety Shoes",
+    "description": "Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available."
+  },
+  "Testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Don't just take our word for it. Here's what industry leaders say about our safety footwear solutions.",
+    "ctaTitle": "Ready to Experience the Difference?",
+    "ctaSubtitle": "Join thousands of satisfied customers who trust us for their safety footwear needs.",
+    "browseProducts": "Browse Products",
+    "items": {
+      "1": {
+        "name": "Michael Rodriguez",
+        "company": "Construction Solutions Inc.",
+        "position": "Safety Manager",
+        "content": "SafeStep boots have been our go-to choice for over 3 years. The quality is exceptional and our workers love the comfort. We've seen a significant reduction in foot injuries since switching to SafeStep.",
+        "location": "Houston, TX"
+      },
+      "2": {
+        "name": "Sarah Chen",
+        "company": "Industrial Safety Corp.",
+        "position": "Procurement Director",
+        "content": "Outstanding customer service and fast delivery. The custom OEM solution they provided exceeded our expectations. Their team worked closely with us to develop exactly what we needed.",
+        "location": "Los Angeles, CA"
+      },
+      "3": {
+        "name": "David Thompson",
+        "company": "Manufacturing Works",
+        "position": "Operations Manager",
+        "content": "Best safety footwear we've used. The slip-resistant technology has significantly reduced workplace accidents. The boots are comfortable for 12-hour shifts and hold up well in harsh conditions.",
+        "location": "Detroit, MI"
+      }
+    }
+  },
   "TechnicalMatrix": {
     "title": "Technical Matrix",
     "titleHighlight": "Product",
@@ -1011,7 +1057,11 @@
     "viewSpecs": "View Specs",
     "viewAll": "View All Products",
     "viewDetail": "View Details",
-    "next": "Next"
+    "next": "Next",
+    "emptyBuild": "No products in this build.",
+    "noImage": "No image",
+    "featuresLabel": "Features",
+    "moqLabel": "MOQ"
   },
   "Manufacturing": {
     "subtitle": "Manufacturing Power",

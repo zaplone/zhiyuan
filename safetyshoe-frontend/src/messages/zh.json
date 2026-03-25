@@ -299,7 +299,8 @@
       "outsole": "大底",
       "industry": "适用行业",
       "wholesale": "批发",
-      "from": "起"
+      "from": "起",
+      "moq": "起订量"
     },
     "filter": {
       "label": "筛选：",
@@ -324,6 +325,13 @@
         "all": "全部鞋头",
         "label": "鞋头 / 防护"
       }
+    },
+    "noProductsLoaded": "暂无产品数据。",
+    "noImage": "暂无图片",
+    "emptyState": {
+      "title": "未找到产品",
+      "description": "请尝试调整筛选条件或浏览全部分类。",
+      "clearFilters": "清除筛选"
     }
   },
   "FactoryNews": {
@@ -780,6 +788,10 @@
       "Executive": {
         "pain": "专业形象兼顾基本工地/仓库防护。",
         "solution": "低帮或运动款+安全鞋头。办公室与现场两用。"
+      },
+      "Forestry": {
+        "pain": "链锯伤害风险、林地起伏、泥泞潮湿。",
+        "solution": "坚固鞋面与大底、防滑护踝；按需配置防割等级。"
       }
     },
     "oem": {
@@ -890,5 +902,54 @@
       "MX": "墨西哥",
       "other": "其他"
     }
+  },
+  "HomeMeta": {
+    "title": "致远 · 安全鞋",
+    "description": "致远安全鞋：自1990年起专业制造劳保鞋。8条生产线，年产能200万双。支持 OEM/ODM。"
+  },
+  "Testimonials": {
+    "title": "客户评价",
+    "subtitle": "听听行业客户对我们安全鞋解决方案的真实反馈。",
+    "ctaTitle": "准备好体验不同了吗？",
+    "ctaSubtitle": "已有众多客户选择我们作为劳保鞋供应商，欢迎加入。",
+    "browseProducts": "浏览产品",
+    "items": {
+      "1": {
+        "name": "Michael Rodriguez",
+        "company": "Construction Solutions Inc.",
+        "position": "安全主管",
+        "content": "三年来我们一直选用 SafeStep 系列，品质出色、穿着舒适，足部伤害明显减少。",
+        "location": "美国休斯顿"
+      },
+      "2": {
+        "name": "Sarah Chen",
+        "company": "Industrial Safety Corp.",
+        "position": "采购总监",
+        "content": "服务响应快、交付准时，定制 OEM 方案超出预期，团队配合非常专业。",
+        "location": "美国洛杉矶"
+      },
+      "3": {
+        "name": "David Thompson",
+        "company": "Manufacturing Works",
+        "position": "运营经理",
+        "content": "防滑表现突出，长时间站立也不累，在恶劣工况下依然耐用。",
+        "location": "美国底特律"
+      }
+    }
+  },
+  "TechnicalMatrix": {
+    "title": "技术矩阵",
+    "titleHighlight": "产品",
+    "titleHighlight2": "展示。",
+    "subtitle": "面向全球工业场景的精密安全防护方案。",
+    "featured": "热销推荐",
+    "newArrivals": "新品上架",
+    "viewAll": "查看全部产品",
+    "viewDetail": "查看详情",
+    "next": "下一件",
+    "emptyBuild": "本构建暂无产品数据。",
+    "noImage": "暂无图片",
+    "featuresLabel": "产品特点",
+    "moqLabel": "起订量"
   }
 }

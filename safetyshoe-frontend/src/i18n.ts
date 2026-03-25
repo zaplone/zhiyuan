@@ -31,10 +31,10 @@ function deepMerge(base: Messages, override: Messages): Messages {
   return result;
 }
 
-// 翻译文件映射表
+// 翻译文件映射表（zh 与 ru/de/ar 一样用 deepMerge，避免 zh.json 缺 key 时部分页面缺失翻译）
 const messages = {
   en: enMessages,
-  zh: zhMessages,
+  zh: deepMerge(enMessages as Messages, zhMessages as Messages),
   ru: deepMerge(enMessages as Messages, ruMessages as Messages),
   de: deepMerge(enMessages as Messages, deMessages as Messages),
   ar: deepMerge(enMessages as Messages, arMessages as Messages),

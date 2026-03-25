@@ -1,4 +1,5 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { Hero } from '@/components/Hero';
 import { ManufacturingExcellence } from '@/components/ManufacturingExcellence';
 import { GlobalCompliance } from '@/components/GlobalCompliance';
@@ -8,18 +9,27 @@ import { TechnicalOEM } from '@/components/TechnicalOEM';
 import { Testimonials } from '@/components/Testimonials';
 import { FAQAndContact } from '@/components/FAQAndContact';
 import { locales } from '@/locales';
+import { loadHomeProducts } from '@/lib/homepageData';
 
-export const metadata: Metadata = {
-  title: 'Zhiyuan · Safety Shoes',
-  description:
-    'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
-  openGraph: {
-    title: 'Zhiyuan · Safety Shoes',
-    description:
-      'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
-    images: ['/images/og-image.jpg'],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'HomeMeta' });
+  const title = t('title');
+  const description = t('description');
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: ['/images/og-image.jpg'],
+    },
+  };
+}
 
 type HomePageProps = { params: Promise<{ locale: string }> };
 
@@ -29,13 +39,14 @@ export function generateStaticParams() {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
+  const { gallery: showcaseProducts } = await loadHomeProducts(locale);
 
   return (
     <>
       <Hero />
       <ManufacturingExcellence />
       <GlobalCompliance />
-      <TechnicalMatrix />
+      <TechnicalMatrix initialProducts={showcaseProducts} />
       <GlobalReach />
       <TechnicalOEM />
       <Testimonials />

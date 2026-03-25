@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight, Shield, Zap, Droplets, Snowflake, HardHat, Factory, Utensils, Hammer, Sparkles } from 'lucide-react';
 import { ProductQuickView } from './ProductQuickView';
 import { HomeProductShowcase } from './HomeProductShowcase';
-import { fetchProducts, transformProduct } from '@/lib/siteApi';
+import { transformProduct } from '@/lib/siteApi';
 import { useTranslations, useLocale } from 'next-intl';
 import { Product } from '@/types';
 import {
@@ -68,15 +68,15 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
   const [hoveredProduct, setHoveredProduct] = useState<string | number | null>(null);
 
   const [products, setProducts] = useState<Product[]>(
-    initialProducts ? initialProducts.map(p => p.id ? p : transformProduct(p as any, locale)) : []
+    initialProducts?.length
+      ? initialProducts.map((p) => (p.id ? (p as Product) : transformProduct(p as any, locale)))
+      : []
   );
-  const [isLoading, setIsLoading] = useState(!initialProducts || initialProducts.length === 0);
-
   const [filters, setFilters] = useState<CatalogFiltersState>(() => defaultCatalogFilters());
 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  /** 首页画廊用：优先用服务端传入的 initialGalleryProducts，否则用客户端拉取结果 */
+  /** 首页画廊：仅使用服务端/构建传入的 initialGalleryProducts */
   const [galleryProducts, setGalleryProducts] = useState<Product[]>(
     initialGalleryProducts ? initialGalleryProducts.map((p: any) => p.id ? p : transformProduct(p)) : []
   );
@@ -84,57 +84,21 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
   /** 与 HomeProductShowcase Tab 同步，画廊顺序随 Tab 变化 */
   const [showcaseMode, setShowcaseMode] = useState<ShowcaseMode>('featured');
 
-  // Data Loading
   useEffect(() => {
-    // If we have initial products, we don't need to fetch immediately
-    // BUT we should re-fetch if locale changes and we are not relying on parent re-render
-
-    // In App Router, page.tsx re-runs on locale change, passing new initialProducts.
-    // So we can sync props to state.
-    if (initialProducts && initialProducts.length > 0) {
-      setProducts(initialProducts.map(p => p.id ? p : transformProduct(p as any, locale)));
-      setIsLoading(false);
-      return;
+    if (initialProducts?.length) {
+      setProducts(initialProducts.map((p) => (p.id ? (p as Product) : transformProduct(p as any, locale))));
+    } else {
+      setProducts([]);
     }
+  }, [locale, initialProducts]);
 
-    async function loadData() {
-      setIsLoading(true);
-      try {
-        const apiProducts = await fetchProducts(locale);
-        const transformedProducts = apiProducts.map((p) => transformProduct(p, locale));
-        setProducts(transformedProducts);
-      } catch (error) {
-        console.error('Failed to load products:', error);
-        setProducts([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadData();
-  }, [locale, initialProducts]); // Add initialProducts dependency
-
-  // 服务端传入画廊数据时同步到 state（如切换语言后）
   useEffect(() => {
     if (initialGalleryProducts && initialGalleryProducts.length > 0) {
-      setGalleryProducts(initialGalleryProducts.map((p: any) => p.id ? p : transformProduct(p as any, locale)));
+      setGalleryProducts(
+        initialGalleryProducts.map((p: any) => (p.id ? p : transformProduct(p as any, locale)))
+      );
     }
-  }, [initialGalleryProducts]);
-
-  // 首页且未从服务端传入画廊数据时，才在客户端请求（兜底）
-  useEffect(() => {
-    if (!hideFilters || (initialGalleryProducts && initialGalleryProducts.length > 0)) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const apiProducts = await fetchProducts(locale);
-        if (cancelled) return;
-        setGalleryProducts(apiProducts.map((p) => transformProduct(p, locale)));
-      } catch (e) {
-        if (!cancelled) setGalleryProducts([]);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, [hideFilters, locale, initialGalleryProducts]);
+  }, [initialGalleryProducts, locale]);
 
   // 画廊展示用：服务端传入或客户端拉取；都没有则用顶部 6 款兜底
   const displayGalleryProducts = hideFilters
@@ -230,32 +194,24 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
           )}
 
           {/* Product Grid */}
-          {isLoading && !hideFilters ? (
-            <div className="text-center py-20">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mb-4"></div>
-              <p className="text-slate-600">Loading products...</p>
-            </div>
-          ) : hideFilters ? (
+          {hideFilters ? (
               <>
                 {/* 首页：精选/新品/热销 Tab + 左主推款右四款；下方为画廊 */}
                 {(() => {
                   const showcaseSource =
                     displayGalleryProducts.length > 0 ? displayGalleryProducts : products;
-                  return !isLoading && showcaseSource.length > 0 ? (
+                  return showcaseSource.length > 0 ? (
                     <HomeProductShowcase
                       locale={locale}
                       products={showcaseSource}
                       onProductClick={handleProductClick}
                       onShowcaseModeChange={setShowcaseMode}
                     />
-                  ) : !isLoading ? (
-                    <p className="text-center text-sm text-slate-500">No products loaded.</p>
-                  ) : null;
+                  ) : (
+                    <p className="text-center text-sm text-slate-500">{t('noProductsLoaded')}</p>
+                  );
                 })()}
-                {isLoading && (
-                  <div className="text-center py-8 text-slate-500 text-sm">Loading products...</div>
-                )}
-                {!isLoading && displayGalleryProducts.length > 0 && (
+                {displayGalleryProducts.length > 0 && (
                   <div
                     className={`mt-20 w-screen overflow-hidden ${galleryHovered ? 'gallery-scroll-paused' : ''}`}
                     style={{ marginLeft: 'calc(-50vw + 50%)' }}
@@ -284,7 +240,7 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
                                       sizes="300px"
                                     />
                                   ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">No Image</div>
+                                    <div className="w-full h-full flex items-center justify-center text-slate-400 text-sm">{t('noImage')}</div>
                                   )}
                                   <div className="absolute top-2 left-2 flex flex-col gap-1 max-w-[60%]">
                                     {product.safety_standard && (
@@ -320,7 +276,7 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
                                   </div>
                                   <div className="flex justify-between items-center text-xs mt-3 pt-3 border-t border-slate-100">
                                     <span className="text-slate-500">
-                                      MOQ <span className="text-slate-900 font-semibold">{product.moq ?? '—'}</span>
+                                      {t('card.moq')} <span className="text-slate-900 font-semibold">{product.moq ?? '—'}</span>
                                       {product.price_range && (
                                         <span className="ml-2">
                                           · {t('card.from')} <span className="text-slate-900 font-semibold">{product.price_range}</span>
@@ -373,7 +329,7 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-slate-400">
-                          <span className="text-sm">No Image</span>
+                          <span className="text-sm">{t('noImage')}</span>
                         </div>
                       )}
                       <div className="absolute top-4 left-4 flex flex-col gap-2">
@@ -396,7 +352,7 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
                         <div className="pointer-events-none mb-3 flex flex-wrap justify-center gap-2">
                           {product.materials?.toe_cap && (
                             <span className="inline-block rounded-full border border-white/30 bg-white/15 px-2.5 py-1 text-[11px] text-white">
-                              Toe: {product.materials.toe_cap}
+                              {t('card.toe')}: {product.materials.toe_cap}
                             </span>
                           )}
                           {product.materials?.upper && (
@@ -417,8 +373,8 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
                         <ArrowRight className={`w-5 h-5 text-primary-600 transition-transform duration-300 ${hoveredProduct === product.id ? 'translate-x-1' : ''}`} />
                       </div>
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-slate-500">MOQ: <span className="text-slate-900 font-semibold">{product.moq}</span></span>
-                        <span className="text-xs text-primary-600 font-medium bg-primary-50 px-2 py-1 rounded">Wholesale</span>
+                        <span className="text-slate-500">{t('card.moq')}: <span className="text-slate-900 font-semibold">{product.moq}</span></span>
+                        <span className="text-xs text-primary-600 font-medium bg-primary-50 px-2 py-1 rounded">{t('card.wholesale')}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -427,8 +383,8 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
             ) : (
             <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-300">
               <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">No products found</h3>
-              <p className="text-slate-500">Try adjusting your filters or browse all categories.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">{t('emptyState.title')}</h3>
+              <p className="text-slate-500">{t('emptyState.description')}</p>
               <button
                 onClick={() => {
                   setActiveTab('all');
@@ -436,7 +392,7 @@ export function ProductCategories({ initialProducts, initialGalleryProducts, hid
                 }}
                 className="mt-6 text-primary-600 font-bold hover:underline"
               >
-                Clear Filters
+                {t('emptyState.clearFilters')}
               </button>
             </div>
           )}

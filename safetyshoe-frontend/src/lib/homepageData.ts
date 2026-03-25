@@ -1,8 +1,8 @@
 import { fetchProducts, transformProduct } from '@/lib/siteApi';
 import type { Product } from '@/types';
 
-/** 首页一次拉取的产品条数（画廊轮播用） */
-export const HOME_PRODUCT_FETCH_LIMIT = 20;
+/** 首页一次拉取的产品条数（Product Showcase / 画廊 Tab 筛选需要足够样本） */
+export const HOME_PRODUCT_FETCH_LIMIT = 50;
 
 export type HomeProductsResult = {
   gallery: Product[];
