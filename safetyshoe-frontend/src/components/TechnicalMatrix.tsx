@@ -22,15 +22,35 @@ const categories = [
   { id: "specialty", label: "Specialty", icon: <Flame className="w-3 h-3" /> }
 ];
 
-function mapToProductFormat(product: any) {
+function mapToProductFormat(product: any, locale: string = 'en') {
+  const getI18nValue = (value: any): string => {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      return value[locale] || value.en || value.zh || '';
+    }
+    return '';
+  };
+
   const certifications = product.additional_certs || product.certifications || [];
-  const safety = product.safety_standard || '';
+  const safety = getI18nValue(product.safety_standard) || '';
   
   let category = 'steel';
   if (safety.includes('S1') || safety.includes('S2')) category = 'composite';
   if (safety.includes('WR') || safety.includes('HRO') || safety.includes('FO')) category = 'specialty';
 
-  const images = product.images || (product.image ? [product.image] : []);
+  const getImages = (img: any, imgs: any[]) => {
+    if (Array.isArray(imgs) && imgs.length > 0) {
+      return imgs.map((i: any) => typeof i === 'string' ? i : i.url || i.image_url || '').filter(Boolean);
+    }
+    if (img) {
+      const url = typeof img === 'string' ? img : img.url || img.image_url || '';
+      return url ? [url] : [];
+    }
+    return [];
+  };
+  
+  const images = getImages(product.image, product.images);
   
   const specs = {
     toe: product.specs_extra?.toe || (safety.includes('Steel') ? 'Steel Toe Cap' : 'Composite Toe'),
@@ -42,15 +62,15 @@ function mapToProductFormat(product: any) {
 
   return {
     id: product.model_code || product.id,
-    name: product.name,
+    name: getI18nValue(product.name) || 'Untitled Product',
     category: category,
     isFlagship: product.is_hot || product.featured || false,
     image: images[0] || '/images/placeholder.svg',
     gallery: images.length > 0 ? images : ['/images/placeholder.svg'],
-    features: product.features || [],
+    features: Array.isArray(product.features) ? product.features.map(getI18nValue) : [],
     compliance: safety || 'EN ISO 20345',
-    techTags: certifications.slice(0, 3),
-    description: product.description || '',
+    techTags: Array.isArray(certifications) ? certifications.slice(0, 3).map(getI18nValue) : [],
+    description: getI18nValue(product.description) || '',
     specs: specs,
     slug: product.slug,
     model_code: product.model_code,
@@ -74,7 +94,7 @@ export function TechnicalMatrix() {
         setError(null);
         const data = await fetchProducts(locale, { limit: 50 });
         if (data && Array.isArray(data)) {
-          const transformed = data.map((p: any) => mapToProductFormat(p));
+          const transformed = data.map((p: any) => mapToProductFormat(p, locale));
           setProducts(transformed);
         }
       } catch (err) {
