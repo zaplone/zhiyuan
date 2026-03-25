@@ -57,12 +57,6 @@ export function ManufacturingExcellence() {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-slate-900 p-8 text-white shadow-2xl hidden xl:block">
-              <div className="text-4xl font-black italic text-orange-600 mb-1">24/7</div>
-              <div className="text-[9px] font-black uppercase tracking-widest text-slate-400">
-                {t('continuous') || 'Continuous Production'}
-              </div>
-            </div>
           </div>
         </div>
       </div>

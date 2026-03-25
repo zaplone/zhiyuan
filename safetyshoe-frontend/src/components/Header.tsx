@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight, Search, Globe } from 'lucide-react';
 
@@ -28,6 +27,7 @@ export function Header() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   const navigation = [
@@ -40,6 +40,10 @@ export function Header() {
 
   const languages = [
     { code: 'en', label: 'English' },
+    { code: 'zh', label: '中文' },
+    { code: 'ru', label: 'Русский' },
+    { code: 'de', label: 'Deutsch' },
+    { code: 'ar', label: 'العربية' },
   ];
 
   // Close search when clicking outside
@@ -60,6 +64,17 @@ export function Header() {
       searchInputRef.current.focus();
     }
   }, [isSearchOpen]);
+
+  useEffect(() => {
+    if (!isLangMenuOpen) return;
+    const onDocMouseDown = (e: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onDocMouseDown);
+    return () => document.removeEventListener('mousedown', onDocMouseDown);
+  }, [isLangMenuOpen]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +100,17 @@ export function Header() {
   // Check if we are on the homepage or OEM page or About page (which has dark hero)
   // Remove the locale prefix to check the path safely
   const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
-  
+
+  /** 当前页若有 #contact 则平滑滚动；否则跳转至首页 /{locale}/#contact */
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = document.getElementById('contact');
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setIsOpen(false);
+  };
+
   const isDarkHeroPage = 
     pathWithoutLocale === '/' || 
     pathWithoutLocale === '/services/oem' || 
@@ -149,33 +174,25 @@ export function Header() {
       >
         <nav className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Logo: Icon + Brand Text */}
+            {/* Brand wordmark (no logo image) */}
             <div className="flex-shrink-0">
-              <Link href={`/${locale}`} className="flex items-center gap-2.5 group">
-                <div className="flex items-center justify-center flex-shrink-0">
-                  <Image
-                    src="/images/logo-icon.png"
-                    alt="SHENGLEI"
-                    width={36}
-                    height={36}
-                    className="h-8 w-8 object-contain"
-                    priority
-                  />
-                </div>
-                <div className="flex flex-col leading-tight">
-                  <span className={cn(
-                    "text-lg font-bold tracking-tight transition-colors",
-                    isTransparent ? "text-white" : "text-slate-900"
-                  )}>
-                    SHENGLEI<sup className="text-[10px] ml-0.5 opacity-80">®</sup>
+              <Link href={`/${locale}`} className="flex items-center group">
+                <span
+                  className={cn(
+                    'text-lg sm:text-xl font-bold tracking-tight transition-colors',
+                    isTransparent ? 'text-white' : 'text-slate-900'
+                  )}
+                >
+                  Zhiyuan{' '}
+                  <span
+                    className={cn(
+                      'font-semibold',
+                      isTransparent ? 'text-orange-400' : 'text-orange-600'
+                    )}
+                  >
+                    safe shoes
                   </span>
-                  <span className={cn(
-                    "text-[11px] font-medium tracking-wide transition-colors",
-                    isTransparent ? "text-white/80" : "text-slate-600"
-                  )}>
-                    Safety Shoes
-                  </span>
-                </div>
+                </span>
               </Link>
             </div>
 
@@ -233,47 +250,80 @@ export function Header() {
                 )}
               </div>
 
-              {/* Language Switcher */}
-                {/* Language Switcher - Hidden since only English is available */}
-                {/* 
+              <Link
+                href={`/${locale}/#contact`}
+                onClick={handleContactClick}
+                className={cn(
+                  'inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-md transition-all',
+                  'bg-orange-600 hover:bg-orange-500 hover:shadow-lg hover:shadow-orange-600/25',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2',
+                  isTransparent ? 'ring-offset-slate-900' : 'ring-offset-white'
+                )}
+              >
+                {t('contact')}
+              </Link>
+
+              <div ref={langMenuRef} className="relative">
                 <button
+                  type="button"
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                   className={cn(
-                    "p-2 rounded-full transition-colors flex items-center gap-1",
-                    isTransparent ? "text-white/90 hover:bg-white/10" : "text-slate-500 hover:bg-slate-100 text-slate-600"
+                    'p-2 rounded-full transition-colors flex items-center gap-1',
+                    isTransparent
+                      ? 'text-white/90 hover:bg-white/10'
+                      : 'text-slate-500 hover:bg-slate-100 text-slate-600'
                   )}
+                  aria-expanded={isLangMenuOpen}
+                  aria-haspopup="listbox"
+                  aria-label="Language"
                 >
-                  <Globe className="w-5 h-5" />
+                  <Globe className="w-5 h-5 shrink-0" />
                   <span className="text-xs font-bold uppercase">{locale}</span>
                 </button>
-                
+
                 {isLangMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden py-1 animate-in fade-in zoom-in-95 duration-200">
+                  <div
+                    className="absolute right-0 mt-2 min-w-[11rem] max-h-[min(70vh,20rem)] overflow-y-auto bg-white rounded-xl shadow-xl border border-slate-100 py-1 z-[60] animate-in fade-in zoom-in-95 duration-200"
+                    role="listbox"
+                  >
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
+                        type="button"
                         onClick={() => handleLanguageChange(lang.code)}
                         className={cn(
-                          "w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors flex items-center justify-between",
-                          locale === lang.code ? "text-primary-600 font-bold bg-primary-50" : "text-slate-700"
+                          'w-full text-left px-4 py-2.5 text-sm hover:bg-slate-50 transition-colors flex items-center justify-between gap-2',
+                          locale === lang.code ? 'text-primary-600 font-bold bg-primary-50' : 'text-slate-700'
                         )}
+                        role="option"
+                        aria-selected={locale === lang.code}
                       >
-                        {lang.label}
-                        {locale === lang.code && <div className="w-1.5 h-1.5 rounded-full bg-primary-600"></div>}
+                        <span>{lang.label}</span>
+                        {locale === lang.code && (
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0" />
+                        )}
                       </button>
                     ))}
                   </div>
                 )}
-                */}
+              </div>
 
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center gap-4">
+            {/* Mobile: 联系我们 + menu */}
+            <div className="md:hidden flex items-center gap-2">
                {/* Mobile Lang Switcher (Simplified) */}
                <div className="text-sm font-bold uppercase hidden">
                   {locale}
                 </div>
+
+              <Link
+                href={`/${locale}/#contact`}
+                onClick={handleContactClick}
+                className="inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-bold text-white shadow-md bg-orange-600 hover:bg-orange-500 transition-all"
+              >
+                {t('contact')}
+              </Link>
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -305,25 +355,23 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              
-              {/* Mobile Language Selection List */}
-              {/* Mobile Language Selection List - Hidden */}
-              {/* 
-              <div className="border-t border-slate-100 pt-4 px-4">
-                <p className="text-xs font-bold text-slate-400 mb-2 uppercase">Select Language</p>
-                <div className="grid grid-cols-3 gap-2">
+
+              <div className="border-t border-slate-100 pt-4">
+                <p className="text-xs font-bold text-slate-400 mb-2 uppercase">Language / 语言</p>
+                <div className="grid grid-cols-2 gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
+                      type="button"
                       onClick={() => {
                         handleLanguageChange(lang.code);
                         setIsOpen(false);
                       }}
                       className={cn(
-                        "text-sm py-2 rounded-md border text-center transition-colors",
-                        locale === lang.code 
-                          ? "border-primary-500 bg-primary-50 text-primary-700 font-bold" 
-                          : "border-slate-200 text-slate-600"
+                        'text-sm py-2 rounded-md border text-center transition-colors',
+                        locale === lang.code
+                          ? 'border-primary-500 bg-primary-50 text-primary-700 font-bold'
+                          : 'border-slate-200 text-slate-600'
                       )}
                     >
                       {lang.label}
@@ -331,8 +379,6 @@ export function Header() {
                   ))}
                 </div>
               </div>
-              */}
-
             </div>
           )}
         </nav>

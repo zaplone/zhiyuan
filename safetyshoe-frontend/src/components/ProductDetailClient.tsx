@@ -148,8 +148,8 @@ export function ProductDetailClient({ product, locale }: ProductDetailClientProp
     <div className="bg-white min-h-screen pt-[72px] md:pt-20">
       {/* pt-*：为 fixed Header 留出高度，避免面包屑被挡在导航栏下 */}
 
-      {/* ── Breadcrumb ── */}
-      <div className="bg-slate-50 border-b border-slate-200">
+      {/* ── Breadcrumb：sticky，滚动时固定在 Header 下方，不随正文卷走 ── */}
+      <div className="sticky top-[72px] z-40 border-b border-slate-200 bg-slate-50/95 shadow-sm backdrop-blur-sm md:top-20">
         <div className="container mx-auto px-4 py-3">
           <nav aria-label="Breadcrumb" className="flex flex-wrap items-center text-sm text-slate-500 gap-y-1">
             <Link href={`/${locale}`} className="hover:text-slate-800 transition-colors">{tNav('home')}</Link>

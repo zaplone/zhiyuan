@@ -81,7 +81,7 @@
     "faq": { "title": "FAQ", "moq": { "q": "MOQ?", "a": "Typisch 300–500 Paar." }, "samples": { "q": "Muster?", "a": "Ja." }, "leadTime": { "q": "Lieferzeit?", "a": "30–45 Tage." }, "certDocs": { "q": "Zertifikate?", "a": "CE, EN ISO, SGS." }, "payment": { "q": "Zahlung?", "a": "T/T, L/C." }, "audit": { "q": "Werksaudit?", "a": "Ja." } },
     "trustSignals": { "title": "Warum wir", "shipped": "Paare/Jahr", "countries": "Länder", "response": "Antwort in 24 h" },
     "cta": { "requestQuote": "Anfrage", "formDesc": "Antwort innerhalb 24 Stunden." },
-    "descriptionSection": { "title": "Produktbeschreibung", "factoryLine": "Shenglei Direkt — EN ISO 20345, QC und Zertifizierung für B2B." },
+    "descriptionSection": { "title": "Produktbeschreibung", "factoryLine": "Zhiyuan Direkt — EN ISO 20345, QC und Zertifizierung für B2B." },
     "breadcrumb": { "products": "Produkte" }
   },
   "Footer": {

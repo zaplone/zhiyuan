@@ -1,8 +1,8 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
-import { ArrowRight, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const SLIDE_IMAGES = [
@@ -15,6 +15,7 @@ const AUTO_MS = 6000;
 
 export function Hero() {
   const t = useTranslations('Hero');
+  const locale = useLocale();
   const [slide, setSlide] = useState(0);
 
   const nextSlide = () => {
@@ -66,13 +67,13 @@ export function Hero() {
 
             <div className="flex flex-wrap gap-6 mb-16">
               <Link 
-                href="/en/products" 
+                href={`/${locale}/products`}
                 className="bg-orange-600 text-white px-10 py-5 font-black text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-slate-900 transition-all shadow-2xl"
               >
                 {t('cta1') || 'View Products'}
               </Link>
               <Link 
-                href="/en/services/oem" 
+                href={`/${locale}/services/oem`}
                 className="border border-white/20 text-white px-10 py-5 font-black text-xs uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center gap-3"
               >
                 {t('cta2') || 'OEM Solutions'} <ArrowRight className="w-4 h-4" />
@@ -104,13 +105,6 @@ export function Hero() {
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-transparent to-transparent lg:block hidden" />
           <div className="absolute inset-0 bg-orange-600/10 mix-blend-multiply" />
-          
-          <div className="absolute bottom-10 right-10 bg-white p-6 hidden xl:block">
-            <div className="text-slate-900 font-black text-xl tracking-tighter italic leading-none mb-1 uppercase">
-              {t('certified') || 'Certified Factory'}
-            </div>
-            <div className="text-[8px] text-orange-600 font-black uppercase tracking-[0.2em]">ISO 9001 // BSCI</div>
-          </div>
 
           <button 
             onClick={prevSlide}

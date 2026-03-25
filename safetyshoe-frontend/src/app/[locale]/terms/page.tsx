@@ -43,12 +43,12 @@ export default function TermsPage() {
 
                     <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">4. Intellectual Property</h2>
                     <p className="text-slate-700 leading-relaxed mb-6">
-                        All content on this site, including text, graphics, logos, and images, is the property of Shenglei Safety Shoes and is protected by international copyright laws.
+                        All content on this site, including text, graphics, logos, and images, is the property of Zhiyuan Safety Shoes and is protected by international copyright laws.
                     </p>
 
                     <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">5. Limitation of Liability</h2>
                     <p className="text-slate-700 leading-relaxed mb-6">
-                        Shenglei Safety Shoes shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the services or data on this website.
+                        Zhiyuan Safety Shoes shall not be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the services or data on this website.
                     </p>
 
                     <div className="mt-16 pt-8 border-t border-slate-200">

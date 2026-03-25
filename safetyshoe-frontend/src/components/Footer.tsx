@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock, Facebook, Linkedin, Twitter, Instagram } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 
@@ -19,17 +18,16 @@ export function Footer() {
           
           {/* Column 1: Brand & About */}
           <div className="space-y-6">
-            <Link href={`/${locale}`} className="flex items-center space-x-2.5 group">
-              <Image
-                src="/images/logo-icon.png"
-                alt="SHENGLEI"
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain"
-              />
+            <Link href={`/${locale}`} className="flex items-center gap-3 group">
+              <div
+                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-orange-600 text-xs font-black tracking-tight text-white shadow-sm"
+                aria-hidden
+              >
+                ZY
+              </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-xl font-bold tracking-tight">SHENGLEI<sup className="text-[9px] ml-0.5 opacity-80">®</sup></span>
-                <span className="text-xs text-slate-400 font-medium">Safety Shoes</span>
+                <span className="text-xl font-bold tracking-tight text-white">Zhiyuan</span>
+                <span className="text-xs font-medium text-orange-400">safe shoes</span>
               </div>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -107,7 +105,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
             
             <div className="flex flex-col md:flex-row items-center gap-4">
-              <p>&copy; {currentYear} Shenglei Safety Shoes. {t('rights')}</p>
+              <p>&copy; {currentYear} Zhiyuan Safety Shoes. {t('rights')}</p>
               <span className="hidden md:inline text-slate-800">|</span>
               <div className="flex space-x-4">
                 <Link href={`/${locale}/privacy`} className="hover:text-white transition-colors">{t('privacy')}</Link>

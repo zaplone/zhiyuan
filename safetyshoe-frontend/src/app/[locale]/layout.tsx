@@ -10,10 +10,13 @@ import { getMessages } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Shenglei Safety Shoes - Your Trusted Partner for Safety Footwear',
-    template: '%s | Shenglei Safety Shoes'
+    default: 'Zhiyuan · Safety Shoes',
+    template: '%s · Zhiyuan',
   },
-  description: 'Shenglei Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. Europe, Asia, Africa, Russia. OEM/ODM available.',
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+  },
+  description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. Europe, Asia, Africa, Russia. OEM/ODM available.',
   keywords: [
     'safety shoes',
     'steel toe boots',
@@ -26,9 +29,9 @@ export const metadata: Metadata = {
     'safety footwear',
     'construction boots'
   ],
-  authors: [{ name: 'Shenglei Safety Shoes' }],
-  creator: 'Shenglei Safety Shoes',
-  publisher: 'Shenglei Safety Shoes',
+  authors: [{ name: 'Zhiyuan Safety Shoes' }],
+  creator: 'Zhiyuan Safety Shoes',
+  publisher: 'Zhiyuan Safety Shoes',
   formatDetection: {
     email: false,
     address: false,
@@ -49,22 +52,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    title: 'Shenglei Safety Shoes - Your Trusted Partner for Safety Footwear',
-    description: 'Shenglei Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
-    siteName: 'Shenglei Safety Shoes',
+    title: 'Zhiyuan · Safety Shoes',
+    description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
+    siteName: 'Zhiyuan Safety Shoes',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Shenglei Safety Shoes',
+        alt: 'Zhiyuan Safety Shoes',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shenglei Safety Shoes - Your Trusted Partner for Safety Footwear',
-    description: 'Shenglei Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
+    title: 'Zhiyuan · Safety Shoes',
+    description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -111,9 +114,9 @@ export default async function RootLayout({
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            name: 'Shenglei Safety Shoes',
+            name: 'Zhiyuan Safety Shoes',
             description:
-              'Shenglei Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2 million pairs annual output.',
+              'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2 million pairs annual output.',
             url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
             logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/logo.png`,
             contactPoint: {

@@ -1,11 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { HardHat, ShieldCheck, Activity, Layers, ArrowRight } from 'lucide-react';
 
 export function TechnicalOEM() {
   const t = useTranslations('TechnicalOEM');
+  const locale = useLocale();
 
   const components = [
     { 
@@ -93,7 +94,7 @@ export function TechnicalOEM() {
 
               <div className="mt-16 pt-10 border-t border-white/10">
                 <Link 
-                  href="/en/services/oem"
+                  href={`/${locale}/services/oem`}
                   className="w-full bg-orange-600 text-white py-5 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-slate-900 transition-all text-center block"
                 >
                   {t('cta') || 'Start Custom Project'}

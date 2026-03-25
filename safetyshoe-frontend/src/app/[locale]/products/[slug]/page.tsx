@@ -59,11 +59,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const rawProduct = await fetchProductBySlug(locale, slug);
     const product = rawProduct ? transformProduct(rawProduct, locale) : slug === 'demo' ? getDemoProduct(locale) : null;
     if (!product) return {};
-    const title = `${product.name} - ${product.safety_standard || 'Safety Shoes'} | Shenglei`;
+    const title = `${product.name} - ${product.safety_standard || 'Safety Shoes'} | Zhiyuan Safety Shoes`;
     const description = product.description?.slice(0, 160) || `Professional ${product.safety_standard} safety shoes.`;
     return { title, description, openGraph: { title, description, images: product.image ? [product.image] : [] } };
   } catch {
-    if (slug === 'demo') return { title: `${getDemoProduct(locale).name} | Shenglei`, description: 'Demo product page.' };
+    if (slug === 'demo') return { title: `${getDemoProduct(locale).name} | Zhiyuan Safety Shoes`, description: 'Demo product page.' };
     return {};
   }
 }
@@ -88,8 +88,8 @@ export default async function ProductDetailPage({ params }: Props) {
     image: product.images?.length ? product.images : product.image,
     description: product.description,
     sku: product.model_code,
-    brand: { '@type': 'Brand', name: 'Shenglei' },
-    manufacturer: { '@type': 'Organization', name: 'Shenglei Safety Shoes Factory' },
+    brand: { '@type': 'Brand', name: 'Zhiyuan Safety Shoes' },
+    manufacturer: { '@type': 'Organization', name: 'Zhiyuan Safety Shoes Factory' },
     offers: {
       '@type': 'Offer',
       priceCurrency: 'USD',

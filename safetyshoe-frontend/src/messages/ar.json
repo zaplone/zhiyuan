@@ -81,7 +81,7 @@
     "faq": { "title": "الأسئلة الشائعة", "moq": { "q": "الحد الأدنى للطلب؟", "a": "عادة 300–500 زوج." }, "samples": { "q": "عيّنات؟", "a": "نعم." }, "leadTime": { "q": "وقت التسليم؟", "a": "30–45 يوماً." }, "certDocs": { "q": "شهادات؟", "a": "CE، EN ISO، SGS." }, "payment": { "q": "الدفع؟", "a": "T/T، L/C." }, "audit": { "q": "تدقيق المصنع؟", "a": "نعم." } },
     "trustSignals": { "title": "لماذا نحن", "shipped": "أزواج/سنة", "countries": "دول", "response": "رد خلال 24 ساعة" },
     "cta": { "requestQuote": "طلب عرض", "formDesc": "رد خلال 24 ساعة." },
-    "descriptionSection": { "title": "وصف المنتج", "factoryLine": "Shenglei مباشرة من المصنع — EN ISO 20345 ودعم الشهادات لـ B2B." },
+    "descriptionSection": { "title": "وصف المنتج", "factoryLine": "Zhiyuan مباشرة من المصنع — EN ISO 20345 ودعم الشهادات لـ B2B." },
     "breadcrumb": { "products": "المنتجات" }
   },
   "Footer": {

@@ -6,6 +6,8 @@ import { locales } from './locales';
 import enMessages from './messages/en.json';
 import zhMessages from './messages/zh.json';
 import ruMessages from './messages/ru.json';
+import deMessages from './messages/de.json';
+import arMessages from './messages/ar.json';
 
 type Messages = Record<string, any>;
 
@@ -34,6 +36,8 @@ const messages = {
   en: enMessages,
   zh: zhMessages,
   ru: deepMerge(enMessages as Messages, ruMessages as Messages),
+  de: deepMerge(enMessages as Messages, deMessages as Messages),
+  ar: deepMerge(enMessages as Messages, arMessages as Messages),
 } as const;
 
 export default getRequestConfig(async ({locale}) => {

@@ -35,36 +35,6 @@ const testimonials = [
     image: '/images/testimonials/david-thompson.jpg',
     location: 'Detroit, MI',
   },
-  {
-    id: 4,
-    name: 'Jennifer Martinez',
-    company: 'Energy Solutions Ltd.',
-    position: 'Safety Coordinator',
-    content: 'The electrical hazard protection is top-notch. Our electricians feel confident and safe wearing SafeStep boots. The quality is consistent across all orders, which is crucial for our operations.',
-    rating: 5,
-    image: '/images/testimonials/jennifer-martinez.jpg',
-    location: 'Phoenix, AZ',
-  },
-  {
-    id: 5,
-    name: 'Robert Kim',
-    company: 'Global Manufacturing',
-    position: 'VP of Operations',
-    content: 'We\'ve been working with SafeStep for 5 years now. Their reliability, quality, and customer service are unmatched. They understand our business needs and deliver consistently.',
-    rating: 5,
-    image: '/images/testimonials/robert-kim.jpg',
-    location: 'Chicago, IL',
-  },
-  {
-    id: 6,
-    name: 'Amanda Foster',
-    company: 'Safety First Industries',
-    position: 'Quality Assurance Manager',
-    content: 'The certification process was smooth and their documentation is comprehensive. We trust SafeStep for all our safety footwear needs. Their products meet all our compliance requirements.',
-    rating: 5,
-    image: '/images/testimonials/amanda-foster.jpg',
-    location: 'Atlanta, GA',
-  },
 ];
 
 export function Testimonials() {
@@ -203,7 +173,7 @@ export function Testimonials() {
             More Customer Stories
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.slice(0, 6).map((testimonial) => (
+            {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
                 className="bg-white rounded-lg shadow-soft p-6 hover:shadow-medium transition-shadow"

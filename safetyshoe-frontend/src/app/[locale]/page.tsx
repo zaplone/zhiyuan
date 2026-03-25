@@ -10,13 +10,13 @@ import { FAQAndContact } from '@/components/FAQAndContact';
 import { locales } from '@/locales';
 
 export const metadata: Metadata = {
-  title: 'Shenglei Safety Shoes - Your Trusted Partner for Safety Footwear',
+  title: 'Zhiyuan · Safety Shoes',
   description:
-    'Shenglei Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
+    'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
   openGraph: {
-    title: 'Shenglei Safety Shoes - Your Trusted Partner for Safety Footwear',
+    title: 'Zhiyuan · Safety Shoes',
     description:
-      'Shenglei Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
+      'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
     images: ['/images/og-image.jpg'],
   },
 };
