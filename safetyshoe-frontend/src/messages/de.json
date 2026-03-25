@@ -10,6 +10,19 @@
     "searchPlaceholder": "Produkte suchen..."
   },
   "Hero": {
+    "badge": "Direkt vom Werk",
+    "title": "5 Millionen Paare",
+    "highlight": "Jahreskapazität.",
+    "description": "Ihr zuverlässiger globaler OEM/ODM-Partner. Präzisions-Sicherheitsschuhe für internationale Industriestandards.",
+    "cta1": "Produkte ansehen",
+    "cta2": "OEM-Lösungen",
+    "certified": "Zertifizierte Fabrik",
+    "stats": {
+      "years": "Jahre Erfahrung",
+      "lines": "Produktionslinien",
+      "qc": "QS-Prüfung"
+    },
+    "heroImageAlt": "Fertigung – Hauptvisual",
     "cta_primary": "Angebot anfordern",
     "cta_secondary": "Katalog",
     "slide1": {
@@ -76,7 +89,7 @@
     "specs": { "title": "Spezifikationen", "subtitle": "Für Einkäufer", "upper": "Obermaterial", "toeCap": "Zehenkappe", "midsole": "Zwischensohle", "outsole": "Laufsohle", "lining": "Futter", "safetyLevel": "Schutzklasse", "weight": "Gewicht", "testStandard": "Prüfnorm", "colors": "Farben", "sizes": "Größen (EU)", "weightDefault": "Ca. 450–650 g/Paar", "testDefault": "EN ISO 20345", "colorsDefault": "Schwarz, Braun, Navy" },
     "keyFeatures": { "title": "Eigenschaften", "safety": { "title": "Schutz", "desc1": "EN ISO 20345.", "desc2": "" }, "comfort": { "title": "Komfort", "desc1": "Für lange Schichten.", "desc2": "" }, "durability": { "title": "Haltbarkeit", "desc1": "Robuste Materialien.", "desc2": "" }, "compliance": { "title": "Zertifizierung", "desc1": "Berichte & Zertifikate.", "desc2": "" }, "grip": { "title": "Rutschhemmung", "desc1": "SRC-Sohle.", "desc2": "" }, "breathability": { "title": "Atmungsaktiv", "desc1": "Futter.", "desc2": "" } },
     "certifications": { "title": "Zertifizierungen", "subtitle": "B2B-Vertrauen", "ce": "CE für EWR.", "en20345": "EN ISO 20345.", "sgs": "SGS-getestet.", "meaning": "Marktzugang EU, NA, Naher Osten." },
-    "industryApplications": { "title": "Anwendungen", "subtitle": "Nach Branche", "Construction": { "pain": "Lasten, unebener Boden.", "solution": "Zehenschutz, Sohle." }, "Logistics": { "pain": "Langes Gehen.", "solution": "Leicht, rutschhemmend." }, "Oil & Gas": { "pain": "Öl, Chemie.", "solution": "Ölbeständig, HRO." }, "Food": { "pain": "Nass, Hygiene.", "solution": "Leicht zu reinigen." }, "Mining": { "pain": "Verschleiß, Wasser.", "solution": "Robust, S3." }, "Chemical": { "pain": "Spritzer, ESD.", "solution": "Chemikalienbeständig." }, "Executive": { "pain": "Image + Schutz.", "solution": "Niedriger Schaft." } },
+    "industryApplications": { "title": "Anwendungen", "subtitle": "Nach Branche", "Construction": { "pain": "Lasten, unebener Boden.", "solution": "Zehenschutz, Sohle." }, "Logistics": { "pain": "Langes Gehen.", "solution": "Leicht, rutschhemmend." }, "Oil & Gas": { "pain": "Öl, Chemie.", "solution": "Ölbeständig, HRO." }, "Food": { "pain": "Nass, Hygiene.", "solution": "Leicht zu reinigen." }, "Mining": { "pain": "Verschleiß, Wasser.", "solution": "Robust, S3." }, "Chemical": { "pain": "Spritzer, ESD.", "solution": "Chemikalienbeständig." }, "Forestry": { "pain": "Kettensäge, unwegsames Gelände, Nässe.", "solution": "Robust, rutschhemmend; Schnittschutz je nach Klasse." }, "Executive": { "pain": "Image + Schutz.", "solution": "Niedriger Schaft." } },
     "oem": { "title": "OEM / Anpassung", "subtitle": "Direkt vom Werk", "intro": "OEM und Private Label.", "logo": "Logo", "color": "Farben & Materialien", "material": "Materialien", "packaging": "Verpackung", "privateLabel": "Private Label" },
     "faq": { "title": "FAQ", "moq": { "q": "MOQ?", "a": "Typisch 300–500 Paar." }, "samples": { "q": "Muster?", "a": "Ja." }, "leadTime": { "q": "Lieferzeit?", "a": "30–45 Tage." }, "certDocs": { "q": "Zertifikate?", "a": "CE, EN ISO, SGS." }, "payment": { "q": "Zahlung?", "a": "T/T, L/C." }, "audit": { "q": "Werksaudit?", "a": "Ja." } },
     "trustSignals": { "title": "Warum wir", "shipped": "Paare/Jahr", "countries": "Länder", "response": "Antwort in 24 h" },
@@ -94,5 +107,203 @@
     "terms": "Nutzungsbedingungen",
     "sitemap": "Sitemap",
     "designedFor": "Entwickelt für den Welthandel"
+  },
+  "Manufacturing": {
+    "subtitle": "Fertigungsstärke",
+    "title": "Präzision",
+    "titleHighlight": "Engineering.",
+    "desc1": "Seit über zwei Jahrzehnten sind wir auf Sicherheitsschuhe spezialisiert – unsere Fertigung steht für industrielle Spitzenqualität. Wir montieren nicht nur Schuhe, wir entwickeln Schutz.",
+    "desc2": "12 vollautomatisierte Linien mit modernster Injektionstechnik und Präzision: Jedes Paar erfüllt die Anforderungen in Hochrisiko-Umgebungen. Vom Rohstoff bis zum Endtest überwacht unser Labor jede Phase.",
+    "stats": {
+      "automation": "Automatisierte Linien",
+      "rd": "F&E-Ingenieure",
+      "output": "Jahresleistung",
+      "export": "Exportregionen"
+    },
+    "continuous": "Durchlaufende Produktion",
+    "imageAlt": "Moderne Produktionsstätte"
+  },
+  "GlobalCompliance": {
+    "subtitle": "Globale Compliance",
+    "title": "Zertifizierte",
+    "titleHighlight": "Qualität.",
+    "certs": {
+      "astm": "Prüfungen auf Aufprall und Druck (je nach Modell und Bericht).",
+      "ce": "EU-PPE und EN ISO 20345 für geltende Modelle (Zertifikatsumfang beachten).",
+      "iso": "Qualitätsmanagementsystem in der Fertigung.",
+      "ukca": "Marktzugang UK nach Brexit (aktuellen Vorschriften folgen)."
+    },
+    "verified": "Urkunden im Original prüfbar",
+    "certCards": {
+      "astm": { "name": "ASTM F2413", "tag": "USA-Standard" },
+      "ce": { "name": "CE EN 20345", "tag": "EU-Zertifikat" },
+      "iso": { "name": "ISO 9001", "tag": "Qualitätsmanagement" },
+      "ukca": { "name": "UKCA", "tag": "UK" }
+    }
+  },
+  "GlobalReach": {
+    "subtitle": "Globale Größe",
+    "title": "Export",
+    "titleHighlight": "Exzellenz.",
+    "desc": "Von unserem zentralen Produktionsstandort versorgen wir die Industriesicherheit auf sechs Kontinenten. Skala durch gleichbleibende Qualität und internationale Lieferketten.",
+    "stats": {
+      "export": "Jahresexport",
+      "reach": "Reichweite",
+      "compliance": "Compliance",
+      "patents": "Technikpatente"
+    },
+    "statsSub": {
+      "export": "Gefertigte Paare",
+      "reach": "Länder & Gebiete",
+      "compliance": "Internationale Standards",
+      "patents": "Eigenentwicklungen"
+    },
+    "regions": {
+      "northAmerica": "Nordamerika",
+      "eu": "Europäische Union",
+      "sea": "Südostasien",
+      "middleEast": "Naher Osten",
+      "australia": "Australien"
+    },
+    "hub": "Produktionszentrum: Ostasien",
+    "production": "Aktuelle Auslastung",
+    "shipping": "Weltweiter Versand",
+    "destinations": "Exportziele",
+    "optimal": "Optimal",
+    "nations": "85+ Länder",
+    "corridors": "Haupt-Exportkorridore"
+  },
+  "TechnicalOEM": {
+    "subtitle": "Engineering-Kern",
+    "title": "Technische",
+    "titleHighlight": "Basis.",
+    "desc": "Unsere OEM-Kompetenz basiert auf der Beherrschung der Kernkomponenten – Sicherheitselemente unter eigener Kontrolle, gleichbleibende Qualität.",
+    "components": {
+      "toe": "Stahl-/Verbundkappe",
+      "toeDesc": "200 J Aufprallschutz.",
+      "midsole": "Kevlar-Zwischensohle",
+      "midsoleDesc": "Durchtrittschutz.",
+      "sole": "PU/Gummi-Laufsohle",
+      "soleDesc": "Rutschhemmung SRC.",
+      "lining": "Atmungsaktives Futter",
+      "liningDesc": "Feuchtigkeitsableitendes Mesh."
+    },
+    "steps": {
+      "1": "Technisches Briefing",
+      "1desc": "Marktstandards & Sicherheitsanalyse.",
+      "2": "F&E & Prototyp",
+      "2desc": "Schnelle Musterentwicklung.",
+      "3": "Werkzeug & Form",
+      "3desc": "Präzise Sonderformen.",
+      "4": "Serienfertigung",
+      "4desc": "Hohe Stückzahlen nach ISO.",
+      "5": "Globale Logistik",
+      "5desc": "Durchgängige Lieferkette."
+    },
+    "workflow": "OEM/ODM",
+    "workflowHighlight": "Ablauf.",
+    "cta": "Projekt starten"
+  },
+  "HomeMeta": {
+    "title": "Zhiyuan · Sicherheitsschuhe",
+    "description": "Zhiyuan Safety Shoes: Hersteller von Arbeitsschutzschuhen seit 1990. 8 Linien, bis 2 Mio. Paar/Jahr. OEM/ODM."
+  },
+  "Testimonials": {
+    "title": "Kundenstimmen",
+    "subtitle": "Was Branchenführer über unsere Sicherheitsschuhe sagen.",
+    "ctaTitle": "Bereit für den nächsten Schritt?",
+    "ctaSubtitle": "Tausende Kunden weltweit vertrauen auf unsere Lieferungen.",
+    "browseProducts": "Produkte ansehen",
+    "items": {
+      "1": {
+        "name": "Michael Rodriguez",
+        "company": "Construction Solutions Inc.",
+        "position": "Sicherheitsmanager",
+        "content": "SafeStep-Stiefel sind seit über 3 Jahren unsere erste Wahl. Top Qualität, hoher Tragekomfort. Fußverletzungen sind deutlich seltener geworden.",
+        "location": "Houston, USA"
+      },
+      "2": {
+        "name": "Sarah Chen",
+        "company": "Industrial Safety Corp.",
+        "position": "Einkaufsleitung",
+        "content": "Hervorragender Service und schnelle Lieferung. Die OEM-Lösung hat unsere Erwartungen übertroffen. Das Team hat eng mit uns zusammengearbeitet.",
+        "location": "Los Angeles, USA"
+      },
+      "3": {
+        "name": "David Thompson",
+        "company": "Manufacturing Works",
+        "position": "Operationsleiter",
+        "content": "Die beste Sicherheitsfußbekleidung, die wir getestet haben. Rutschfeste Technik, bequem für 12-Stunden-Schichten, robust in harten Umgebungen.",
+        "location": "Detroit, USA"
+      }
+    }
+  },
+  "TechnicalMatrix": {
+    "title": "Technische Matrix",
+    "titleHighlight": "Produkt",
+    "titleHighlight2": "Showcase.",
+    "subtitle": "Ingenieur-Lösungen für die Industriesicherheit.",
+    "featured": "Bestseller",
+    "newArrivals": "Neuheiten",
+    "viewAll": "Alle Produkte",
+    "viewDetail": "Details",
+    "next": "Weiter",
+    "emptyBuild": "Keine Produkte in diesem Build.",
+    "noImage": "Kein Bild",
+    "featuresLabel": "Merkmale",
+    "moqLabel": "MOQ"
+  },
+  "ProductCategories": {
+    "label": "Unsere Kollektion",
+    "title": "Professionelle Sicherheitsschuhe",
+    "subtitle": "Oben eine Auswahl wählen – links Hero-Modell, rechts vier Highlights; unten die volle Galerie.",
+    "showcaseFallback": "Weniger als fünf Treffer pro Tab werden aus dem Gesamtkatalog ergänzt.",
+    "showcaseTab": { "featured": "Top", "newArrivals": "Neu" },
+    "showcaseHero": { "badgeFeatured": "Top", "badgeNew": "Neu", "ctaHint": "Zum Produkt →" },
+    "categories": {
+      "construction": "Bau",
+      "industrial": "Industrie",
+      "logistics": "Logistik",
+      "executive": "Office / leicht"
+    },
+    "viewDetails": "Details",
+    "loadMore": "Alle Produkte",
+    "allProductsGallery": "Galerie",
+    "noProductsLoaded": "Keine Produkte geladen.",
+    "noImage": "Kein Bild",
+    "emptyState": {
+      "title": "Keine Produkte gefunden",
+      "description": "Filter anpassen oder alle Kategorien durchsuchen.",
+      "clearFilters": "Filter zurücksetzen"
+    },
+    "card": {
+      "model": "Modell",
+      "style": "Schnitt",
+      "toe": "Zehe",
+      "outsole": "Laufsohle",
+      "industry": "Branche",
+      "wholesale": "Großhandel",
+      "from": "ab",
+      "moq": "MOQ"
+    },
+    "filter": {
+      "label": "Filter:",
+      "reset": "Zurücksetzen",
+      "standards": { "all": "Alle Normen" },
+      "features": {
+        "all": "Alle Merkmale",
+        "waterproof": "Wasserdicht",
+        "metalFree": "Metallfrei",
+        "insulated": "Isoliert",
+        "slipResistant": "Rutschhemmend"
+      },
+      "styles": {
+        "all": "Alle Schnitte",
+        "low": "Niedrig",
+        "mid": "Mittel",
+        "high": "Hoch"
+      },
+      "toe": { "all": "Alle Zehentypen", "label": "Zehenschutz" }
+    }
   }
 }

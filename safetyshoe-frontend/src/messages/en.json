@@ -201,7 +201,13 @@
       "next": "Next slide",
       "goTo": "Go to slide {n}"
     },
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "stats": {
+      "years": "Years Experience",
+      "lines": "Production Lines",
+      "qc": "QC Inspection"
+    },
+    "heroImageAlt": "Manufacturing excellence — hero visual"
   },
   "Marquee": {
     "item1": "S3 Impact Rated",
@@ -1075,7 +1081,8 @@
       "output": "Annual Output",
       "export": "Export Regions"
     },
-    "continuous": "Continuous Production"
+    "continuous": "Continuous Production",
+    "imageAlt": "Advanced production facility"
   },
   "GlobalCompliance": {
     "subtitle": "Global Compliance",
@@ -1086,6 +1093,12 @@
       "ce": "Full S1P/S3 certification for Europe.",
       "iso": "International manufacturing quality control.",
       "ukca": "Post-Brexit market access for UK."
+    },
+    "certCards": {
+      "astm": { "name": "ASTM F2413", "tag": "US Standard" },
+      "ce": { "name": "CE EN 20345", "tag": "EU Certified" },
+      "iso": { "name": "ISO 9001", "tag": "Quality Mgmt" },
+      "ukca": { "name": "UKCA", "tag": "UK Compliance" }
     },
     "verified": "Original Document Verified"
   },
@@ -1099,6 +1112,19 @@
       "reach": "Global Reach",
       "compliance": "Compliance",
       "patents": "Technical Patents"
+    },
+    "statsSub": {
+      "export": "Pairs Manufactured",
+      "reach": "Nations & Territories",
+      "compliance": "International Standards",
+      "patents": "In-house Innovations"
+    },
+    "regions": {
+      "northAmerica": "North America",
+      "eu": "European Union",
+      "sea": "Southeast Asia",
+      "middleEast": "Middle East",
+      "australia": "Australia"
     },
     "hub": "Live Manufacturing Hub: East Asia",
     "production": "Current Production Load",

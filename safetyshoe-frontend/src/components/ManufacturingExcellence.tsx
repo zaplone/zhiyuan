@@ -7,10 +7,10 @@ export function ManufacturingExcellence() {
   const t = useTranslations('Manufacturing');
 
   const stats = [
-    { label: t('stats.automation') || 'Automated Lines', value: '12', icon: <Settings className="w-5 h-5" /> },
-    { label: t('stats.rd') || 'R&D Engineers', value: '45+', icon: <Layers className="w-5 h-5" /> },
-    { label: t('stats.output') || 'Annual Output', value: '5M+', icon: <Activity className="w-5 h-5" /> },
-    { label: t('stats.export') || 'Export Regions', value: '50+', icon: <Globe className="w-5 h-5" /> }
+    { label: t('stats.automation'), value: '12', icon: <Settings className="w-5 h-5" /> },
+    { label: t('stats.rd'), value: '45+', icon: <Layers className="w-5 h-5" /> },
+    { label: t('stats.output'), value: '5M+', icon: <Activity className="w-5 h-5" /> },
+    { label: t('stats.export'), value: '50+', icon: <Globe className="w-5 h-5" /> }
   ];
 
   return (
@@ -21,20 +21,20 @@ export function ManufacturingExcellence() {
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-1 bg-orange-600" />
               <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-                {t('subtitle') || 'Manufacturing Power'}
+                {t('subtitle')}
               </h2>
             </div>
             <h3 className="text-6xl font-black text-slate-900 uppercase tracking-tighter leading-[0.85] mb-10 italic">
-              {t('title') || 'Precision'} <br />
-              <span className="text-orange-600">{t('titleHighlight') || 'Engineering.'}</span>
+              {t('title')} <br />
+              <span className="text-orange-600">{t('titleHighlight')}</span>
             </h3>
             
             <div className="space-y-6 text-slate-600 text-lg leading-relaxed mb-12">
               <p>
-                {t('desc1') || 'With over two decades of specialized experience in safety footwear, our manufacturing facility stands as a benchmark of industrial excellence. We don\'t just assemble shoes; we engineer protection.'}
+                {t('desc1')}
               </p>
               <p className="text-sm font-medium text-slate-500">
-                {t('desc2') || 'Our 12 fully automated production lines integrate the latest injection technology and robotic precision, ensuring that every pair meets the exact specifications required for high-risk industrial environments. From material sourcing to final stress testing, our in-house laboratory monitors every stage of the lifecycle.'}
+                {t('desc2')}
               </p>
             </div>
             
@@ -52,7 +52,7 @@ export function ManufacturingExcellence() {
             <div className="aspect-[4/5] bg-slate-100 overflow-hidden border-[16px] border-slate-50 shadow-2xl">
               <img 
                 src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2070" 
-                alt="Advanced Production Facility" 
+                alt={t('imageAlt')} 
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 referrerPolicy="no-referrer"
               />

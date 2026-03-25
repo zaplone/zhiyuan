@@ -24,10 +24,8 @@ export function Header() {
   const lastScrollYRef = useRef(0);
   const mouseNearTopRef = useRef(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const langMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   const navigation = [
@@ -38,13 +36,9 @@ export function Header() {
     { name: t('news'), href: '/news' },
   ];
 
-  const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'zh', label: '中文' },
-    { code: 'ru', label: 'Русский' },
-    { code: 'de', label: 'Deutsch' },
-    { code: 'ar', label: 'العربية' },
-  ];
+  /** 当前仅开放英文站；其它语言文案就绪后，可恢复多语言列表与下拉切换 */
+  const siteLocaleLabel = 'English';
+  const siteLocaleCode = 'en';
 
   // Close search when clicking outside
   useEffect(() => {
@@ -65,17 +59,6 @@ export function Header() {
     }
   }, [isSearchOpen]);
 
-  useEffect(() => {
-    if (!isLangMenuOpen) return;
-    const onDocMouseDown = (e: MouseEvent) => {
-      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
-        setIsLangMenuOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', onDocMouseDown);
-    return () => document.removeEventListener('mousedown', onDocMouseDown);
-  }, [isLangMenuOpen]);
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -84,17 +67,6 @@ export function Header() {
       setIsSearchOpen(false);
       setSearchQuery('');
     }
-  };
-
-  const handleLanguageChange = (newLocale: string) => {
-    // 使用原生跳转，静态导出模式下更可靠
-    // e.g. /en/products -> /zh/products
-    const pathSegments = pathname.split('/');
-    pathSegments[1] = newLocale;
-    const newPath = pathSegments.join('/');
-
-    window.location.href = newPath;
-    setIsLangMenuOpen(false);
   };
 
   // Check if we are on the homepage or OEM page or About page (which has dark hero)
@@ -263,49 +235,16 @@ export function Header() {
                 {t('contact')}
               </Link>
 
-              <div ref={langMenuRef} className="relative">
-                <button
-                  type="button"
-                  onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className={cn(
-                    'p-2 rounded-full transition-colors flex items-center gap-1',
-                    isTransparent
-                      ? 'text-white/90 hover:bg-white/10'
-                      : 'text-slate-500 hover:bg-slate-100 text-slate-600'
-                  )}
-                  aria-expanded={isLangMenuOpen}
-                  aria-haspopup="listbox"
-                  aria-label="Language"
-                >
-                  <Globe className="w-5 h-5 shrink-0" />
-                  <span className="text-xs font-bold uppercase">{locale}</span>
-                </button>
-
-                {isLangMenuOpen && (
-                  <div
-                    className="absolute right-0 mt-2 min-w-[11rem] max-h-[min(70vh,20rem)] overflow-y-auto bg-white rounded-xl shadow-xl border border-slate-100 py-1 z-[60] animate-in fade-in zoom-in-95 duration-200"
-                    role="listbox"
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        type="button"
-                        onClick={() => handleLanguageChange(lang.code)}
-                        className={cn(
-                          'w-full text-left px-4 py-2.5 text-sm hover:bg-slate-50 transition-colors flex items-center justify-between gap-2',
-                          locale === lang.code ? 'text-primary-600 font-bold bg-primary-50' : 'text-slate-700'
-                        )}
-                        role="option"
-                        aria-selected={locale === lang.code}
-                      >
-                        <span>{lang.label}</span>
-                        {locale === lang.code && (
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary-600 shrink-0" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
+              <div
+                className={cn(
+                  'p-2 rounded-full flex items-center gap-1.5 select-none',
+                  isTransparent ? 'text-white/90' : 'text-slate-600'
                 )}
+                title="English site only"
+                aria-label={`Site language: ${siteLocaleLabel}`}
+              >
+                <Globe className="w-5 h-5 shrink-0 opacity-90" aria-hidden />
+                <span className="text-xs font-bold uppercase tracking-wide">{siteLocaleCode}</span>
               </div>
 
             </div>
@@ -356,29 +295,6 @@ export function Header() {
                 </Link>
               ))}
 
-              <div className="border-t border-slate-100 pt-4">
-                <p className="text-xs font-bold text-slate-400 mb-2 uppercase">Language / 语言</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      type="button"
-                      onClick={() => {
-                        handleLanguageChange(lang.code);
-                        setIsOpen(false);
-                      }}
-                      className={cn(
-                        'text-sm py-2 rounded-md border text-center transition-colors',
-                        locale === lang.code
-                          ? 'border-primary-500 bg-primary-50 text-primary-700 font-bold'
-                          : 'border-slate-200 text-slate-600'
-                      )}
-                    >
-                      {lang.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           )}
         </nav>

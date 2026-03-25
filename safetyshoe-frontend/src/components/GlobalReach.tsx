@@ -4,23 +4,17 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ShieldCheck, Globe, Truck, Zap } from 'lucide-react';
 
+const STAT_ROWS = [
+  { key: 'export' as const, value: '5,000,000+', icon: Truck },
+  { key: 'reach' as const, value: '85+', icon: Globe },
+  { key: 'compliance' as const, value: '100%', icon: ShieldCheck },
+  { key: 'patents' as const, value: '120+', icon: Zap },
+];
+
+const REGION_KEYS = ['northAmerica', 'eu', 'sea', 'middleEast', 'australia'] as const;
+
 export function GlobalReach() {
   const t = useTranslations('GlobalReach');
-
-  const stats = [
-    { label: t('stats.export') || 'Annual Export', value: '5,000,000+', sub: 'Pairs Manufactured', icon: <Truck className="w-5 h-5" /> },
-    { label: t('stats.reach') || 'Global Reach', value: '85+', sub: 'Nations & Territories', icon: <Globe className="w-5 h-5" /> },
-    { label: t('stats.compliance') || 'Compliance', value: '100%', sub: 'International Standards', icon: <ShieldCheck className="w-5 h-5" /> },
-    { label: t('stats.patents') || 'Technical Patents', value: '120+', sub: 'In-house Innovations', icon: <Zap className="w-5 h-5" /> }
-  ];
-
-  const regions = [
-    'North America', 
-    'European Union', 
-    'Southeast Asia', 
-    'Middle East', 
-    'Australia'
-  ];
 
   return (
     <section id="global" className="py-32 bg-slate-900 relative overflow-hidden">
@@ -45,32 +39,35 @@ export function GlobalReach() {
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-1 bg-orange-600" />
               <h2 className="text-[10px] font-black text-orange-500 uppercase tracking-[0.5em]">
-                {t('subtitle') || 'Global Scale'}
+                {t('subtitle')}
               </h2>
             </div>
             <h3 className="text-7xl font-black text-white uppercase tracking-tighter leading-[0.85] mb-12 italic">
-              {t('title') || 'Exporting'} <br />
-              <span className="text-orange-600">{t('titleHighlight') || 'Excellence.'}</span>
+              {t('title')} <br />
+              <span className="text-orange-600">{t('titleHighlight')}</span>
             </h3>
             <p className="text-slate-400 text-xl mb-16 leading-relaxed max-w-lg font-medium">
-              {t('desc') || 'From our centralized manufacturing hub, we power industrial safety across 6 continents. Our scale is built on consistent quality and a robust international supply chain.'}
+              {t('desc')}
             </p>
             
             <div className="grid sm:grid-cols-2 gap-12">
-              {stats.map((s, i) => (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  key={i} 
-                  className="group"
-                >
-                  <div className="text-orange-600 mb-4">{s.icon}</div>
-                  <div className="text-4xl font-black text-white italic mb-1 tracking-tighter">{s.value}</div>
-                  <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{s.label}</div>
-                  <div className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">{s.sub}</div>
-                </motion.div>
-              ))}
+              {STAT_ROWS.map((s, i) => {
+                const Icon = s.icon;
+                return (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    key={s.key} 
+                    className="group"
+                  >
+                    <div className="text-orange-600 mb-4"><Icon className="w-5 h-5" /></div>
+                    <div className="text-4xl font-black text-white italic mb-1 tracking-tighter">{s.value}</div>
+                    <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{t(`stats.${s.key}`)}</div>
+                    <div className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">{t(`statsSub.${s.key}`)}</div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
@@ -80,37 +77,37 @@ export function GlobalReach() {
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-3 h-3 bg-orange-600 rounded-full animate-ping" />
                 <span className="text-[10px] font-black text-white uppercase tracking-[0.3em]">
-                  {t('hub') || 'Live Manufacturing Hub: East Asia'}
+                  {t('hub')}
                 </span>
               </div>
               <div className="space-y-8">
                 <div className="flex justify-between items-end border-b border-white/10 pb-6">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                    {t('production') || 'Current Production Load'}
+                    {t('production')}
                   </span>
                   <span className="text-2xl font-black text-white italic">94%</span>
                 </div>
                 <div className="flex justify-between items-end border-b border-white/10 pb-6">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                    {t('shipping') || 'Global Shipping Status'}
+                    {t('shipping')}
                   </span>
-                  <span className="text-2xl font-black text-green-500 italic uppercase">{t('optimal') || 'Optimal'}</span>
+                  <span className="text-2xl font-black text-green-500 italic uppercase">{t('optimal')}</span>
                 </div>
                 <div className="flex justify-between items-end border-b border-white/10 pb-6">
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                    {t('destinations') || 'Export Destinations'}
+                    {t('destinations')}
                   </span>
-                  <span className="text-2xl font-black text-white italic">{t('nations') || '85 Nations'}</span>
+                  <span className="text-2xl font-black text-white italic">{t('nations')}</span>
                 </div>
               </div>
               <div className="mt-12">
                 <div className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-4">
-                  {t('corridors') || 'Major Export Corridors'}
+                  {t('corridors')}
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  {regions.map((region, i) => (
-                    <span key={i} className="px-3 py-1 bg-white/10 text-white text-[9px] font-black uppercase tracking-widest">
-                      {region}
+                  {REGION_KEYS.map((regionKey) => (
+                    <span key={regionKey} className="px-3 py-1 bg-white/10 text-white text-[9px] font-black uppercase tracking-widest">
+                      {t(`regions.${regionKey}`)}
                     </span>
                   ))}
                 </div>

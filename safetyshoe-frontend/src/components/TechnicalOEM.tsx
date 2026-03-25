@@ -10,33 +10,33 @@ export function TechnicalOEM() {
 
   const components = [
     { 
-      title: t('components.toe') || 'Steel Toe Cap', 
-      desc: t('components.toeDesc') || '200J Impact resistance.', 
+      title: t('components.toe'), 
+      desc: t('components.toeDesc'), 
       icon: <HardHat className="w-5 h-5" /> 
     },
     { 
-      title: t('components.midsole') || 'Kevlar Midsole', 
-      desc: t('components.midsoleDesc') || 'Zero-penetration protection.', 
+      title: t('components.midsole'), 
+      desc: t('components.midsoleDesc'), 
       icon: <ShieldCheck className="w-5 h-5" /> 
     },
     { 
-      title: t('components.sole') || 'PU/Rubber Sole', 
-      desc: t('components.soleDesc') || 'SRC slip resistance.', 
+      title: t('components.sole'), 
+      desc: t('components.soleDesc'), 
       icon: <Activity className="w-5 h-5" /> 
     },
     { 
-      title: t('components.lining') || 'Breathable Lining', 
-      desc: t('components.liningDesc') || 'Moisture-wicking mesh.', 
+      title: t('components.lining'), 
+      desc: t('components.liningDesc'), 
       icon: <Layers className="w-5 h-5" /> 
     }
   ];
 
   const steps = [
-    { step: "01", title: t('steps.1') || 'Technical Brief', desc: t('steps.1desc') || "Market standards & safety analysis." },
-    { step: "02", title: t('steps.2') || 'R&D Prototyping', desc: t('steps.2desc') || "Rapid sample development." },
-    { step: "03", title: t('steps.3') || 'Tooling & Mold', desc: t('steps.3desc') || "Precision custom molds." },
-    { step: "04", title: t('steps.4') || 'Mass Production', desc: t('steps.4desc') || "ISO-certified high volume." },
-    { step: "05", title: t('steps.5') || 'Global Logistics', desc: t('steps.5desc') || "Seamless supply chain." }
+    { step: "01", title: t('steps.1'), desc: t('steps.1desc') },
+    { step: "02", title: t('steps.2'), desc: t('steps.2desc') },
+    { step: "03", title: t('steps.3'), desc: t('steps.3desc') },
+    { step: "04", title: t('steps.4'), desc: t('steps.4desc') },
+    { step: "05", title: t('steps.5'), desc: t('steps.5desc') }
   ];
 
   return (
@@ -49,15 +49,15 @@ export function TechnicalOEM() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-1 bg-orange-600" />
                 <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-                  {t('subtitle') || 'Engineering Core'}
+                  {t('subtitle')}
                 </h2>
               </div>
               <h3 className="text-5xl font-black text-slate-900 uppercase tracking-tighter leading-[0.85] italic mb-8">
-                {t('title') || 'Technical'} <br />
-                <span className="text-orange-600">{t('titleHighlight') || 'Foundation.'}</span>
+                {t('title')} <br />
+                <span className="text-orange-600">{t('titleHighlight')}</span>
               </h3>
               <p className="text-slate-500 text-lg leading-relaxed max-w-md font-medium">
-                {t('desc') || 'Our OEM capability is rooted in our mastery of core components. We manufacture our own safety elements to ensure total quality control.'}
+                {t('desc')}
               </p>
             </div>
 
@@ -77,7 +77,7 @@ export function TechnicalOEM() {
             
             <div className="relative z-10">
               <h4 className="text-3xl font-black text-white uppercase tracking-tighter italic mb-12">
-                {t('workflow') || 'OEM/ODM'} <span className="text-orange-600">{t('workflowHighlight') || 'Workflow.'}</span>
+                {t('workflow')} <span className="text-orange-600">{t('workflowHighlight')}</span>
               </h4>
               
               <div className="space-y-10">
@@ -97,7 +97,7 @@ export function TechnicalOEM() {
                   href={`/${locale}/services/oem`}
                   className="w-full bg-orange-600 text-white py-5 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-slate-900 transition-all text-center block"
                 >
-                  {t('cta') || 'Start Custom Project'}
+                  {t('cta')}
                 </Link>
               </div>
             </div>

@@ -166,6 +166,13 @@
     }
   },
   "Hero": {
+    "badge": "工厂制造中心",
+    "title": "年产能 500 万双",
+    "highlight": "制造实力。",
+    "description": "可靠的全球 OEM/ODM 合作伙伴，按国际工业标准打造劳保鞋与安全防护鞋。",
+    "cta1": "查看产品",
+    "cta2": "OEM 方案",
+    "certified": "认证工厂",
     "cta_primary": "获取报价",
     "cta_secondary": "浏览产品目录",
     "slide1": {
@@ -194,7 +201,13 @@
       "next": "下一张",
       "goTo": "第 {n} 张"
     },
-    "scroll": "向下浏览"
+    "scroll": "向下浏览",
+    "stats": {
+      "years": "年行业经验",
+      "lines": "生产线",
+      "qc": "全检质控"
+    },
+    "heroImageAlt": "制造实力展示 — 首页主视觉"
   },
   "Marquee": {
     "item1": "防砸 S3 级",
@@ -951,5 +964,101 @@
     "noImage": "暂无图片",
     "featuresLabel": "产品特点",
     "moqLabel": "起订量"
+  },
+  "Manufacturing": {
+    "subtitle": "制造实力",
+    "title": "精密",
+    "titleHighlight": "工程。",
+    "desc1": "二十余年专注安全鞋制造，我们的产线代表工业级制造水准。我们不只是组装鞋子，更是在设计防护。",
+    "desc2": "12 条自动化产线融合注塑工艺与精益品控，确保每双鞋满足高危工况要求。从原料到成品实验室检测，全流程可追溯。",
+    "stats": {
+      "automation": "自动化产线",
+      "rd": "研发工程师",
+      "output": "年产能",
+      "export": "出口地区"
+    },
+    "continuous": "连续生产",
+    "imageAlt": "先进生产线与工厂实景"
+  },
+  "GlobalCompliance": {
+    "subtitle": "全球合规",
+    "title": "权威",
+    "titleHighlight": "认证。",
+    "certs": {
+      "astm": "抗冲击与压缩等测试符合北美常用要求（以具体型号报告为准）。",
+      "ce": "适用型号具备欧盟 PPE 与 EN ISO 20345 框架下相应防护等级（以证书列明为准）。",
+      "iso": "工厂通过 ISO 9001 等体系认证，保障全流程质量管理。",
+      "ukca": "英国脱欧后英国市场准入路径之一（视型号与法规更新而定）。"
+    },
+    "verified": "证书原件可核验",
+    "certCards": {
+      "astm": { "name": "ASTM F2413", "tag": "美国标准" },
+      "ce": { "name": "CE EN 20345", "tag": "欧盟认证" },
+      "iso": { "name": "ISO 9001", "tag": "质量管理" },
+      "ukca": { "name": "UKCA", "tag": "英国合规" }
+    }
+  },
+  "GlobalReach": {
+    "subtitle": "全球规模",
+    "title": "出口",
+    "titleHighlight": "实力。",
+    "desc": "依托集中化制造基地，我们为全球六大洲提供工业安全防护。规模建立在稳定品质与国际供应链之上。",
+    "stats": {
+      "export": "年出口量",
+      "reach": "全球覆盖",
+      "compliance": "合规",
+      "patents": "技术专利"
+    },
+    "statsSub": {
+      "export": "年产鞋履（双）",
+      "reach": "国家与地区",
+      "compliance": "国际标准符合",
+      "patents": "自主技术专利"
+    },
+    "regions": {
+      "northAmerica": "北美",
+      "eu": "欧盟",
+      "sea": "东南亚",
+      "middleEast": "中东",
+      "australia": "澳大利亚"
+    },
+    "hub": "实时制造中心：东亚",
+    "production": "当前产能负荷",
+    "shipping": "全球发运状态",
+    "destinations": "出口目的地",
+    "optimal": "良好",
+    "nations": "85+ 国家",
+    "corridors": "主要出口走廊"
+  },
+  "TechnicalOEM": {
+    "subtitle": "工程核心",
+    "title": "技术",
+    "titleHighlight": "底座。",
+    "desc": "OEM 能力源于对核心部件的掌控——关键安全件自主可控，保障品质一致。",
+    "components": {
+      "toe": "钢头 / 复合头",
+      "toeDesc": "200J 抗冲击。",
+      "midsole": "凯夫拉中底",
+      "midsoleDesc": "防穿刺保护。",
+      "sole": "PU/Rubber 大底",
+      "soleDesc": "SRC 级防滑。",
+      "lining": "透气内里",
+      "liningDesc": "吸湿网布。"
+    },
+    "steps": {
+      "1": "需求与标准",
+      "1desc": "市场标准与安全分析。",
+      "2": "研发打样",
+      "2desc": "快速样品开发。",
+      "3": "开模与工装",
+      "3desc": "精密定制模具。",
+      "4": "批量生产",
+      "4desc": "体系化大批量制造。",
+      "5": "全球物流",
+      "5desc": "端到端供应链协同。"
+    },
+    "workflow": "OEM/ODM",
+    "workflowHighlight": "流程。",
+    "cta": "启动定制项目"
   }
 }
