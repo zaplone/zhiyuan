@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowRight, Search, Globe } from 'lucide-react';
+import { Menu, X, Search, Globe, Factory } from 'lucide-react';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -146,25 +146,37 @@ export function Header() {
       >
         <nav className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Brand wordmark (no logo image) */}
-            <div className="flex-shrink-0">
-              <Link href={`/${locale}`} className="flex items-center group">
-                <span
-                  className={cn(
-                    'text-lg sm:text-xl font-bold tracking-tight transition-colors',
-                    isTransparent ? 'text-white' : 'text-slate-900'
-                  )}
-                >
-                  Zhiyuan{' '}
+            {/* Brand: Factory icon + wordmark (aligned with zhiyuanwebsite nav) */}
+            <div className="flex-shrink-0 min-w-0">
+              <Link href={`/${locale}`} className="flex items-center gap-3 group">
+                <div className="bg-orange-600 p-2 rounded-lg shrink-0">
+                  <Factory className="text-white w-6 h-6" aria-hidden />
+                </div>
+                <div className="flex flex-col leading-none min-w-0">
                   <span
                     className={cn(
-                      'font-semibold',
-                      isTransparent ? 'text-orange-400' : 'text-orange-600'
+                      'text-xl sm:text-2xl font-black tracking-tighter italic truncate',
+                      isTransparent ? 'text-white' : 'text-slate-900'
                     )}
                   >
-                    safe shoes
+                    {t('brandName')}{' '}
+                    <span
+                      className={cn(
+                        isTransparent ? 'text-orange-300' : 'text-orange-600'
+                      )}
+                    >
+                      {t('brandHighlight')}
+                    </span>
                   </span>
-                </span>
+                  <span
+                    className={cn(
+                      'text-[9px] font-bold uppercase tracking-[0.4em] mt-0.5 truncate',
+                      isTransparent ? 'text-white/65' : 'text-slate-500'
+                    )}
+                  >
+                    {t('brandTagline')}
+                  </span>
+                </div>
               </Link>
             </div>
 

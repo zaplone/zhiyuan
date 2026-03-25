@@ -7,7 +7,10 @@
     "news": "الأخبار",
     "contact": "اتصل بنا",
     "getQuote": "احصل على عرض أسعار",
-    "searchPlaceholder": "البحث عن المنتجات..."
+    "searchPlaceholder": "البحث عن المنتجات...",
+    "brandName": "Zhiyuan",
+    "brandHighlight": "أحذية السلامة",
+    "brandTagline": "شريك OEM عالمي"
   },
   "Hero": {
     "badge": "تصنيع مباشر",
