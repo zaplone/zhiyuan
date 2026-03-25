@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd safetyshoe-frontend && npm run build",
+    "build": "cd safetyshoe-frontend && npm install && npm run build",
     "dev": "cd safetyshoe-frontend && npm run dev"
   }
 }
