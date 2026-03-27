@@ -4,10 +4,11 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronRight, X } from 'lucide-react';
+import { ArrowRight, ChevronRight, X, Layers, Shield } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product } from '@/types';
 import { ProductCertBadges } from '@/components/ProductCertBadges';
+import { ImageViewer } from './ImageViewer';
 
 const SHOWCASE_TABS = [
   { key: 'featured', mode: 'featured' as const },
@@ -34,6 +35,7 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const mode = SHOWCASE_TABS[activeTab].mode;
 
@@ -243,12 +245,13 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="w-1/2 h-full bg-white relative overflow-hidden border-r border-slate-100">
+              <div className="w-[60%] h-full bg-white relative overflow-hidden border-r border-slate-100">
                 <motion.div
                   key={currentImageIndex}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="h-full w-full relative"
+                  className="h-full w-full relative cursor-zoom-in"
+                  onClick={() => setIsFullscreen(true)}
                 >
                   <Image
                     src={selectedProduct.images?.[currentImageIndex] || selectedProduct.image || '/images/products/steel-toe-boot.jpg'}
@@ -278,13 +281,13 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
                 )}
               </div>
 
-              <div className="w-1/2 h-full bg-white p-8 overflow-y-auto">
+              <div className="w-[40%] h-full bg-white p-6 overflow-y-auto">
                 <div className="space-y-6">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-[10px] font-black text-orange-600 uppercase tracking-widest">{selectedProduct.model_code}</span>
                     </div>
-                    <h4 className="text-3xl font-black text-slate-900 uppercase tracking-tighter">{selectedProduct.name}</h4>
+                    <h4 className="text-xl font-black text-slate-900 uppercase tracking-tighter">{selectedProduct.name}</h4>
                   </div>
 
                   <p className="text-slate-600 text-sm leading-relaxed">{selectedProduct.description}</p>
@@ -302,15 +305,101 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
                     )}
                   </div>
 
-                  <div className="border-t border-slate-200 pt-6">
-                    <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">{t('featuresLabel')}</h5>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProduct.features?.map((feature: string, i: number) => (
-                        <span key={i} className="px-3 py-1 bg-slate-50 text-slate-600 text-xs">
-                          {feature}
-                        </span>
-                      ))}
+                  {/* Materials - 材质规格 */}
+                  {selectedProduct.materials && Object.keys(selectedProduct.materials).length > 0 && (
+                    <div className="border-t border-slate-200 pt-6">
+                      <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <Layers className="w-4 h-4" /> Material Specs
+                      </h5>
+                      <div className="space-y-2 text-sm">
+                        {selectedProduct.materials.upper && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">Upper</span>
+                            <span className="font-semibold text-slate-900">{selectedProduct.materials.upper}</span>
+                          </div>
+                        )}
+                        {selectedProduct.materials.toe_cap && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">Toe Cap</span>
+                            <span className="font-semibold text-slate-900">{selectedProduct.materials.toe_cap}</span>
+                          </div>
+                        )}
+                        {selectedProduct.materials.midsole && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">Midsole</span>
+                            <span className="font-semibold text-slate-900">{selectedProduct.materials.midsole}</span>
+                          </div>
+                        )}
+                        {selectedProduct.materials.outsole && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">Outsole</span>
+                            <span className="font-semibold text-slate-900">{selectedProduct.materials.outsole}</span>
+                          </div>
+                        )}
+                        {selectedProduct.materials.lining && (
+                          <div className="flex justify-between">
+                            <span className="text-slate-500">Lining</span>
+                            <span className="font-semibold text-slate-900">{selectedProduct.materials.lining}</span>
+                          </div>
+                        )}
+                      </div>
                     </div>
+                  )}
+
+                  {/* Colors - 颜色 */}
+                  {(selectedProduct as any).specs_extra?.colors && (
+                    <div className="border-t border-slate-200 pt-6">
+                      <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                        Colors
+                      </h5>
+                      <div className="flex flex-wrap gap-2">
+                        {(selectedProduct as any).specs_extra.colors.split(',').map((color: string, i: number) => (
+                          <span key={i} className="px-3 py-1 bg-slate-50 text-slate-600 text-xs border border-slate-200 rounded-md">
+                            {color.trim()}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Test Standard - 测试标准 */}
+                  {(selectedProduct as any).specs_extra?.test_standard && (
+                    <div className="border-t border-slate-200 pt-6">
+                      <h5 className="text-xs font-black text-amber-600 uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <Shield className="w-4 h-4" /> Test Standard
+                      </h5>
+                      <p className="text-sm font-semibold text-amber-800 bg-amber-50 px-4 py-2 rounded-lg inline-block">
+                        {(selectedProduct as any).specs_extra.test_standard}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Features - 特点 */}
+                  {selectedProduct.features && selectedProduct.features.length > 0 && (
+                    <div className="border-t border-slate-200 pt-6">
+                      <h5 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">{t('featuresLabel')}</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProduct.features.map((feature: string, i: number) => (
+                          <span key={i} className="px-3 py-1 bg-slate-50 text-slate-600 text-xs">
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* MOQ & Sizes */}
+                  <div className="border-t border-slate-200 pt-6 flex items-center justify-between text-sm">
+                    <div>
+                      <span className="text-slate-500">MOQ: </span>
+                      <span className="font-semibold text-slate-900">{selectedProduct.moq || 'Negotiable'}</span>
+                    </div>
+                    {(selectedProduct as any).specs_extra?.sizes && (
+                      <div>
+                        <span className="text-slate-500">Sizes: </span>
+                        <span className="font-semibold text-slate-900">{(selectedProduct as any).specs_extra.sizes} (EU)</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="pt-6">
@@ -345,6 +434,16 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
+
+            {/* 全屏图片查看器 */}
+            {isFullscreen && selectedProduct && (
+              <ImageViewer
+                images={selectedProduct.images?.length ? selectedProduct.images : [selectedProduct.image || '/images/products/steel-toe-boot.jpg']}
+                initialIndex={currentImageIndex}
+                productName={selectedProduct.name}
+                onClose={() => setIsFullscreen(false)}
+              />
+            )}
           </div>
         )}
       </AnimatePresence>

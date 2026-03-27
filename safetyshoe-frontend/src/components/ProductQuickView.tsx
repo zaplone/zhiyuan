@@ -1,9 +1,9 @@
-import { X, Check, Truck, Layers, Activity, Ruler, ChevronLeft, Send, Loader2 } from 'lucide-react';
+import { X, Check, Truck, Layers, Activity, Ruler, ChevronLeft, Send, Loader2, Shield } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { submitInquiry } from '@/lib/siteApi';
-import { ImageMagnifier } from './ImageMagnifier';
+import { ImageViewer } from './ImageViewer';
 import { useTranslations, useLocale } from 'next-intl';
 import { Product } from '@/types';
 import { isValidImageUrl, getSafeImageUrl } from '@/lib/imageUtils';
@@ -21,6 +21,7 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
   const [showForm, setShowForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isFullscreen, setIsFullscreen] = useState(false);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -111,12 +112,21 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
           <X className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
-        {/* Left / Top: 主图与缩略图分区，避免缩略图叠在主图上 */}
+        {/* Left / Top: 主图与缩略图分区，点击主图打开全屏 */}
         <div className="flex w-full flex-shrink-0 flex-col bg-white md:w-7/12 md:h-full md:min-h-0">
           <div className="relative min-h-[14rem] flex-1 sm:min-h-[16rem] md:min-h-0 md:flex-1">
-            <div className="absolute inset-0 overflow-hidden bg-white">
+            <div 
+              className="absolute inset-0 overflow-hidden bg-white cursor-zoom-in"
+              onClick={() => setIsFullscreen(true)}
+            >
               {isValidImageUrl(activeImage) ? (
-                <ImageMagnifier src={activeImage} alt={product.name} fit="contain" className="bg-white" />
+                <Image
+                  src={activeImage}
+                  alt={product.name}
+                  fill
+                  className="object-contain p-4"
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                />
               ) : (
                 <div className="flex h-full w-full items-center justify-center text-slate-400">
                   <span className="text-sm">No Image Available</span>
@@ -225,6 +235,22 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
                 </div>
               )}
 
+              {/* Colors - 新增 */}
+              {(product as any).specs_extra?.colors && (
+                <div className="mb-4 md:mb-6">
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <Activity className="w-4 h-4" /> {t('colors') || 'Colors'}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {(product as any).specs_extra.colors.split(',').map((color: string, idx: number) => (
+                      <span key={idx} className="inline-flex items-center text-xs font-medium text-slate-700 bg-white border border-slate-200 px-3 py-1.5 rounded-md shadow-sm">
+                        {color.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Features */}
               <div className="mb-4 md:mb-6">
                 <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -240,6 +266,18 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
                 </div>
               </div>
               
+              {/* Test Standard - 新增 */}
+              {(product as any).specs_extra?.test_standard && (
+                <div className="mb-4 md:mb-6 p-3 sm:p-4 bg-amber-50 rounded-xl border border-amber-100">
+                  <h3 className="text-xs font-bold text-amber-600 uppercase tracking-wider mb-2 flex items-center gap-2">
+                    <Shield className="w-4 h-4" /> Test Standard
+                  </h3>
+                  <p className="text-sm font-semibold text-amber-800">
+                    {(product as any).specs_extra.test_standard}
+                  </p>
+                </div>
+              )}
+              
               <div className="mt-auto pt-6 border-t border-slate-100">
                  <div className="flex items-center justify-between text-sm text-slate-500 mb-4">
                     <div className="flex items-center gap-2">
@@ -248,7 +286,7 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
                     </div>
                     <div className="flex items-center gap-2">
                        <Ruler className="w-4 h-4" />
-                       <span>{t('sizes')}: {(product as any).specs_extra?.sizes || '36-48 (EU)'}</span>
+                       <span>{t('sizes')}: <strong className="text-slate-900">{(product as any).specs_extra?.sizes || '35-48'} (EU)</strong></span>
                     </div>
                  </div>
 
@@ -382,6 +420,16 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
 
         </div>
       </div>
+
+      {/* 全屏图片查看器 */}
+      {isFullscreen && (
+        <ImageViewer
+          images={galleryImages}
+          initialIndex={galleryImages.indexOf(activeImage)}
+          productName={product.name}
+          onClose={() => setIsFullscreen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default function PrivacyPage() {
                     <p className="text-slate-700 leading-relaxed mb-6">
                         If you have any questions about this Privacy Policy, please contact us at:
                         <br />
-                        <strong>Email:</strong> sales@slsafetyshoes.com
+                        <strong>Email:</strong> zysafeshoes@vip.qq.com
                     </p>
 
                     <div className="mt-16 pt-8 border-t border-slate-200">

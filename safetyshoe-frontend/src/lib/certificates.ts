@@ -12,13 +12,13 @@ export type CertificateId =
   | 'iso45001_zh';
 
 export const CERTIFICATE_FILES: Record<CertificateId, string> = {
-  eu_ce: '5e44a358b6a1d.png',
-  iso9001_en: '5e44a358b6a1d.png',
-  iso14001_en: '5e44a358b6a1d.png',
-  iso45001_en: '5e44a358b6a1d.png',
-  iso9001_zh: '5e44a358b6a1d.png',
-  iso14001_zh: '5e44a358b6a1d.png',
-  iso45001_zh: '5e44a358b6a1d.png',
+  eu_ce: 'eu_ce.png',
+  iso9001_en: 'iso9001_en.png',
+  iso14001_en: 'iso14001_en.png',
+  iso45001_en: 'iso45001_en.png',
+  iso9001_zh: 'iso9001_en.png',
+  iso14001_zh: 'iso14001_en.png',
+  iso45001_zh: 'iso45001_en.png',
 };
 
 /** 首页优先展示的 4 类资质 */
@@ -29,7 +29,7 @@ export const HOMEPAGE_CERTIFICATE_IDS: readonly CertificateId[] = [
   'iso14001_en',
 ] as const;
 
-/** 关于页 — 英文证书（含欧盟型式检验） */
+/** 关于页 — 证书图库（4张真实证书） */
 export const GALLERY_EN_IDS: readonly CertificateId[] = [
   'eu_ce',
   'iso9001_en',
@@ -37,11 +37,11 @@ export const GALLERY_EN_IDS: readonly CertificateId[] = [
   'iso45001_en',
 ] as const;
 
-/** 关于页 — 中文证书 */
+/** 关于页 — 中文证书（与英文共用同一套图片） */
 export const GALLERY_ZH_IDS: readonly CertificateId[] = [
-  'iso9001_zh',
-  'iso14001_zh',
-  'iso45001_zh',
+  'iso9001_en',
+  'iso14001_en',
+  'iso45001_en',
 ] as const;
 
 export function certificateSrc(id: CertificateId): string {

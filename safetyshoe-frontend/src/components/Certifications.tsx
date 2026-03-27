@@ -69,7 +69,7 @@ export function Certifications() {
   const metrics = [
     { n: '99.2', unit: '%', label: t('metrics.qualityRate'), icon: TrendingUp },
     { n: '97.8', unit: '%', label: t('metrics.onTime'), icon: Clock },
-    { n: '12', unit: '', label: t('metrics.certs'), icon: FileBadge },
+    { n: '4', unit: '', label: t('metrics.certs'), icon: FileBadge },
     { n: '0', unit: '', label: t('metrics.recall'), icon: Shield },
   ];
 

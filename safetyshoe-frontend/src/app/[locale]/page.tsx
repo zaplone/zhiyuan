@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Hero } from '@/components/Hero';
 import { ManufacturingExcellence } from '@/components/ManufacturingExcellence';
 import { GlobalCompliance } from '@/components/GlobalCompliance';
+import { CertPreviewStrip } from '@/components/CertPreviewStrip';
 import { TechnicalMatrix } from '@/components/TechnicalMatrix';
 import { GlobalReach } from '@/components/GlobalReach';
 import { TechnicalOEM } from '@/components/TechnicalOEM';
@@ -46,6 +47,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <Hero />
       <ManufacturingExcellence />
       <GlobalCompliance />
+      <CertPreviewStrip />
       <TechnicalMatrix initialProducts={showcaseProducts} />
       <GlobalReach />
       <TechnicalOEM />

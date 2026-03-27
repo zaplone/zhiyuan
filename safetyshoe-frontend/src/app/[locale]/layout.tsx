@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
-  description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. Europe, Asia, Africa, Russia. OEM/ODM available.',
+  description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 6 production lines, 3M pairs annual output. Europe, Asia, Africa, Russia. OEM/ODM available.',
   keywords: [
     'safety shoes',
     'steel toe boots',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: '/',
     title: 'Zhiyuan · Safety Shoes',
-    description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
+    description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 6 production lines, 3M pairs annual output. OEM/ODM available.',
     siteName: 'Zhiyuan Safety Shoes',
     images: [
       {
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Zhiyuan · Safety Shoes',
-    description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available.',
+    description: 'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 6 production lines, 3M pairs annual output. OEM/ODM available.',
     images: ['/images/about/gongchang.jpg'],
   },
   robots: {
@@ -116,22 +116,22 @@ export default async function RootLayout({
             '@type': 'Organization',
             name: 'Zhiyuan Safety Shoes',
             description:
-              'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2 million pairs annual output.',
+              'Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 6 production lines, 3 million pairs annual output.',
             url: process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com',
             logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://zhiyuansafety.com'}/images/about/gongchang.jpg`,
             contactPoint: {
               '@type': 'ContactPoint',
-              telephone: '+86 156 1021 4670',
-              email: 'sales@slsafetyshoes.com',
+              telephone: '+86 152 6362 3818',
+              email: 'zysafeshoes@vip.qq.com',
               contactType: 'customer service',
               availableLanguage: ['English', 'Chinese', 'German', 'Russian', 'Arabic'],
             },
             address: {
               '@type': 'PostalAddress',
-              streetAddress: '261531, Zhanglusi Village',
+              streetAddress: 'High-tech Industrial Zone',
               addressLocality: 'Gaomi City',
               addressRegion: 'Shandong Province',
-              postalCode: '261531',
+              postalCode: '261500',
               addressCountry: 'CN',
             },
             sameAs: [

@@ -21,7 +21,7 @@
     "label": "Our Story",
     "title": "Your Trusted Partner for Safety Footwear",
     "p1": "Founded in 1990, Zhiyuan Safety Shoes is a professional manufacturer and supplier dedicated to the R&D, production, and sales of labor protection shoes. With 30 years of focused experience, we have established ourselves as a reliable name in the industry, driven by the mission \"Safety is our mission.\"",
-    "p2": "Equipped with 8 efficient production lines (including 6 injection lines and 2 semi-automatic lines for high-end products), our factory boasts an annual output of 2 million pairs, supported by a team of over 200 professionals. We adhere to strict quality control, featuring advanced testing equipment to ensure all products meet functional standards.",
+    "p2": "Equipped with 6 efficient production lines (including 4 PU injection lines and 2 cementing lines), our factory boasts an annual output of 3 million pairs, supported by a team of 300+ professionals. We adhere to strict quality control, featuring advanced testing equipment to ensure all products meet functional standards.",
     "quote": "Safety is our mission.",
     "p3": "Widely applied in smelting, chemical industry, construction, machinery manufacturing, railways, and shipping, our products have gained trust globally. We serve clients across Europe, Southeast Asia, South America, Africa, and Russia, while maintaining solid partnerships with domestic listed companies. Committed to sincerity and quality, Zhiyuan Safety Shoes strives to be your reliable supplier and service provider.",
     "timelineTitle": "Our Journey",
@@ -40,7 +40,7 @@
       },
       "global": {
         "title": "Global Scale",
-        "desc": "8 production lines, 2 million pairs annual output, 200+ professionals, serving clients worldwide."
+        "desc": "6 production lines, 3 million pairs annual output, 300+ professionals, serving clients worldwide."
       }
     }
   },
@@ -170,7 +170,7 @@
   },
   "Hero": {
     "badge": "Direct Manufacturing Hub",
-    "title": "5 Million Pairs",
+    "title": "3 Million Pairs",
     "highlight": "Annual Capacity.",
     "description": "Your reliable global OEM/ODM partner. Precision-engineered safety footwear built for international industrial standards.",
     "cta1": "View Products",
@@ -260,7 +260,7 @@
     "items": {
       "iso": { "label": "ISO 9001", "hint": "Certified factory" },
       "standards": { "label": "CE · ASTM", "hint": "Safety standards" },
-      "capacity": { "label": "2M+", "hint": "Annual capacity" },
+      "capacity": { "label": "3M+", "hint": "Annual capacity" },
       "markets": { "label": "50+", "hint": "Export markets" }
     },
     "stats": {
@@ -268,10 +268,10 @@
       "yearsNumber": "30",
       "yearsUnit": "",
       "clients": "Production Lines",
-      "clientsNumber": "8",
+      "clientsNumber": "6",
       "clientsUnit": "",
       "capacity": "Annual Output",
-      "capacityNumber": "2",
+      "capacityNumber": "3",
       "capacityUnit": "M+",
       "countries": "Export Countries",
       "countriesNumber": "50",
@@ -460,12 +460,12 @@
     }
   },
   "Footer": {
-    "about": "Zhiyuan Safety Shoes: Your Trusted Partner for Safety Footwear. Founded in 1990, we are a professional manufacturer of labor protection shoes with 30 years of experience and an annual output of 2 million pairs.",
+    "about": "Zhiyuan Safety Shoes: Your Trusted Partner for Safety Footwear. Founded in 1990, we are a professional manufacturer of labor protection shoes with 30 years of experience and an annual output of 3 million pairs.",
     "quickLinks": "Quick Links",
     "certificates": "Certificates",
     "products": "Our Products",
     "contact": "Contact Us",
-    "address": "261531, Zhanglusi Village, Gaomi City, Shandong Province, China",
+    "address": "High-tech Industrial Zone, Gaomi 261500, Shandong Province, China",
     "hours": "Mon - Sat: 8:00 - 18:00",
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
@@ -1023,7 +1023,7 @@
   },
   "HomeMeta": {
     "title": "Zhiyuan · Safety Shoes",
-    "description": "Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 8 production lines, 2M pairs annual output. OEM/ODM available."
+    "description": "Zhiyuan Safety Shoes: Professional manufacturer of labor protection shoes since 1990. 6 production lines, 3M pairs annual output. OEM/ODM available."
   },
   "Testimonials": {
     "title": "What Our Customers Say",
@@ -1077,7 +1077,7 @@
     "title": "Precision",
     "titleHighlight": "Engineering.",
     "desc1": "With over two decades of specialized experience in safety footwear, our manufacturing facility stands as a benchmark of industrial excellence. We don't just assemble shoes; we engineer protection.",
-    "desc2": "Our 12 fully automated production lines integrate the latest injection technology and robotic precision, ensuring that every pair meets the exact specifications required for high-risk industrial environments. From material sourcing to final stress testing, our in-house laboratory monitors every stage of the lifecycle.",
+    "desc2": "Our 6 efficient production lines (4 PU injection + 2 cementing) integrate the latest injection technology and lean quality control, ensuring that every pair meets the exact specifications required for high-risk industrial environments. From material sourcing to final stress testing, our in-house laboratory monitors every stage of the lifecycle.",
     "stats": {
       "automation": "Automated Lines",
       "rd": "R&D Engineers",

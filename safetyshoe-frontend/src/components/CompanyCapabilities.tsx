@@ -8,10 +8,10 @@ import {
 import { useTranslations } from 'next-intl';
 
 const STATS = [
-  { label: 'Monthly Capacity', value: '50,000+', unit: 'Pairs', icon: TrendingUp },
-  { label: 'Defect Rate', value: '< 0.02%', unit: 'Grade A', icon: ShieldCheck },
-  { label: 'Export Markets', value: '50+', unit: 'Countries', icon: Globe },
-  { label: 'Experience', value: '30+', unit: 'Years', icon: Factory },
+  { label: 'Daily Capacity', value: '6,000-8,000', unit: 'Pairs', icon: TrendingUp },
+  { label: 'Production Lines', value: '6', unit: 'Lines', icon: Factory },
+  { label: 'Workers', value: '300+', unit: 'People', icon: Users },
+  { label: 'Annual Output', value: '3M+', unit: 'Pairs/Year', icon: ShieldCheck },
 ];
 
 const ADVANTAGES = [

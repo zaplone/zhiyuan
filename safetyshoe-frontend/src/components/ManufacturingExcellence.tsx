@@ -7,9 +7,9 @@ export function ManufacturingExcellence() {
   const t = useTranslations('Manufacturing');
 
   const stats = [
-    { label: t('stats.automation'), value: '12', icon: <Settings className="w-5 h-5" /> },
+    { label: t('stats.automation'), value: '6', icon: <Settings className="w-5 h-5" /> },
     { label: t('stats.rd'), value: '45+', icon: <Layers className="w-5 h-5" /> },
-    { label: t('stats.output'), value: '5M+', icon: <Activity className="w-5 h-5" /> },
+    { label: t('stats.output'), value: '3M+', icon: <Activity className="w-5 h-5" /> },
     { label: t('stats.export'), value: '50+', icon: <Globe className="w-5 h-5" /> }
   ];
 

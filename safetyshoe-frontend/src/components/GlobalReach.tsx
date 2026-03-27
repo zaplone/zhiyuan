@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Globe, Truck, Zap } from 'lucide-react';
 
 const STAT_ROWS = [
-  { key: 'export' as const, value: '5,000,000+', icon: Truck },
+  { key: 'export' as const, value: '1,500,000', icon: Truck },
   { key: 'reach' as const, value: '85+', icon: Globe },
   { key: 'compliance' as const, value: '100%', icon: ShieldCheck },
   { key: 'patents' as const, value: '120+', icon: Zap },
