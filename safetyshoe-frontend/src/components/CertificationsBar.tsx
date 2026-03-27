@@ -85,7 +85,6 @@ export function CertificationsBar() {
           <div className="mb-6 flex flex-wrap justify-center gap-2">
             {tabBtn('all', td('tabAll'))}
             {tabBtn('en', td('tabEn'))}
-            {tabBtn('zh', td('tabZh'))}
           </div>
           <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {galleryIds.map((id) => {

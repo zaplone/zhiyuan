@@ -7,6 +7,7 @@ import { FAQAndContact } from '@/components/FAQAndContact';
 import { BrandStory } from '@/components/BrandStory';
 import { GlobalFootprint } from '@/components/GlobalFootprint';
 import { CertificationsBar } from '@/components/CertificationsBar';
+import { FactoryVideoGallery } from '@/components/FactoryVideoGallery';
 import { useTranslations } from 'next-intl';
 
 export default function AboutPage() {
@@ -39,6 +40,9 @@ export default function AboutPage() {
 
       {/* Brand Story & Timeline */}
       <BrandStory />
+
+      {/* Factory Video Gallery */}
+      <FactoryVideoGallery />
 
       {/* Main Content: Capabilities */}
       <CompanyCapabilities />

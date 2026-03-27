@@ -113,8 +113,9 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
         </button>
 
         {/* Left / Top: 主图与缩略图分区，点击主图打开全屏 */}
-        <div className="flex w-full flex-shrink-0 flex-col bg-white md:w-7/12 md:h-full md:min-h-0">
-          <div className="relative min-h-[14rem] flex-1 sm:min-h-[16rem] md:min-h-0 md:flex-1">
+        <div className="flex w-full flex-shrink-0 flex-col bg-white md:w-7/12 max-h-[85vh] md:max-h-[90vh]">
+          {/* 主图区域 */}
+          <div className="relative flex-1 min-h-[12rem] sm:min-h-[14rem]">
             <div 
               className="absolute inset-0 overflow-hidden bg-white cursor-zoom-in"
               onClick={() => setIsFullscreen(true)}
@@ -157,8 +158,11 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
           )}
         </div>
 
-        {/* Right / Bottom: Product Details or Inquiry Form - 移动端可滚动 */}
-        <div className="w-full md:w-5/12 p-4 sm:p-6 md:p-8 overflow-y-auto bg-white flex flex-col flex-1 min-h-0 relative">
+        {/* Right / Bottom: Product Details or Inquiry Form */}
+        <div className="w-full md:w-5/12 flex flex-col overflow-hidden max-h-[85vh] md:max-h-[90vh]">
+          
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto p-4 sm:p-5 md:p-6">
           
           {/* View Mode: Product Details */}
           {!showForm && (
@@ -167,7 +171,7 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
               <div className="mb-4 md:mb-6">
                 <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 md:mb-3">
                   {product.industries?.slice(0, 2).map((ind) => (
-                    <span key={ind} className="text-[10px] sm:text-xs font-bold text-primary-700 bg-primary-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full uppercase tracking-wide">
+                    <span key={ind} className="text-[10px] sm:text-xs font-bold text-orange-700 bg-orange-50 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full uppercase tracking-wide border border-orange-100">
                       {ind}
                     </span>
                   ))}
@@ -188,7 +192,7 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
                   ))}
                 </div>
 
-                <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-900 mb-1 md:mb-2 leading-tight">{product.name}</h2>
+                <h2 className="text-base sm:text-lg md:text-xl font-bold text-slate-900 mb-1 md:mb-2 leading-tight">{product.name}</h2>
                 {product.model_code && (
                    <div className="text-xs sm:text-sm text-slate-500 font-mono mb-1 md:mb-2">Model: {product.model_code}</div>
                 )}
@@ -196,8 +200,8 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
 
               {/* Material Specs (NEW STRUCTURE) - 移动端略收紧 */}
               {product.materials && (
-                <div className="mb-4 md:mb-6 p-3 sm:p-4 bg-slate-50 rounded-xl border border-slate-100">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <div className="mb-4 md:mb-6 p-3 sm:p-4 bg-gradient-to-br from-slate-50 to-orange-50/30 rounded-xl border border-slate-100">
+                  <h3 className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-3 flex items-center gap-2">
                     <Layers className="w-4 h-4" /> {t('materialSpecs')}
                   </h3>
                   <div className="space-y-2">
@@ -253,13 +257,13 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
 
               {/* Features */}
               <div className="mb-4 md:mb-6">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h3 className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-3 flex items-center gap-2">
                   <Activity className="w-4 h-4" /> {t('features')}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {product.features?.map((feature, idx) => (
-                    <span key={idx} className="inline-flex items-center text-xs font-medium text-slate-700 bg-white border border-slate-200 px-2 py-1.5 rounded-md shadow-sm">
-                      <Check className="w-3 h-3 text-green-500 mr-1.5" />
+                    <span key={idx} className="inline-flex items-center text-xs font-medium text-slate-700 bg-white border border-orange-100 px-2 py-1.5 rounded-md shadow-sm hover:border-orange-200 transition-colors">
+                      <Check className="w-3 h-3 text-orange-500 mr-1.5" />
                       {feature}
                     </span>
                   ))}
@@ -277,39 +281,16 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
                   </p>
                 </div>
               )}
-              
-              <div className="mt-auto pt-6 border-t border-slate-100">
-                 <div className="flex items-center justify-between text-sm text-slate-500 mb-4">
-                    <div className="flex items-center gap-2">
-                       <Truck className="w-4 h-4" />
-                       <span>{t('moq')}: <strong className="text-slate-900">{product.moq || 'Negotiable'}</strong></span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                       <Ruler className="w-4 h-4" />
-                       <span>{t('sizes')}: <strong className="text-slate-900">{(product as any).specs_extra?.sizes || '35-48'} (EU)</strong></span>
-                    </div>
-                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button 
-                    onClick={() => setShowForm(true)}
-                    className="w-full sm:flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-slate-900/10 transition-all hover:translate-y-[-2px] active:translate-y-0 flex items-center justify-center gap-2"
-                  >
-                    {t('requestQuote')}
-                    <Send className="w-4 h-4" />
-                  </button>
-                  
-                  <Link 
-                    href={`/${locale}/products/${product.slug}/`}
-                    prefetch={true}
-                    className="w-full sm:flex-1 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 hover:bg-slate-50"
-                    onClick={() => {
-                      onClose();
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    View Full Details
-                  </Link>
+              {/* MOQ & Sizes */}
+              <div className="flex items-center justify-between text-sm text-slate-500 bg-gradient-to-r from-orange-50/50 to-transparent p-3 rounded-xl">
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-orange-500" />
+                  <span>{t('moq')}: <strong className="text-slate-900">{product.moq || 'Negotiable'}</strong></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Ruler className="w-4 h-4 text-orange-500" />
+                  <span>{t('sizes')}: <strong className="text-slate-900">{(product as any).specs_extra?.sizes || '35-48'} (EU)</strong></span>
                 </div>
               </div>
             </>
@@ -415,6 +396,34 @@ export function ProductQuickView({ product, isOpen, onClose }: ProductQuickViewP
                   </button>
                 </form>
               )}
+            </div>
+          )}
+          </div>
+
+          {/* Fixed Bottom Buttons - Only show in Product Details mode */}
+          {!showForm && (
+            <div className="flex-shrink-0 p-4 sm:p-5 md:p-6 border-t border-white bg-white">
+              <div className="flex flex-col sm:flex-row gap-2.5">
+                <button 
+                  onClick={() => setShowForm(true)}
+                  className="w-full sm:flex-1 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl shadow-lg shadow-slate-900/10 transition-all hover:translate-y-[-1px] active:translate-y-0 flex items-center justify-center gap-2 text-sm"
+                >
+                  {t('requestQuote')}
+                  <Send className="w-4 h-4" />
+                </button>
+                
+                <Link 
+                  href={`/${locale}/products/${product.slug}/`}
+                  prefetch={true}
+                  className="w-full sm:flex-1 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 hover:bg-slate-50 text-sm"
+                  onClick={() => {
+                    onClose();
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  View Full Details
+                </Link>
+              </div>
             </div>
           )}
 

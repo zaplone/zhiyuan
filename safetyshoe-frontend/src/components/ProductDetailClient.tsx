@@ -145,11 +145,9 @@ export function ProductDetailClient({ product, locale }: ProductDetailClientProp
   };
 
   return (
-    <div className="bg-white min-h-screen pt-[72px] md:pt-20">
-      {/* pt-*：为 fixed Header 留出高度，避免面包屑被挡在导航栏下 */}
-
-      {/* ── Breadcrumb：sticky，滚动时固定在 Header 下方，不随正文卷走 ── */}
-      <div className="sticky top-[72px] z-40 border-b border-slate-200 bg-slate-50/95 shadow-sm backdrop-blur-sm md:top-20">
+    <div className="bg-white min-h-screen">
+      {/* ── Breadcrumb：跟随页面滚动 ── */}
+      <div className="border-b border-slate-200 bg-slate-50">
         <div className="container mx-auto px-4 py-3">
           <nav aria-label="Breadcrumb" className="flex flex-wrap items-center text-sm text-slate-500 gap-y-1">
             <Link href={`/${locale}`} className="hover:text-slate-800 transition-colors">{tNav('home')}</Link>
@@ -166,9 +164,9 @@ export function ProductDetailClient({ product, locale }: ProductDetailClientProp
         <div className="flex flex-col lg:flex-row gap-0 lg:gap-12 xl:gap-16">
 
           {/* ════════════════════════════════════════
-              LEFT COLUMN — sticky on desktop
+              LEFT COLUMN
           ════════════════════════════════════════ */}
-          <div className="w-full lg:w-[52%] lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-5.5rem)] lg:overflow-y-auto pb-10 pt-3 md:pt-4">
+          <div className="w-full lg:w-[52%] pb-10 pt-3 md:pt-4">
 
             {/* Main image */}
             <div className="relative aspect-square w-full md:aspect-[4/3] lg:aspect-square rounded-2xl border border-slate-100 bg-white overflow-hidden">

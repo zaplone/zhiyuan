@@ -56,7 +56,7 @@ export function BrandStory() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
             {/* Story Text */}
             <div className="order-2 lg:order-1">
               <span className="text-primary-600 font-bold tracking-wider uppercase text-sm mb-4 block">

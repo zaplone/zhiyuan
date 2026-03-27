@@ -37,12 +37,8 @@ export const GALLERY_EN_IDS: readonly CertificateId[] = [
   'iso45001_en',
 ] as const;
 
-/** 关于页 — 中文证书（与英文共用同一套图片） */
-export const GALLERY_ZH_IDS: readonly CertificateId[] = [
-  'iso9001_en',
-  'iso14001_en',
-  'iso45001_en',
-] as const;
+/** 关于页 — 中文证书（中文证书与英文共用图片，合并到EN列表避免重复） */
+export const GALLERY_ZH_IDS: readonly CertificateId[] = [] as const;
 
 export function certificateSrc(id: CertificateId): string {
   return `${RENZHENG_BASE}/${CERTIFICATE_FILES[id]}`;

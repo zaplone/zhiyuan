@@ -125,9 +125,9 @@ export function GlobalFootprint() {
         </div>
 
         {/* Footer CTA */}
-        <div className="mt-16 text-center">
-          <button className="inline-flex items-center font-bold text-slate-900 hover:text-primary-600 transition-colors text-lg">
-            {t('viewMore')} <ArrowRight className="w-5 h-5 ml-2" />
+        <div className="mt-12 text-center">
+          <button className="inline-flex items-center font-bold text-slate-900 hover:text-primary-600 transition-colors">
+            {t('viewMore')} <ArrowRight className="w-4 h-4 ml-2" />
           </button>
         </div>
 
