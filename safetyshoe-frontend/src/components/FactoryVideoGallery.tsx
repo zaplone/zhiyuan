@@ -1,159 +1,230 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const FACTORY_VIDEO_URL = 'https://pub-096b407387664ba49b08b4ff7cc609de.r2.dev/1bb13ae1f21ef0caedf08c08088178d3.mp4';
-
-interface VideoSection {
+interface FactoryZone {
   id: string;
   title: string;
   titleZh: string;
-  image: string;
   description: string;
+  image: string;
 }
 
-const VIDEO_SECTIONS: VideoSection[] = [
-  {
-    id: 'about',
-    title: 'About Factory',
-    titleZh: '关于工厂',
-    image: '/images/about/gongchang.jpg',
-    description: 'Overview of our production facility'
-  },
-  {
-    id: 'materials',
-    title: 'Materials Zone',
-    titleZh: '原材料区',
-    image: '/images/about/steel-toe-boot.jpg',
-    description: 'Raw material selection and storage'
-  },
+const FACTORY_ZONES: FactoryZone[] = [
   {
     id: 'cutting',
     title: 'Cutting Zone',
     titleZh: '裁切区',
-    image: '/images/about/composite-shoe.jpg',
-    description: 'Precision cutting process'
+    description: 'Precision cutting for perfect material utilization',
+    image: '/images/about/生产环境1.jpg',
+  },
+  {
+    id: 'stitching',
+    title: 'Stitching Zone',
+    titleZh: '车缝区',
+    description: 'Expert craftsmanship with advanced equipment',
+    image: '/images/about/生产环境2.jpg',
   },
   {
     id: 'forming',
     title: 'Forming Zone',
     titleZh: '成型区',
-    image: '/images/about/slip-resistant.jpg',
-    description: 'Shoe forming and assembly'
+    description: 'Advanced molding for consistent quality',
+    image: '/images/about/生产环境3.jpg',
+  },
+  {
+    id: 'quality',
+    title: 'Quality Control',
+    titleZh: '质检区',
+    description: 'Rigorous inspection at every stage',
+    image: '/images/about/生产环境4.jpg',
+  },
+  {
+    id: 'assembly',
+    title: 'Assembly Line',
+    titleZh: '装配区',
+    description: 'Efficient production with strict standards',
+    image: '/images/about/生产环境5.jpg',
   },
   {
     id: 'packaging',
-    title: 'Packaging Zone',
-    titleZh: '包装区',
-    image: '/images/about/winter-boot.jpg',
-    description: 'Quality inspection and packaging'
+    title: 'Packaging & Shipping',
+    titleZh: '包装发货',
+    description: 'Professional packaging and logistics',
+    image: '/images/about/生产环境6.jpg',
   },
-  {
-    id: 'shipping',
-    title: 'Shipping Zone',
-    titleZh: '发货区',
-    image: '/images/about/gongchang.jpg',
-    description: 'Warehouse and logistics'
-  }
 ];
 
 export function FactoryVideoGallery() {
   const t = useTranslations('About');
-  const [activeVideo, setActiveVideo] = useState<VideoSection | null>(null);
-  const modalVideoRef = useRef<HTMLVideoElement>(null);
+  const [activeImage, setActiveImage] = useState<FactoryZone | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const openVideo = (section: VideoSection) => {
-    setActiveVideo(section);
+  const openImage = (zone: FactoryZone, index: number) => {
+    setActiveImage(zone);
+    setCurrentIndex(index);
   };
 
-  const closeVideo = () => {
-    setActiveVideo(null);
-    if (modalVideoRef.current) {
-      modalVideoRef.current.pause();
-      modalVideoRef.current.currentTime = 0;
-    }
+  const closeImage = () => {
+    setActiveImage(null);
+  };
+
+  const goNext = () => {
+    const nextIndex = (currentIndex + 1) % FACTORY_ZONES.length;
+    setCurrentIndex(nextIndex);
+    setActiveImage(FACTORY_ZONES[nextIndex]);
+  };
+
+  const goPrev = () => {
+    const prevIndex = (currentIndex - 1 + FACTORY_ZONES.length) % FACTORY_ZONES.length;
+    setCurrentIndex(prevIndex);
+    setActiveImage(FACTORY_ZONES[prevIndex]);
   };
 
   return (
     <>
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          {/* Video Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {VIDEO_SECTIONS.map((section, index) => (
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-12 h-1 bg-orange-600" />
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-[0.2em]">
+                {t('factoryGallery')}
+              </span>
+              <div className="w-12 h-1 bg-orange-600" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
+              {t('factoryTitle')}
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              {t('factoryDescription')}
+            </p>
+          </div>
+
+          {/* Factory Image Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {FACTORY_ZONES.map((zone, index) => (
               <motion.div
-                key={section.id}
+                key={zone.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
                 className="group cursor-pointer"
-                onClick={() => openVideo(section)}
+                onClick={() => openImage(zone, index)}
               >
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg bg-slate-200">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg bg-slate-100">
                   {/* Background Image */}
                   <Image
-                    src={section.image}
-                    alt={section.title}
+                    src={zone.image}
+                    alt={zone.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  
-                  {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  
-                  {/* Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all group-hover:scale-110 border-2 border-white/50">
-                      <svg className="w-6 h-6 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  {/* Content Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="w-8 h-8 bg-primary-600 text-white text-sm font-bold rounded-full flex items-center justify-center">
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
+                  {/* Orange Accent Line */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-orange-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                    {/* Zone Number */}
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="w-6 h-6 bg-orange-600 text-white text-xs font-bold rounded-full flex items-center justify-center">
                         {index + 1}
                       </span>
-                      <div>
-                        <h3 className="text-lg font-bold text-white">{section.title}</h3>
-                        <p className="text-sm text-white/70">{section.titleZh}</p>
-                      </div>
+                      <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">
+                        {zone.titleZh}
+                      </span>
                     </div>
-                    <p className="text-sm text-white/60 line-clamp-2">{section.description}</p>
+
+                    {/* Title */}
+                    <h3 className="text-base md:text-lg font-bold text-white mb-1">
+                      {zone.title}
+                    </h3>
+
+                    {/* Description - Hidden on mobile */}
+                    <p className="hidden md:block text-xs text-white/60 line-clamp-2">
+                      {zone.description}
+                    </p>
+                  </div>
+
+                  {/* Hover Indicator */}
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                    </svg>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Bottom Stats */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="p-4 bg-slate-50 rounded-xl">
+              <div className="text-2xl md:text-3xl font-black text-orange-600">30+</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Years Experience</div>
+            </div>
+            <div className="p-4 bg-slate-50 rounded-xl">
+              <div className="text-2xl md:text-3xl font-black text-orange-600">6</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Production Lines</div>
+            </div>
+            <div className="p-4 bg-slate-50 rounded-xl">
+              <div className="text-2xl md:text-3xl font-black text-orange-600">100%</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">QC Pass Rate</div>
+            </div>
+            <div className="p-4 bg-slate-50 rounded-xl">
+              <div className="text-2xl md:text-3xl font-black text-orange-600">50K+</div>
+              <div className="text-xs text-slate-500 uppercase tracking-wider mt-1">Pairs / Day</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Video Modal */}
+      {/* Image Lightbox */}
       <AnimatePresence>
-        {activeVideo && (
+        {activeImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/95"
-            onClick={closeVideo}
+            onClick={closeImage}
           >
             {/* Close Button */}
             <button
-              onClick={closeVideo}
+              onClick={closeImage}
               className="absolute top-6 right-6 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
             >
               <X className="w-6 h-6 text-white" />
             </button>
 
-            {/* Video Container */}
+            {/* Navigation - Prev */}
+            <button
+              onClick={(e) => { e.stopPropagation(); goPrev(); }}
+              className="absolute left-6 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+            >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+
+            {/* Navigation - Next */}
+            <button
+              onClick={(e) => { e.stopPropagation(); goNext(); }}
+              className="absolute right-6 z-50 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
+            </button>
+
+            {/* Image Container */}
             <motion.div
+              key={activeImage.id}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -161,27 +232,35 @@ export function FactoryVideoGallery() {
               className="w-full max-w-5xl mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative aspect-video bg-black rounded-xl overflow-hidden shadow-2xl">
-                <video
-                  ref={modalVideoRef}
-                  src={FACTORY_VIDEO_URL}
-                  className="w-full h-full"
-                  controls
-                  autoPlay
-                  muted
-                  playsInline
+              <div className="relative aspect-[16/10] bg-black rounded-xl overflow-hidden shadow-2xl">
+                <Image
+                  src={activeImage.image}
+                  alt={activeImage.title}
+                  fill
+                  className="object-contain"
                 />
               </div>
-              
-              {/* Video Info */}
+
+              {/* Image Info */}
               <div className="mt-6 text-center">
                 <div className="flex items-center justify-center gap-3 mb-2">
-                  <span className="w-8 h-8 bg-primary-600 text-white text-sm font-bold rounded-full flex items-center justify-center">
-                    {VIDEO_SECTIONS.findIndex(s => s.id === activeVideo.id) + 1}
+                  <span className="w-8 h-8 bg-orange-600 text-white text-sm font-bold rounded-full flex items-center justify-center">
+                    {currentIndex + 1}
                   </span>
-                  <h3 className="text-xl font-bold text-white">{activeVideo.title}</h3>
+                  <h3 className="text-xl font-bold text-white">{activeImage.title}</h3>
+                  <span className="text-orange-400 text-sm">/ {activeImage.titleZh}</span>
                 </div>
-                <p className="text-white/60 text-sm">{activeVideo.titleZh}</p>
+                <p className="text-white/60 text-sm">{activeImage.description}</p>
+              </div>
+
+              {/* Image Counter */}
+              <div className="mt-4 flex justify-center gap-2">
+                {FACTORY_ZONES.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`w-2 h-2 rounded-full transition-all ${i === currentIndex ? 'bg-orange-500 w-6' : 'bg-white/30'}`}
+                  />
+                ))}
               </div>
             </motion.div>
           </motion.div>

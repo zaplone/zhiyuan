@@ -12,7 +12,7 @@ const STEP_IMAGES = [
   '/images/oem/step1.png',
   '/images/oem/step2.png',
   '/images/oem/step3.png',
-  '/images/oem/hero-shoe.jpg',
+  '/images/products/产品3.jpg',
   '/images/oem/step5.png',
 ];
 
@@ -68,33 +68,33 @@ export function InteractiveOemCase() {
                      className="flex flex-col items-center text-center group focus:outline-none"
                    >
                      {/* Step Number/Icon Bubble */}
-                     <div className={cn(
-                       "w-24 h-24 rounded-full flex items-center justify-center mb-4 transition-all duration-300 relative border-4",
-                       isActive 
-                         ? "bg-white border-primary-500 shadow-[0_0_20px_rgba(59,130,246,0.2)] scale-110" 
-                         : "bg-white border-slate-200 hover:border-slate-300"
-                     )}>
-                       <Icon className={cn(
-                         "w-8 h-8 transition-colors",
-                         isActive ? "text-primary-600" : "text-slate-400 group-hover:text-slate-600"
-                       )} />
-                       
-                       {/* Number Badge */}
-                       <div className={cn(
-                         "absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-4 border-slate-50 transition-colors",
-                         isActive ? "bg-primary-600 text-white" : "bg-slate-200 text-slate-500"
-                       )}>
-                         {idx + 1}
-                       </div>
-                     </div>
+<div className={cn(
+                        "w-24 h-24 rounded-full flex items-center justify-center mb-4 transition-all duration-300 relative border-4",
+                        isActive 
+                          ? "bg-white border-accent-500 shadow-[0_0_20px_rgba(249,115,22,0.3)] scale-110" 
+                          : "bg-white border-slate-200 hover:border-slate-300"
+                      )}>
+                        <Icon className={cn(
+                          "w-8 h-8 transition-colors",
+                          isActive ? "text-accent-600" : "text-slate-400 group-hover:text-slate-600"
+                        )} />
+                        
+                        {/* Number Badge */}
+                        <div className={cn(
+                          "absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-4 border-slate-50 transition-colors",
+                          isActive ? "bg-accent-500 text-white" : "bg-slate-200 text-slate-500"
+                        )}>
+                          {idx + 1}
+                        </div>
+                      </div>
 
-                     <h3 className={cn("text-lg font-bold mb-1 transition-colors", isActive ? "text-slate-900" : "text-slate-500")}>
-                       {step.label}
-                     </h3>
-                     <div className={cn("text-xs font-bold px-2 py-1 rounded transition-colors", isActive ? "bg-primary-50 text-primary-700" : "bg-slate-100 text-slate-500")}>
-                       {step.time}
-                     </div>
-                   </button>
+                      <h3 className={cn("text-lg font-bold mb-1 transition-colors", isActive ? "text-slate-900" : "text-slate-500")}>
+                        {step.label}
+                      </h3>
+                      <div className={cn("text-xs font-bold px-2 py-1 rounded transition-colors", isActive ? "bg-accent-50 text-accent-700" : "bg-slate-100 text-slate-500")}>
+                        {step.time}
+                      </div>
+                    </button>
                  );
               })}
            </div>
@@ -107,12 +107,12 @@ export function InteractiveOemCase() {
                key={idx}
                onClick={() => setActiveStep(idx)}
                className={cn(
-                 "w-3 h-3 rounded-full transition-all",
-                 idx === activeStep ? "bg-primary-600 w-8" : "bg-slate-300"
-               )}
-             />
-           ))}
-           <div className="text-center text-primary-600 text-sm font-bold ml-2 py-0.5">
+                "w-3 h-3 rounded-full transition-all",
+                idx === activeStep ? "bg-accent-500 w-8" : "bg-slate-300"
+              )}
+            />
+          ))}
+           <div className="text-center text-accent-600 text-sm font-bold ml-2 py-0.5">
              {t('stepOf', { n: activeStep + 1 })}: {currentStep.label}
            </div>
         </div>

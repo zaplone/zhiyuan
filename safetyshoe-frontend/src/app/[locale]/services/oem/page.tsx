@@ -111,7 +111,7 @@ export default function OemServicePage() {
 
             <div className="relative hidden lg:block animate-fade-in delay-200">
                <div className="relative w-full aspect-[4/3] bg-white rounded-2xl border border-slate-200 p-8 shadow-2xl">
-                  <div className="w-full h-full relative bg-[url('/images/oem/hero-shoe.jpg')] bg-contain bg-no-repeat bg-center mix-blend-multiply opacity-90 transition-all duration-500">
+                  <div className="w-full h-full relative bg-[url('/images/products/产品1.jpg')] bg-contain bg-no-repeat bg-center opacity-90 transition-all duration-500">
                   </div>
 
                   <div className="absolute top-[40%] right-[15%] group cursor-pointer">

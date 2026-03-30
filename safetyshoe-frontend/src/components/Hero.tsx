@@ -8,8 +8,8 @@ import { motion } from 'framer-motion';
 
 const SLIDE_IMAGES = [
   '/images/about/gongchang.jpg',
-  '/images/products/steel-toe-boot.jpg',
-  '/images/products/composite-shoe.jpg',
+  '/images/about/生产环境1.jpg',
+  '/images/about/生产环境6.jpg',
 ] as const;
 
 const SLIDE_MESSAGE_KEYS = ['slide1', 'slide2', 'slide3'] as const;

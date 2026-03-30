@@ -45,10 +45,10 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <Hero />
-      <ManufacturingExcellence />
       <GlobalCompliance />
       <CertPreviewStrip />
       <TechnicalMatrix initialProducts={showcaseProducts} />
+      <ManufacturingExcellence />
       <GlobalReach />
       <TechnicalOEM />
       <Testimonials />

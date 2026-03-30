@@ -15,7 +15,10 @@
   },
   "About": {
     "title": "About Our Factory",
-    "description": "Zhiyuan Safety Shoes: Your Trusted Partner for Safety Footwear. Founded in 1990, we are a professional manufacturer dedicated to R&D, production, and sales of labor protection shoes."
+    "description": "Zhiyuan Safety Shoes: Your Trusted Partner for Safety Footwear. Founded in 1990, we are a professional manufacturer dedicated to R&D, production, and sales of labor protection shoes.",
+    "factoryGallery": "Factory Tour",
+    "factoryTitle": "Manufacturing Excellence",
+    "factoryDescription": "Walk through our state-of-the-art production facility. From cutting and stitching to forming and quality control, every step reflects our commitment to safety and quality."
   },
   "BrandStory": {
     "label": "Our Story",

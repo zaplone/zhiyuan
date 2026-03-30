@@ -58,12 +58,12 @@ export function CustomizationOptions() {
             {/* Main Image Container */}
             <div className="relative bg-white rounded-2xl p-4 shadow-2xl border-4 border-white rotate-1 hover:rotate-0 transition-transform duration-500">
                <div className="aspect-[4/3] bg-slate-100 rounded-lg relative overflow-hidden">
-                 <Image
-                   src="/images/oem/step5.png"
-                   alt="Customization details"
-                   fill
-                   className="object-cover"
-                 />
+<Image
+                  src="/images/products/产品2.jpg"
+                  alt="Customization details"
+                  fill
+                  className="object-cover"
+                />
                  
                  {/* Floating Hotspots (Decorative) */}
                  <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-accent-500 rounded-full shadow-lg ring-4 ring-white animate-pulse cursor-pointer group/spot">
