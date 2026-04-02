@@ -262,16 +262,16 @@ export function Header() {
         {/* WhatsApp Button */}
         <div className="relative group">
           <a
-            href="https://wa.me/8615263623818"
+            href="https://wa.me/8615964331801"
             target="_blank"
             rel="noopener noreferrer"
             className="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 hover:shadow-[#25D366]/50"
-            aria-label="WhatsApp: +86 152 6362 3818"
+            aria-label="WhatsApp: +86 159 6433 1801"
           >
             <WhatsAppIcon className="h-7 w-7" />
           </a>
           <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-slate-800 text-white text-xs font-medium px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
-            WhatsApp: +86 152 6362 3818
+            WhatsApp: +86 159 6433 1801
             <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
           </div>
         </div>
