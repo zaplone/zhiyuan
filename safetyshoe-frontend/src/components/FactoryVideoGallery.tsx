@@ -8,54 +8,40 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface FactoryZone {
   id: string;
-  title: string;
-  titleZh: string;
-  description: string;
+  titleKey: string;
   image: string;
 }
 
 const FACTORY_ZONES: FactoryZone[] = [
   {
     id: 'cutting',
-    title: 'Cutting Zone',
-    titleZh: '裁切区',
-    description: 'Precision cutting for perfect material utilization',
-    image: '/images/about/生产环境1.jpg',
+    titleKey: 'zones.cutting',
+    image: '/images/about/裁切区.jpg',
   },
   {
     id: 'stitching',
-    title: 'Stitching Zone',
-    titleZh: '车缝区',
-    description: 'Expert craftsmanship with advanced equipment',
-    image: '/images/about/生产环境2.jpg',
+    titleKey: 'zones.stitching',
+    image: '/images/about/车缝区.jpg',
   },
   {
     id: 'forming',
-    title: 'Forming Zone',
-    titleZh: '成型区',
-    description: 'Advanced molding for consistent quality',
-    image: '/images/about/生产环境3.jpg',
-  },
-  {
-    id: 'quality',
-    title: 'Quality Control',
-    titleZh: '质检区',
-    description: 'Rigorous inspection at every stage',
-    image: '/images/about/生产环境4.jpg',
+    titleKey: 'zones.forming',
+    image: '/images/about/成型区.jpg',
   },
   {
     id: 'assembly',
-    title: 'Assembly Line',
-    titleZh: '装配区',
-    description: 'Efficient production with strict standards',
-    image: '/images/about/生产环境5.jpg',
+    titleKey: 'zones.assembly',
+    image: '/images/about/装配区.jpg',
+  },
+  {
+    id: 'quality',
+    titleKey: 'zones.quality',
+    image: '/images/about/质检区.jpg',
   },
   {
     id: 'packaging',
-    title: 'Packaging & Shipping',
-    titleZh: '包装发货',
-    description: 'Professional packaging and logistics',
-    image: '/images/about/生产环境6.jpg',
+    titleKey: 'zones.packaging',
+    image: '/images/about/包装发货.png',
   },
 ];
 
@@ -121,7 +107,7 @@ export function FactoryVideoGallery() {
                   {/* Background Image */}
                   <Image
                     src={zone.image}
-                    alt={zone.title}
+                    alt={t(`${zone.titleKey}.title`)}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -140,18 +126,18 @@ export function FactoryVideoGallery() {
                         {index + 1}
                       </span>
                       <span className="text-[10px] font-bold text-orange-400 uppercase tracking-wider">
-                        {zone.titleZh}
+                        {t(`${zone.titleKey}.zh`)}
                       </span>
                     </div>
 
                     {/* Title */}
                     <h3 className="text-base md:text-lg font-bold text-white mb-1">
-                      {zone.title}
+                      {t(`${zone.titleKey}.title`)}
                     </h3>
 
                     {/* Description - Hidden on mobile */}
                     <p className="hidden md:block text-xs text-white/60 line-clamp-2">
-                      {zone.description}
+                      {t(`${zone.titleKey}.desc`)}
                     </p>
                   </div>
 
@@ -235,7 +221,7 @@ export function FactoryVideoGallery() {
               <div className="relative aspect-[16/10] bg-black rounded-xl overflow-hidden shadow-2xl">
                 <Image
                   src={activeImage.image}
-                  alt={activeImage.title}
+                  alt={t(`${activeImage.titleKey}.title`)}
                   fill
                   className="object-contain"
                 />
@@ -247,10 +233,10 @@ export function FactoryVideoGallery() {
                   <span className="w-8 h-8 bg-orange-600 text-white text-sm font-bold rounded-full flex items-center justify-center">
                     {currentIndex + 1}
                   </span>
-                  <h3 className="text-xl font-bold text-white">{activeImage.title}</h3>
-                  <span className="text-orange-400 text-sm">/ {activeImage.titleZh}</span>
+                  <h3 className="text-xl font-bold text-white">{t(`${activeImage.titleKey}.title`)}</h3>
+                  <span className="text-orange-400 text-sm">/ {t(`${activeImage.titleKey}.zh`)}</span>
                 </div>
-                <p className="text-white/60 text-sm">{activeImage.description}</p>
+                <p className="text-white/60 text-sm">{t(`${activeImage.titleKey}.desc`)}</p>
               </div>
 
               {/* Image Counter */}
