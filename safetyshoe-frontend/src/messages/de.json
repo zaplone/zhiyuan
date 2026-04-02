@@ -56,6 +56,34 @@
     },
     "scroll": "Weiter"
   },
+    "CompanyCapabilities": {
+    "title": "Fertigungsexzellenz",
+    "subtitle": "Verbindung von Handwerkskunst und Automatisierung für gleichbleibende Qualität weltweit.",
+    "stats": {
+      "dailyCapacity": "Tageskapazität",
+      "productionLines": "Produktionslinien",
+      "workers": "Mitarbeiter",
+      "annualOutput": "Jahresproduktion",
+      "pairs": "Paare",
+      "lines": "Linien",
+      "people": "Personen",
+      "pairsYear": "Paare/Jahr"
+    },
+    "advantages": {
+      "certifiedQuality": {
+        "title": "Zertifizierte Qualität",
+        "description": "Schuhe nach ISO 20345 und, wo Ihr Markt es erfordert, ASTM F2413 oder CSA Z195 – mit Labornachweis pro Bestellung. Werk hält ISO 9001 / 14001 / 45001."
+      },
+      "factoryDirect": {
+        "title": "Direkt vom Werk",
+        "description": "Direkte Herstellerpreise mit transparentem Produktionsprozess."
+      },
+      "flexibleOem": {
+        "title": "Flexibles OEM/ODM",
+        "description": "Schnelle 7-Tage-Prototypen und vollständige Marken-Anpassung."
+      }
+    }
+  },
   "WhyChooseUs": {
     "title": "Exzellente Fertigung",
     "subtitle": "Datenbasiert.",

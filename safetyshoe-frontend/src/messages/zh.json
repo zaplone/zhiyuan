@@ -18,7 +18,39 @@
     "description": "致远安全鞋：您值得信赖的安全鞋合作伙伴。成立于1990年，我们是专业从事劳保鞋研发、生产和销售的制造商。",
     "factoryGallery": "工厂导览",
     "factoryTitle": "智造实力",
-    "factoryDescription": "走进我们的现代化生产基地。从裁切、车缝到成型、质检，每一步都体现我们对安全与品质的承诺。"
+    "factoryDescription": "走进我们的现代化生产基地。从裁切、车缝到成型、质检，每一步都体现我们对安全与品质的承诺。",
+    "zones": {
+      "cutting": {
+        "title": "裁切区",
+        "zh": "裁切区",
+        "desc": "精准裁切，实现原材料的最优化利用"
+      },
+      "stitching": {
+        "title": "车缝区",
+        "zh": "车缝区",
+        "desc": "专业工艺与先进缝纫设备完美结合"
+      },
+      "forming": {
+        "title": "成型区",
+        "zh": "成型区",
+        "desc": "先进注射成型技术，确保产品品质一致"
+      },
+      "assembly": {
+        "title": "装配区",
+        "zh": "装配区",
+        "desc": "高效装配流水线，严格执行质量标准"
+      },
+      "quality": {
+        "title": "质检区",
+        "zh": "质检区",
+        "desc": "每道工序严格检测，确保出厂品质"
+      },
+      "packaging": {
+        "title": "包装发货",
+        "zh": "包装发货",
+        "desc": "专业包装与全球物流配送体系"
+      }
+    }
   },
   "BrandStory": {
     "label": "我们的故事",
@@ -226,6 +258,34 @@
     "item8": "GB 12011 国标",
     "item9": "OEM / ODM 定制",
     "item10": "最低起订 500 双"
+  },
+  "CompanyCapabilities": {
+    "title": "卓越制造",
+    "subtitle": "将工艺与自动化相结合，为全球提供始终如一的高品质产品。",
+    "stats": {
+      "dailyCapacity": "日产能",
+      "productionLines": "生产线",
+      "workers": "员工",
+      "annualOutput": "年产量",
+      "pairs": "双",
+      "lines": "条",
+      "people": "人",
+      "pairsYear": "双/年"
+    },
+    "advantages": {
+      "certifiedQuality": {
+        "title": "认证品质",
+        "description": "产品按照 ISO 20345 标准制造，根据市场需求可选 ASTM F2413 或 CSA Z195 认证，每单附带实验室检测报告。工厂通过 ISO 9001 / 14001 / 45001 认证。"
+      },
+      "factoryDirect": {
+        "title": "工厂直销",
+        "description": "直接的制造价格，透明的生产流程。"
+      },
+      "flexibleOem": {
+        "title": "灵活 OEM/ODM",
+        "description": "快速7天打样，全品牌定制服务。"
+      }
+    }
   },
   "WhyChooseUs": {
     "title": "专业制造，",

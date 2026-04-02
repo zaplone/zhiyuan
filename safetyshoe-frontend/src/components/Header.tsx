@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Globe, Factory } from 'lucide-react';
+import { Menu, X, Globe, Factory, Mail } from 'lucide-react';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -242,8 +242,24 @@ export function Header() {
         </nav>
       </header>
 
-      {/* Floating WhatsApp Button */}
-      <div className="fixed right-6 bottom-24 z-40">
+      {/* Floating Contact Buttons */}
+      <div className="fixed right-6 bottom-24 z-40 flex flex-col gap-3">
+        {/* Email Button */}
+        <div className="relative group">
+          <a
+            href="mailto:james@zhiyuanshoes.com.cn"
+            className="w-14 h-14 bg-orange-600 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 hover:shadow-orange-600/50"
+            aria-label="Email: james@zhiyuanshoes.com.cn"
+          >
+            <Mail className="h-6 w-6" />
+          </a>
+          <div className="absolute right-16 top-1/2 transform -translate-y-1/2 bg-slate-800 text-white text-xs font-medium px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
+            james@zhiyuanshoes.com.cn
+            <div className="absolute right-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
+          </div>
+        </div>
+
+        {/* WhatsApp Button */}
         <div className="relative group">
           <a
             href="https://wa.me/8615263623818"

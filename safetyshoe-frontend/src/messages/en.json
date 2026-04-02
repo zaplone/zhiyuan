@@ -18,7 +18,39 @@
     "description": "Zhiyuan Safety Shoes: Your Trusted Partner for Safety Footwear. Founded in 1990, we are a professional manufacturer dedicated to R&D, production, and sales of labor protection shoes.",
     "factoryGallery": "Factory Tour",
     "factoryTitle": "Manufacturing Excellence",
-    "factoryDescription": "Walk through our state-of-the-art production facility. From cutting and stitching to forming and quality control, every step reflects our commitment to safety and quality."
+    "factoryDescription": "Walk through our state-of-the-art production facility. From cutting and stitching to forming and quality control, every step reflects our commitment to safety and quality.",
+    "zones": {
+      "cutting": {
+        "title": "Cutting Zone",
+        "zh": "裁切区",
+        "desc": "Precision cutting for perfect material utilization"
+      },
+      "stitching": {
+        "title": "Stitching Zone",
+        "zh": "车缝区",
+        "desc": "Expert craftsmanship with advanced sewing equipment"
+      },
+      "forming": {
+        "title": "Forming Zone",
+        "zh": "成型区",
+        "desc": "Advanced injection molding for consistent quality"
+      },
+      "assembly": {
+        "title": "Assembly Line",
+        "zh": "装配区",
+        "desc": "Efficient assembly with strict quality standards"
+      },
+      "quality": {
+        "title": "Quality Control",
+        "zh": "质检区",
+        "desc": "Rigorous inspection at every production stage"
+      },
+      "packaging": {
+        "title": "Packaging & Shipping",
+        "zh": "包装发货",
+        "desc": "Professional packaging and global logistics"
+      }
+    }
   },
   "BrandStory": {
     "label": "Our Story",
@@ -226,6 +258,34 @@
     "item8": "GB 12011",
     "item9": "OEM / ODM Custom",
     "item10": "MOQ 500 Pairs"
+  },
+  "CompanyCapabilities": {
+    "title": "Manufacturing Excellence",
+    "subtitle": "Combining craftsmanship with automation to deliver consistent quality globally.",
+    "stats": {
+      "dailyCapacity": "Daily Capacity",
+      "productionLines": "Production Lines",
+      "workers": "Workers",
+      "annualOutput": "Annual Output",
+      "pairs": "Pairs",
+      "lines": "Lines",
+      "people": "People",
+      "pairsYear": "Pairs/Year"
+    },
+    "advantages": {
+      "certifiedQuality": {
+        "title": "Certified Quality",
+        "description": "Footwear built to ISO 20345 and, where your market requires, ASTM F2413 or CSA Z195—with lab evidence per order. Factory holds ISO 9001 / 14001 / 45001."
+      },
+      "factoryDirect": {
+        "title": "Factory Direct",
+        "description": "Direct manufacturing pricing with transparent production process."
+      },
+      "flexibleOem": {
+        "title": "Flexible OEM/ODM",
+        "description": "Rapid 7-day prototyping and full brand customization service."
+      }
+    }
   },
   "WhyChooseUs": {
     "title": "Professional Manufacturing,",

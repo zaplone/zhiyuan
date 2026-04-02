@@ -56,6 +56,34 @@
     },
     "scroll": "انتقل"
   },
+    "CompanyCapabilities": {
+    "title": "التميز في التصنيع",
+    "subtitle": "الجمع بين الحرف اليدوية والأتمتة لتقديم جودة متسقة عالميًا.",
+    "stats": {
+      "dailyCapacity": "الطاقة اليومية",
+      "productionLines": "خطوط الإنتاج",
+      "workers": "العمال",
+      "annualOutput": "الإنتاج السنوي",
+      "pairs": "زوج",
+      "lines": "خط",
+      "people": "شخص",
+      "pairsYear": "زوج/سنة"
+    },
+    "advantages": {
+      "certifiedQuality": {
+        "title": "جودة معتمدة",
+        "description": "أحذية مصنعة وفق ISO 20345، وعند الحاجة لسوقك، ASTM F2413 أو CSA Z195 — مع دليل مختبري لكل طلب. المصنع يحمل ISO 9001 / 14001 / 45001."
+      },
+      "factoryDirect": {
+        "title": "مباشرة من المصنع",
+        "description": "أسعار تصنيع مباشرة مع عملية إنتاج شفافة."
+      },
+      "flexibleOem": {
+        "title": "OEM/ODM مرن",
+        "description": "نماذج أولية سريعة في 7 أيام وخدمة تخصيص العلامة التجارية الكاملة."
+      }
+    }
+  },
   "WhyChooseUs": {
     "title": "تميز التصنيع",
     "subtitle": "مدعوم بالبيانات.",
