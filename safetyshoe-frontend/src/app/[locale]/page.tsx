@@ -27,7 +27,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      images: ['/images/about/gongchang.jpg'],
+      images: ['/images/about/gongchang.webp'],
     },
   };
 }

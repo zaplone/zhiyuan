@@ -15,11 +15,11 @@ export function ManufacturingExcellence() {
   const modalVideoRef = useRef<HTMLVideoElement>(null);
 
   const factoryImages = [
-    { src: '/images/about/生产环境1.jpg', alt: 'Cutting Zone' },
-    { src: '/images/about/生产环境2.jpg', alt: 'Stitching Zone' },
-    { src: '/images/about/生产环境3.jpg', alt: 'Forming Zone' },
-    { src: '/images/about/生产环境4.jpg', alt: 'Quality Control' },
-    { src: '/images/about/生产环境5.jpg', alt: 'Assembly Line' },
+    { src: '/images/about/生产环境1.webp', alt: 'Cutting Zone' },
+    { src: '/images/about/生产环境2.webp', alt: 'Stitching Zone' },
+    { src: '/images/about/生产环境3.webp', alt: 'Forming Zone' },
+    { src: '/images/about/生产环境4.webp', alt: 'Quality Control' },
+    { src: '/images/about/生产环境5.webp', alt: 'Assembly Line' },
   ];
 
   const openModal = () => setIsModalOpen(true);
@@ -82,7 +82,7 @@ export function ManufacturingExcellence() {
                 onClick={openModal}
               >
                 <img
-                  src="/images/hero/圆盘机.jpg"
+                  src="/images/hero/圆盘机.webp"
                   alt={t('imageAlt')}
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                 />

@@ -7,9 +7,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const SLIDE_IMAGES = [
-  '/images/hero/1.jpg',
-  '/images/hero/圆盘机.jpg',
-  '/images/hero/3.png',
+  '/images/hero/1.webp',
+  '/images/hero/圆盘机.webp',
+  '/images/hero/3.webp',
 ] as const;
 
 const SLIDE_MESSAGE_KEYS = ['slide1', 'slide2', 'slide3'] as const;
