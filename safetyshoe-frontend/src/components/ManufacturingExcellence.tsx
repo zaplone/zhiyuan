@@ -82,7 +82,7 @@ export function ManufacturingExcellence() {
                 onClick={openModal}
               >
                 <img
-                  src="/images/about/生产环境3.jpg"
+                  src="/images/hero/圆盘机.jpg"
                   alt={t('imageAlt')}
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                 />
