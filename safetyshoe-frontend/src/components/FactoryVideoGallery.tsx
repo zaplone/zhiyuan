@@ -112,8 +112,8 @@ export function FactoryVideoGallery() {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                  {/* Light bottom overlay keeps labels readable without dulling the workshop photos. */}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/38 via-black/8 to-transparent transition-opacity group-hover:from-black/48" />
 
                   {/* Orange Accent Line */}
                   <div className="absolute top-0 left-0 w-full h-1 bg-orange-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
@@ -131,12 +131,12 @@ export function FactoryVideoGallery() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-base md:text-lg font-bold text-white mb-1">
+                    <h3 className="text-base md:text-lg font-bold text-white mb-1 drop-shadow-md">
                       {t(`${zone.titleKey}.title`)}
                     </h3>
 
                     {/* Description - Hidden on mobile */}
-                    <p className="hidden md:block text-xs text-white/60 line-clamp-2">
+                    <p className="hidden md:block text-xs text-white/75 line-clamp-2">
                       {t(`${zone.titleKey}.desc`)}
                     </p>
                   </div>
