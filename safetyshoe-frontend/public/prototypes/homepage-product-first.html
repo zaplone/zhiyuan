@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zhiyuan Safety Shoes - Product First Homepage Prototype</title>
+  <!--
+    Huashu-Design junior pass
+    Assumptions:
+    1. Inquiry is the final conversion, but product interest must come first.
+    2. The hero may keep a factory/showroom image, but product cues must enter the first viewport.
+    3. No single product is the only hero; the site should communicate a full safety-footwear system.
+    4. This file is an isolated prototype and does not modify the production Next.js homepage.
+
+    Reasoning:
+    - Hero: establish manufacturer trust without turning into a pure factory page.
+    - Featured lines: make shoes the first active visual subject after the hero.
+    - Product wall: use an ordered draggable matrix, not a messy infinite canvas.
+    - Trust/OEM/inquiry: appear after product interest has been built.
+  -->
+  <style>
+    :root {
+      --ink: #111820;
+      --muted: #607080;
+      --line: #dce3ea;
+      --soft: #f5f7f9;
+      --panel: #ffffff;
+      --steel: #25313d;
+      --orange: #f06a21;
+      --orange-dark: #c44b13;
+      --green: #1f7a61;
+      --shadow: 0 24px 80px rgba(17, 24, 32, 0.14);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .page {
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(245, 247, 249, 0) 0, rgba(245, 247, 249, 0.86) 100%),
+        #fff;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+      padding: 0 42px;
+      color: #fff;
+      background: rgba(13, 19, 25, 0.34);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--orange);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.10);
+      color: #fff;
+      border-radius: 999px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      color: #fff;
+      background: #111820;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.95) contrast(1.02);
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(11, 18, 25, 0.92) 0%, rgba(11, 18, 25, 0.76) 36%, rgba(11, 18, 25, 0.18) 72%),
+        linear-gradient(180deg, rgba(11, 18, 25, 0.22), rgba(11, 18, 25, 0.78));
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 0.96fr) minmax(420px, 0.74fr);
+      gap: 42px;
+      align-items: center;
+      width: min(1240px, calc(100% - 72px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 118px 0 58px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      color: #ffb17b;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 54px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .hero h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(54px, 7vw, 104px);
+      line-height: 0.86;
+      letter-spacing: -0.07em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      color: #ff7a2d;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin: 26px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--orange);
+      box-shadow: 0 16px 38px rgba(240, 106, 33, 0.30);
+    }
+
+    .btn-ghost {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 650px;
+      margin-top: 48px;
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .proof-item {
+      padding: 22px 22px 0 0;
+    }
+
+    .proof-value {
+      font-size: 34px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
+
+    .proof-label {
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-product-board {
+      position: relative;
+      align-self: end;
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+
+    .board-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .board-tabs {
+      display: flex;
+      gap: 8px;
+    }
+
+    .board-tab {
+      width: 8px;
+      height: 8px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.30);
+      cursor: pointer;
+    }
+
+    .board-tab.active {
+      width: 28px;
+      background: var(--orange);
+    }
+
+    .hero-shoe-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 280px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--ink);
+      border-radius: 7px;
+    }
+
+    .hero-shoe-card figure {
+      display: grid;
+      place-items: center;
+      margin: 0;
+      padding: 20px;
+      background:
+        linear-gradient(135deg, rgba(240, 106, 33, 0.08), transparent 42%),
+        #f3f6f8;
+    }
+
+    .hero-shoe-card img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-shoe-info {
+      padding: 24px 22px;
+    }
+
+    .model-code {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-shoe-info h2 {
+      margin: 12px 0 10px;
+      font-size: 30px;
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-shoe-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #405060;
+      background: #fff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .section {
+      position: relative;
+      width: min(1240px, calc(100% - 72px));
+      margin: 0 auto;
+      padding: 104px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.62fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .section h2 {
+      margin: 12px 0 0;
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    .section-lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .featured-lines {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.62fr);
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .product-stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      min-height: 560px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(17, 24, 32, 0.04) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(17, 24, 32, 0.04) 1px, transparent 1px),
+        #fff;
+      background-size: 38px 38px;
+      border-radius: var(--radius);
+      box-shadow: 0 18px 60px rgba(17, 24, 32, 0.07);
+    }
+
+    .stage-main {
+      position: relative;
+      display: grid;
+      align-content: center;
+      padding: 54px;
+    }
+
+    .stage-main img {
+      width: min(680px, 100%);
+      max-height: 390px;
+      object-fit: contain;
+      filter: drop-shadow(0 28px 26px rgba(17, 24, 32, 0.20));
+      mix-blend-mode: multiply;
+    }
+
+    .angle-switch {
+      position: absolute;
+      left: 54px;
+      bottom: 42px;
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: 0 12px 36px rgba(17, 24, 32, 0.09);
+    }
+
+    .angle-switch button {
+      min-width: 62px;
+      border: 0;
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: #5a6876;
+      background: transparent;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .angle-switch button.active {
+      color: #fff;
+      background: var(--steel);
+    }
+
+    .vertical-lines {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      background: #f7f9fb;
+      border-left: 1px solid var(--line);
+    }
+
+    .line-card {
+      position: relative;
+      display: grid;
+      align-content: space-between;
+      min-height: 92px;
+      padding: 12px;
+      border: 1px solid transparent;
+      background: #fff;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: 180ms ease;
+    }
+
+    .line-card:hover,
+    .line-card.active {
+      border-color: rgba(240, 106, 33, 0.55);
+      box-shadow: 0 14px 30px rgba(17, 24, 32, 0.10);
+      transform: translateX(-4px);
+    }
+
+    .line-card.active::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--orange);
+      border-radius: 7px 0 0 7px;
+    }
+
+    .line-card img {
+      width: 78px;
+      height: 48px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .line-card strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .line-summary {
+      display: grid;
+      align-content: space-between;
+      padding: 32px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 60px rgba(17, 24, 32, 0.07);
+    }
+
+    .summary-top h3 {
+      margin: 10px 0 14px;
+      font-size: 42px;
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+
+    .summary-top p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .spec-list {
+      display: grid;
+      gap: 0;
+      margin: 30px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .spec-list div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .spec-list div:last-child {
+      border-bottom: 0;
+    }
+
+    .spec-list span:first-child {
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .spec-list span:last-child {
+      text-align: right;
+      font-weight: 900;
+    }
+
+    .summary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .dark-btn {
+      color: #fff;
+      background: var(--steel);
+    }
+
+    .outline-btn {
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .wall-wrap {
+      background: #0f171f;
+      color: #fff;
+      margin-top: 24px;
+    }
+
+    .wall-wrap .section {
+      padding-top: 96px;
+      padding-bottom: 108px;
+    }
+
+    .wall-wrap .section h2 {
+      color: #fff;
+    }
+
+    .wall-wrap .section-lead {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      padding: 10px 13px;
+      color: rgba(255, 255, 255, 0.76);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .filter.active {
+      color: #fff;
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .search {
+      width: 220px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 11px 14px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+      outline: 0;
+    }
+
+    .search::placeholder {
+      color: rgba(255, 255, 255, 0.48);
+    }
+
+    .canvas-shell {
+      position: relative;
+      height: 670px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        radial-gradient(circle at 18% 12%, rgba(240, 106, 33, 0.16), transparent 28%),
+        #111b24;
+      background-size: 80px 80px, 80px 80px, auto, auto;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .canvas-shell.dragging {
+      cursor: grabbing;
+    }
+
+    .canvas-shell::before,
+    .canvas-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .canvas-shell::before {
+      background:
+        linear-gradient(90deg, #111b24 0, transparent 9%, transparent 91%, #111b24 100%),
+        linear-gradient(180deg, #111b24 0, transparent 10%, transparent 90%, #111b24 100%);
+    }
+
+    .canvas-toolbar {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-chip {
+      padding: 9px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.76);
+      background: rgba(15, 23, 31, 0.72);
+      backdrop-filter: blur(12px);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .zoom {
+      display: flex;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(15, 23, 31, 0.72);
+      backdrop-filter: blur(12px);
+    }
+
+    .zoom button {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      color: #fff;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .canvas {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: grid;
+      grid-template-columns: 130px repeat(6, 206px);
+      grid-template-rows: 48px repeat(4, 210px);
+      gap: 18px;
+      width: max-content;
+      transform: translate3d(-50%, -50%, 0);
+      transition: transform 80ms linear;
+      will-change: transform;
+      z-index: 2;
+    }
+
+    .axis-label {
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+    }
+
+    .row-label {
+      justify-content: end;
+      padding-right: 16px;
+      color: rgba(255, 255, 255, 0.52);
+    }
+
+    .wall-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: 118px 1fr;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      border-radius: 7px;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+      transition: 180ms ease;
+      cursor: pointer;
+    }
+
+    .wall-card:hover,
+    .wall-card.selected {
+      transform: translateY(-5px);
+      border-color: rgba(240, 106, 33, 0.82);
+      box-shadow: 0 26px 44px rgba(0, 0, 0, 0.30);
+    }
+
+    .wall-card.selected::after {
+      content: "Quick view";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--orange);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .wall-card figure {
+      display: grid;
+      place-items: center;
+      margin: 0;
+      padding: 12px;
+      background: #f2f5f7;
+    }
+
+    .wall-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+    }
+
+    .wall-info {
+      padding: 14px;
+    }
+
+    .wall-info strong {
+      display: block;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .wall-info p {
+      margin: 4px 0 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mini-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .mini-tags span {
+      padding: 5px 6px;
+      border-radius: 999px;
+      background: #eef2f5;
+      color: #445463;
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .mini-map {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      z-index: 8;
+      width: 156px;
+      height: 94px;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 7px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.10) 1px, transparent 1px),
+        rgba(15, 23, 31, 0.78);
+      background-size: 26px 23px;
+      backdrop-filter: blur(12px);
+    }
+
+    .mini-map::after {
+      content: "";
+      position: absolute;
+      left: 48px;
+      top: 28px;
+      width: 58px;
+      height: 36px;
+      border: 2px solid var(--orange);
+      border-radius: 4px;
+      background: rgba(240, 106, 33, 0.12);
+    }
+
+    .wall-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 22px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 14px;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .story-photo {
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .story-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story-panels {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .story-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .story-card .num {
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .story-card h3 {
+      margin: 40px 0 10px;
+      font-size: 25px;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .story-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .inquiry-band {
+      width: min(1240px, calc(100% - 72px));
+      margin: 0 auto 96px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 430px;
+      gap: 28px;
+      align-items: stretch;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--steel);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .inquiry-copy {
+      padding: 54px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    .inquiry-copy h2 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(42px, 5vw, 72px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    .inquiry-copy p {
+      max-width: 620px;
+      color: rgba(255, 255, 255, 0.68);
+      line-height: 1.75;
+      margin: 22px 0 0;
+    }
+
+    .form-preview {
+      display: grid;
+      gap: 12px;
+      padding: 24px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .form-preview input,
+    .form-preview textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px;
+      outline: 0;
+      color: var(--ink);
+      background: #f8fafb;
+      resize: none;
+    }
+
+    @media (max-width: 1020px) {
+      .nav {
+        padding: 0 22px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner,
+      .section-head,
+      .featured-lines,
+      .story-grid,
+      .inquiry-band {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner,
+      .section,
+      .inquiry-band {
+        width: min(100% - 36px, 760px);
+      }
+
+      .hero-shoe-card {
+        grid-template-columns: 1fr;
+      }
+
+      .product-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .vertical-lines {
+        grid-template-columns: repeat(5, minmax(130px, 1fr));
+        overflow-x: auto;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .canvas-shell {
+        height: 580px;
+      }
+
+      .filter-bar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .search {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero h1,
+      .section h2,
+      .inquiry-copy h2 {
+        letter-spacing: -0.045em;
+      }
+
+      .hero-proof,
+      .story-panels {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-main {
+        padding: 28px;
+      }
+
+      .angle-switch {
+        left: 20px;
+        right: 20px;
+        bottom: 24px;
+        overflow-x: auto;
+      }
+
+      .canvas {
+        transform: translate3d(-50%, -50%, 0) scale(0.82);
+      }
+
+      .inquiry-copy {
+        padding: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav">
+      <a class="brand" href="#">
+        <span class="brand-mark">Z</span>
+        <span>Zhiyuan Safety Shoes</span>
+      </a>
+      <div class="nav-links" aria-label="Main navigation">
+        <a href="#lines">Product Lines</a>
+        <a href="#wall">Product Wall</a>
+        <a href="#oem">OEM Service</a>
+        <a href="#inquiry" class="nav-cta">Send Inquiry</a>
+      </div>
+    </nav>
+
+    <section class="hero" aria-label="Homepage hero">
+      <div class="hero-bg">
+        <img src="../images/hero/3.webp" alt="Safety footwear showroom" />
+      </div>
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Product-led manufacturer</div>
+          <h1>Safety shoes worth <span>stopping for.</span></h1>
+          <p class="hero-copy">
+            Start with the shoe: real product ranges, clear protection profiles, and OEM options for buyers who need reliable industrial footwear at scale.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#wall">Explore Products</a>
+            <a class="btn btn-ghost" href="#inquiry">Send Inquiry</a>
+          </div>
+          <div class="hero-proof" aria-label="Manufacturer proof points">
+            <div class="proof-item">
+              <div class="proof-value">30+</div>
+              <div class="proof-label">Years in footwear</div>
+            </div>
+            <div class="proof-item">
+              <div class="proof-value">6</div>
+              <div class="proof-label">Production lines</div>
+            </div>
+            <div class="proof-item">
+              <div class="proof-value">OEM</div>
+              <div class="proof-label">Custom programs</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-product-board" aria-label="Featured product preview">
+          <div class="board-top">
+            <span>Buyer quick scan</span>
+            <div class="board-tabs" aria-label="Hero product tabs">
+              <button class="board-tab active" data-hero-product="0" aria-label="Show product 1"></button>
+              <button class="board-tab" data-hero-product="1" aria-label="Show product 2"></button>
+              <button class="board-tab" data-hero-product="2" aria-label="Show product 3"></button>
+            </div>
+          </div>
+          <div class="hero-shoe-card">
+            <figure>
+              <img id="heroProductImage" src="../images/products/产品1.jpg" alt="Featured safety shoe" />
+            </figure>
+            <div class="hero-shoe-info">
+              <div id="heroModel" class="model-code">SL-3009</div>
+              <h2 id="heroProductTitle">Low-cut safety sneaker</h2>
+              <p id="heroProductCopy">A cleaner first impression for warehouse, logistics, and light industrial buyers.</p>
+              <div id="heroTags" class="tag-row">
+                <span class="tag">Steel toe</span>
+                <span class="tag">SRC outsole</span>
+                <span class="tag">OEM color</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="lines" class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Featured product lines</div>
+          <h2>Let the product do the first convincing.</h2>
+        </div>
+        <p class="section-lead">
+          The first product section stays light: one selected shoe as the visual anchor, multiple lines as fast switches, and only the facts buyers need before entering the catalog.
+        </p>
+      </div>
+
+      <div class="featured-lines">
+        <div class="product-stage">
+          <div class="stage-main">
+            <img id="lineImage" src="../images/products/产品1.jpg" alt="Selected safety shoe" />
+            <div class="angle-switch" aria-label="Product angle selector">
+              <button class="active" data-angle="side">Side</button>
+              <button data-angle="sole">Sole</button>
+              <button data-angle="toe">Toe</button>
+              <button data-angle="heel">Heel</button>
+            </div>
+          </div>
+          <div class="vertical-lines" aria-label="Product line selector">
+            <button class="line-card active" data-line="0">
+              <img src="../images/products/产品1.jpg" alt="" />
+              <strong>Safety Sneakers</strong>
+            </button>
+            <button class="line-card" data-line="1">
+              <img src="../images/products/steel-toe-boot.jpg" alt="" />
+              <strong>Work Boots</strong>
+            </button>
+            <button class="line-card" data-line="2">
+              <img src="../images/products/winter-boot.jpg" alt="" />
+              <strong>Waterproof Boots</strong>
+            </button>
+            <button class="line-card" data-line="3">
+              <img src="../images/products/slip-resistant.jpg" alt="" />
+              <strong>Slip Resistant</strong>
+            </button>
+            <button class="line-card" data-line="4">
+              <img src="../images/products/composite-shoe.jpg" alt="" />
+              <strong>Composite Toe</strong>
+            </button>
+          </div>
+        </div>
+
+        <aside class="line-summary">
+          <div class="summary-top">
+            <div id="lineModel" class="model-code">SL-3009</div>
+            <h3 id="lineTitle">Safety sneaker series</h3>
+            <p id="lineCopy">Lightweight safety footwear for warehouse, logistics, and daily industrial work. Designed to look less bulky while keeping essential protection.</p>
+            <div id="lineTags" class="tag-row">
+              <span class="tag">EN ISO 20345</span>
+              <span class="tag">Lightweight</span>
+              <span class="tag">OEM colorway</span>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div><span>Toe</span><span id="specToe">Steel / Composite</span></div>
+            <div><span>Outsole</span><span id="specSole">SRC anti-slip</span></div>
+            <div><span>Upper</span><span id="specUpper">Microfiber / Mesh</span></div>
+            <div><span>Use case</span><span id="specUse">Warehouse / Logistics</span></div>
+          </div>
+          <div class="summary-actions">
+            <a class="btn dark-btn" href="#wall">Compare Lines</a>
+            <a class="btn outline-btn" href="#inquiry">Ask for samples</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="wall" class="wall-wrap">
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Product wall</div>
+            <h2>Drag through an organized safety footwear matrix.</h2>
+          </div>
+          <p class="section-lead">
+            The wall feels interactive, but it stays orderly. Product cards align by type and protection level, so buyers can browse freely without losing orientation.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <div class="filters" aria-label="Product filters">
+            <button class="filter active">All</button>
+            <button class="filter">Sneakers</button>
+            <button class="filter">Boots</button>
+            <button class="filter">Waterproof</button>
+            <button class="filter">Heat Resistant</button>
+            <button class="filter">OEM Ready</button>
+          </div>
+          <input class="search" type="search" placeholder="Search model" aria-label="Search model" />
+        </div>
+
+        <div id="canvasShell" class="canvas-shell" aria-label="Draggable product matrix">
+          <div class="canvas-toolbar">
+            <span class="tool-chip">Drag canvas</span>
+            <div class="zoom" aria-label="Zoom controls">
+              <button type="button" data-zoom="-">-</button>
+              <button type="button" data-zoom="+">+</button>
+            </div>
+          </div>
+          <div id="canvas" class="canvas">
+            <div></div>
+            <div class="axis-label">Sneakers</div>
+            <div class="axis-label">Boots</div>
+            <div class="axis-label">Waterproof</div>
+            <div class="axis-label">Heat</div>
+            <div class="axis-label">Executive</div>
+            <div class="axis-label">Women</div>
+          </div>
+          <div class="mini-map" aria-hidden="true"></div>
+        </div>
+
+        <div class="wall-cta">
+          <span>Homepage shows a curated range. The full catalog can keep deeper filters and details.</span>
+          <a class="btn btn-primary" href="#inquiry">Open full catalog</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="oem" class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">After product interest</div>
+          <h2>Then prove you can manufacture and ship.</h2>
+        </div>
+        <p class="section-lead">
+          Trust appears after the product has earned attention. Keep it compact: production control, certification, customization, and export workflow.
+        </p>
+      </div>
+      <div class="story-grid">
+        <div class="story-photo">
+          <img src="../images/about/生产环境2.webp" alt="Safety shoe production environment" />
+        </div>
+        <div class="story-panels">
+          <div class="story-card">
+            <div class="num">01</div>
+            <h3>Model selection</h3>
+            <p>Buyers start from a real product base, then adjust protection, outsole, upper, and color.</p>
+          </div>
+          <div class="story-card">
+            <div class="num">02</div>
+            <h3>Sample confirmation</h3>
+            <p>Sample checks focus on fit, material, branding, and certification requirements.</p>
+          </div>
+          <div class="story-card">
+            <div class="num">03</div>
+            <h3>Production control</h3>
+            <p>Line planning, QC checkpoints, and packaging stay visible to industrial buyers.</p>
+          </div>
+          <div class="story-card">
+            <div class="num">04</div>
+            <h3>Export delivery</h3>
+            <p>Inquiry converts better when the route from product interest to shipment is clear.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="inquiry" class="inquiry-band">
+      <div class="inquiry-copy">
+        <div class="section-kicker">Inquiry conversion</div>
+        <h2>Send the model list. Get samples moving.</h2>
+        <p>
+          The final CTA is simple because the previous sections already handled attention, range, and trust. Ask for model codes, target market, quantity, and OEM needs.
+        </p>
+      </div>
+      <form class="form-preview">
+        <input type="text" placeholder="Name / Company" />
+        <input type="email" placeholder="Email" />
+        <input type="text" placeholder="Interested models or product line" />
+        <textarea rows="5" placeholder="Quantity, market, certification, OEM request"></textarea>
+        <button class="btn btn-primary" type="button">Send Inquiry</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const productData = [
+      {
+        model: "SL-3009",
+        title: "Low-cut safety sneaker",
+        lineTitle: "Safety sneaker series",
+        copy: "A cleaner first impression for warehouse, logistics, and light industrial buyers.",
+        lineCopy: "Lightweight safety footwear for warehouse, logistics, and daily industrial work. Designed to look less bulky while keeping essential protection.",
+        image: "../images/products/产品1.jpg",
+        tags: ["Steel toe", "SRC outsole", "OEM color"],
+        specs: ["Steel / Composite", "SRC anti-slip", "Microfiber / Mesh", "Warehouse / Logistics"]
+      },
+      {
+        model: "ZY-8201",
+        title: "Heavy duty work boot",
+        lineTitle: "Industrial work boot series",
+        copy: "A stronger silhouette for construction, outdoor sites, and repeated heavy-duty wear.",
+        lineCopy: "Work boots communicate durability first. This section keeps the main photo strong while the product wall handles broader comparison.",
+        image: "../images/products/steel-toe-boot.jpg",
+        tags: ["Steel toe", "Oil resistant", "Construction"],
+        specs: ["Steel toe", "PU / Rubber", "Action leather", "Construction / Plant"]
+      },
+      {
+        model: "ZY-W640",
+        title: "Waterproof safety boot",
+        lineTitle: "Waterproof boot series",
+        copy: "For outdoor, cold-chain, wet workshop, and rainy-site protection needs.",
+        lineCopy: "A separate waterproof line helps buyers quickly find shoes by working environment, not only by style.",
+        image: "../images/products/winter-boot.jpg",
+        tags: ["Waterproof", "Warm lining", "Outdoor"],
+        specs: ["Composite option", "Deep lug sole", "Waterproof upper", "Outdoor / Cold chain"]
+      },
+      {
+        model: "SRC-510",
+        title: "Slip-resistant safety shoe",
+        lineTitle: "Slip-resistant series",
+        copy: "A direct answer for buyers focused on outsole grip and daily walking comfort.",
+        lineCopy: "Grip is a buying reason. Keep it visible as one product line, then show outsole details on product pages.",
+        image: "../images/products/slip-resistant.jpg",
+        tags: ["SRC grip", "Lightweight", "Food / logistics"],
+        specs: ["Steel toe", "SRC outsole", "Breathable upper", "Food / Logistics"]
+      },
+      {
+        model: "CT-460",
+        title: "Composite toe safety shoe",
+        lineTitle: "Composite toe series",
+        copy: "For buyers who want lighter protection and metal-free options.",
+        lineCopy: "Composite options make the catalog feel modern and export-ready without needing a heavy technical block on the homepage.",
+        image: "../images/products/composite-shoe.jpg",
+        tags: ["Composite toe", "Metal free", "Airport ready"],
+        specs: ["Composite toe", "PU outsole", "Knit / Microfiber", "Light industrial"]
+      }
+    ];
+
+    const angleImages = {
+      side: ["../images/products/产品1.jpg", "../images/products/steel-toe-boot.jpg", "../images/products/winter-boot.jpg", "../images/products/slip-resistant.jpg", "../images/products/composite-shoe.jpg"],
+      sole: ["../images/products/产品2.jpg", "../images/about/slip-resistant.jpg", "../images/products/slip-resistant.jpg", "../images/products/产品2.jpg", "../images/about/composite-shoe.jpg"],
+      toe: ["../images/products/产品3.jpg", "../images/about/steel-toe-boot.jpg", "../images/oem/hero-shoe.jpg", "../images/products/产品3.jpg", "../images/about/composite-shoe.jpg"],
+      heel: ["../images/oem/hero-shoe.jpg", "../images/products/steel-toe-boot.jpg", "../images/about/winter-boot.jpg", "../images/products/slip-resistant.jpg", "../images/products/composite-shoe.jpg"]
+    };
+
+    let currentLine = 0;
+
+    function renderHeroProduct(index) {
+      const item = productData[index];
+      document.getElementById("heroProductImage").src = item.image;
+      document.getElementById("heroModel").textContent = item.model;
+      document.getElementById("heroProductTitle").textContent = item.title;
+      document.getElementById("heroProductCopy").textContent = item.copy;
+      document.getElementById("heroTags").innerHTML = item.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+      document.querySelectorAll("[data-hero-product]").forEach((button) => {
+        button.classList.toggle("active", Number(button.dataset.heroProduct) === index);
+      });
+    }
+
+    function renderLine(index, angle = "side") {
+      currentLine = index;
+      const item = productData[index];
+      document.getElementById("lineImage").src = angleImages[angle][index] || item.image;
+      document.getElementById("lineModel").textContent = item.model;
+      document.getElementById("lineTitle").textContent = item.lineTitle;
+      document.getElementById("lineCopy").textContent = item.lineCopy;
+      document.getElementById("lineTags").innerHTML = item.tags.map((tag) => `<span class="tag">${tag}</span>`).join("");
+      document.getElementById("specToe").textContent = item.specs[0];
+      document.getElementById("specSole").textContent = item.specs[1];
+      document.getElementById("specUpper").textContent = item.specs[2];
+      document.getElementById("specUse").textContent = item.specs[3];
+      document.querySelectorAll("[data-line]").forEach((button) => {
+        button.classList.toggle("active", Number(button.dataset.line) === index);
+      });
+    }
+
+    document.querySelectorAll("[data-hero-product]").forEach((button) => {
+      button.addEventListener("click", () => renderHeroProduct(Number(button.dataset.heroProduct)));
+    });
+
+    document.querySelectorAll("[data-line]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-angle]").forEach((angleButton) => angleButton.classList.toggle("active", angleButton.dataset.angle === "side"));
+        renderLine(Number(button.dataset.line), "side");
+      });
+    });
+
+    document.querySelectorAll("[data-angle]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll("[data-angle]").forEach((angleButton) => angleButton.classList.remove("active"));
+        button.classList.add("active");
+        renderLine(currentLine, button.dataset.angle);
+      });
+    });
+
+    const canvas = document.getElementById("canvas");
+    const categories = ["Sneaker", "Boot", "Waterproof", "Heat", "Executive", "Women"];
+    const levels = ["Lightweight", "Standard", "Heavy Duty", "OEM Series"];
+    const images = [
+      "../images/products/产品1.jpg",
+      "../images/products/产品2.jpg",
+      "../images/products/产品3.jpg",
+      "../images/products/steel-toe-boot.jpg",
+      "../images/products/slip-resistant.jpg",
+      "../images/products/composite-shoe.jpg",
+      "../images/products/winter-boot.jpg",
+      "../images/oem/hero-shoe.jpg"
+    ];
+    const productTags = [
+      ["Steel toe", "SRC", "OEM"],
+      ["Composite", "Light", "Logo"],
+      ["Waterproof", "PU", "Outdoor"],
+      ["Rubber sole", "Heat", "Heavy"],
+      ["Office", "Low cut", "EN ISO"],
+      ["Lightweight", "Women", "SRC"]
+    ];
+
+    levels.forEach((level, row) => {
+      const rowLabel = document.createElement("div");
+      rowLabel.className = "axis-label row-label";
+      rowLabel.textContent = level;
+      canvas.appendChild(rowLabel);
+      categories.forEach((category, col) => {
+        const index = row * categories.length + col;
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = `wall-card ${index === 8 ? "selected" : ""}`;
+        card.innerHTML = `
+          <figure><img src="${images[index % images.length]}" alt="${category} safety shoe ${index + 1}" /></figure>
+          <div class="wall-info">
+            <strong>ZY-${String(3000 + index * 17).padStart(4, "0")}</strong>
+            <p>${category} · ${level}</p>
+            <div class="mini-tags">${productTags[col].map((tag) => `<span>${tag}</span>`).join("")}</div>
+          </div>
+        `;
+        card.addEventListener("click", () => {
+          document.querySelectorAll(".wall-card").forEach((item) => item.classList.remove("selected"));
+          card.classList.add("selected");
+        });
+        canvas.appendChild(card);
+      });
+    });
+
+    const shell = document.getElementById("canvasShell");
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let offsetX = -50;
+    let offsetY = -50;
+    let dragX = 0;
+    let dragY = 0;
+    let zoom = 1;
+
+    function applyCanvasTransform() {
+      canvas.style.transform = `translate3d(calc(${offsetX}% + ${dragX}px), calc(${offsetY}% + ${dragY}px), 0) scale(${zoom})`;
+    }
+
+    shell.addEventListener("pointerdown", (event) => {
+      isDragging = true;
+      startX = event.clientX - dragX;
+      startY = event.clientY - dragY;
+      shell.classList.add("dragging");
+      shell.setPointerCapture(event.pointerId);
+    });
+
+    shell.addEventListener("pointermove", (event) => {
+      if (!isDragging) return;
+      dragX = Math.max(-520, Math.min(520, event.clientX - startX));
+      dragY = Math.max(-260, Math.min(260, event.clientY - startY));
+      applyCanvasTransform();
+    });
+
+    shell.addEventListener("pointerup", () => {
+      isDragging = false;
+      shell.classList.remove("dragging");
+    });
+
+    shell.addEventListener("pointercancel", () => {
+      isDragging = false;
+      shell.classList.remove("dragging");
+    });
+
+    document.querySelectorAll("[data-zoom]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        zoom += button.dataset.zoom === "+" ? 0.08 : -0.08;
+        zoom = Math.max(0.84, Math.min(1.16, zoom));
+        applyCanvasTransform();
+      });
+    });
+
+    document.querySelectorAll(".filter").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".filter").forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+      });
+    });
+
+    renderHeroProduct(0);
+    renderLine(0, "side");
+    applyCanvasTransform();
+  </script>
+</body>
+</html>

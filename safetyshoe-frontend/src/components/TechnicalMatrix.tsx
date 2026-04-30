@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronRight, X, Layers, Shield } from 'lucide-react';
+import { ArrowRight, ChevronRight, Eye, Layers, Shield, X } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import type { Product } from '@/types';
 import { ProductCertBadges } from '@/components/ProductCertBadges';
@@ -15,12 +15,25 @@ const SHOWCASE_TABS = [
   { key: 'newArrivals', mode: 'new' as const },
 ];
 
+const TRUST_KEYS = ['ce', 'enIso', 'astm', 'oem', 'moq'] as const;
+const STORY_KEYS = ['lightweight', 'heavyDuty', 'outsole', 'oem'] as const;
+
 function heroImageUrl(p: Product): string | null {
   const main = p.image;
   if (main && (main.startsWith('http') || main.startsWith('/'))) return main;
   const first = p.images?.[0];
   if (first && (first.startsWith('http') || first.startsWith('/'))) return first;
   return null;
+}
+
+function uniqueProducts(products: Product[]): Product[] {
+  const seen = new Set<string>();
+  return products.filter((product) => {
+    const id = String(product.id);
+    if (seen.has(id)) return false;
+    seen.add(id);
+    return true;
+  });
 }
 
 export interface TechnicalMatrixProps {
@@ -49,10 +62,8 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
     return products;
   }, [products, mode]);
 
-  const hero = pool[0] || products[0];
-  const side = pool.length > 1 ? pool.slice(1, 5) : products.slice(1, 5);
-
-  const heroImg = hero ? heroImageUrl(hero) : null;
+  const featuredProducts = uniqueProducts([...pool, ...products]).slice(0, 8);
+  const storyProducts = uniqueProducts([...pool, ...products]).slice(0, 4);
 
   const handleNext = () => {
     if (!selectedProduct) return;
@@ -83,137 +94,215 @@ export function TechnicalMatrix({ initialProducts }: TechnicalMatrixProps) {
   }
 
   return (
-    <section id="products" className="py-24 bg-white">
+    <section id="products" className="bg-white py-20 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="w-8 h-px bg-slate-300" />
-            <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-              {t('title')}
-            </h2>
-            <div className="w-8 h-px bg-slate-300" />
+        <div className="mb-10 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <div className="h-px w-10 bg-orange-600" />
+              <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                {t('title')}
+              </h2>
+            </div>
+            <h3 className="max-w-2xl text-4xl font-black uppercase leading-[0.95] tracking-tighter text-slate-950 sm:text-5xl lg:text-6xl">
+              {t('titleHighlight')}{' '}
+              <span className="text-orange-600">{t('titleHighlight2')}</span>
+            </h3>
           </div>
-          <h3 className="text-5xl font-black text-slate-900 uppercase tracking-tighter italic">
-            {t('titleHighlight')} <span className="text-orange-600">{t('titleHighlight2')}</span>
-          </h3>
+          <div className="max-w-xl lg:justify-self-end">
+            <p className="text-base leading-8 text-slate-600">{t('subtitle')}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href={`/${locale}/products`}
+                className="inline-flex items-center gap-2 bg-orange-600 px-6 py-3 text-xs font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-orange-600/15 transition hover:bg-slate-900"
+              >
+                {t('viewAll')} <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href={`/${locale}/services/oem`}
+                className="inline-flex items-center gap-2 border border-slate-200 bg-white px-6 py-3 text-xs font-black uppercase tracking-[0.16em] text-slate-900 transition hover:border-orange-300 hover:text-orange-600"
+              >
+                {t('oemCta')} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <div className="mb-8 flex flex-wrap justify-center gap-2">
-          {SHOWCASE_TABS.map((item, idx) => {
-            const active = idx === activeTab;
+        <div className="grid gap-4 lg:grid-cols-2">
+          {STORY_KEYS.map((key, idx) => {
+            const product = storyProducts[idx];
+            const img = product ? heroImageUrl(product) : null;
+            const isOemTile = key === 'oem';
+            const content = (
+              <>
+                <div className="absolute inset-x-0 top-0 h-[68%] bg-white">
+                  {img ? (
+                    <Image
+                      src={img}
+                      alt={product?.name || t(`stories.${key}.title`)}
+                      fill
+                      className="object-contain object-center p-5 transition duration-500 group-hover:scale-[1.025] sm:p-8"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-sm text-slate-400">{t('noImage')}</div>
+                  )}
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-[42%] bg-white/96 shadow-[0_-24px_70px_rgba(255,255,255,0.98)]" />
+                <div className="absolute left-4 top-4 z-10 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-orange-600 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-white shadow-sm">
+                    {t(`stories.${key}.tag1`)}
+                  </span>
+                  <span className="rounded-full bg-white/90 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-900 shadow-sm backdrop-blur">
+                    {t(`stories.${key}.tag2`)}
+                  </span>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
+                  {product && <ProductCertBadges product={product} compact inline />}
+                  <h4 className="mt-3 max-w-md text-2xl font-black uppercase leading-none tracking-tighter text-slate-950 sm:text-3xl">
+                    {t(`stories.${key}.title`)}
+                  </h4>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-slate-600">
+                    {t(`stories.${key}.description`)}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.16em] text-orange-600">
+                    {t(`stories.${key}.action`)}
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </>
+            );
+
+            if (isOemTile) {
+              return (
+                <Link
+                  key={key}
+                  href={`/${locale}/services/oem`}
+                  className="group relative min-h-[390px] overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-xl sm:min-h-[430px]"
+                >
+                  {content}
+                </Link>
+              );
+            }
+
             return (
               <button
-                key={item.key}
+                key={key}
                 type="button"
-                onClick={() => setActiveTab(idx)}
-                className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
-                  active
-                    ? 'bg-orange-600 text-white shadow-md'
-                    : 'border border-slate-200 bg-white text-slate-600 hover:border-orange-300 hover:text-orange-600'
-                }`}
+                onClick={() => {
+                  if (!product) return;
+                  setSelectedProduct(product);
+                  setCurrentImageIndex(0);
+                }}
+                className="group relative min-h-[390px] overflow-hidden rounded-lg border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-xl sm:min-h-[430px]"
               >
-                {item.key === 'featured' ? t('featured') : t('newArrivals')}
+                {content}
               </button>
             );
           })}
         </div>
 
-        <motion.div
-          key={mode}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
-          className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 lg:gap-3"
-        >
-          {hero && heroImg && (
-            <Link
-              href={`/${locale}/products/${hero.slug || hero.model_code}`}
-              className="group relative block min-h-[360px] overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-sm transition-all hover:border-primary-200 hover:shadow-md sm:col-span-2 sm:min-h-[400px] lg:col-span-2 lg:row-span-2 lg:min-h-[min(560px,58vh)]"
-            >
-              <div className="absolute inset-0 bg-white">
-                {heroImg ? (
-                  <Image
-                    src={heroImg}
-                    alt={hero.name}
-                    fill
-                    className="object-contain object-center p-4 transition duration-500 group-hover:scale-[1.02]"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-sm text-slate-400">{t('noImage')}</div>
-                )}
-              </div>
-
-              <div className="absolute left-3 top-3 z-10">
-                <span className="rounded-full bg-orange-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm">
-                  {hero.is_new ? t('newArrivals') : t('featured')}
-                </span>
-              </div>
-
-              <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-5">
-                <ProductCertBadges product={hero} compact inline />
-                <h3 className="mt-2 text-lg font-bold leading-snug text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.9),0_2px_12px_rgba(0,0,0,0.65)] sm:text-xl lg:text-2xl">
-                  {hero.name}
-                </h3>
-                {hero.model_code && (
-                  <p className="mt-1 font-mono text-xs text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.9)]">
-                    {hero.model_code}
-                  </p>
-                )}
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.85)]">
-                  {t('viewDetail')} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                </span>
-              </div>
-            </Link>
-          )}
-
-          {side.map((product: Product) => (
-            <motion.div
-              key={product.id}
-              layout
-              className="group flex min-h-[220px] flex-col overflow-hidden rounded-lg border border-slate-200/90 bg-white shadow-sm transition-all hover:border-orange-200 hover:shadow-md"
-              onClick={() => {
-                setSelectedProduct(product);
-                setCurrentImageIndex(0);
-              }}
-            >
-              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-white ring-1 ring-inset ring-slate-100">
-                {product.image || product.images?.[0] ? (
-                  <Image
-                    src={product.image || product.images![0]}
-                    alt={product.name}
-                    fill
-                    className="object-contain object-center p-2 transition duration-300 group-hover:scale-[1.02]"
-                    sizes="(max-width: 1024px) 50vw, 25vw"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-xs text-slate-400">{t('noImage')}</div>
-                )}
-                <ProductCertBadges product={product} compact />
-              </div>
-              <div className="flex flex-1 flex-col gap-1 p-3">
-                <h4 className="line-clamp-2 text-sm font-semibold leading-snug text-slate-900">{product.name}</h4>
-                {product.model_code && (
-                  <p className="truncate font-mono text-[10px] text-slate-400">{product.model_code}</p>
-                )}
-                <div className="mt-auto flex items-center justify-between border-t border-slate-50 pt-2 text-[11px] text-slate-500">
-                  <span>
-                    {t('moqLabel')} <span className="font-semibold text-slate-800">{product.moq || '500'}</span>
-                  </span>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-orange-600" />
-                </div>
-              </div>
-            </motion.div>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-y border-slate-200 bg-slate-50 px-4 py-4 text-[11px] font-black uppercase tracking-[0.16em] text-slate-500">
+          {TRUST_KEYS.map((key) => (
+            <span key={key}>{t(`trust.${key}`)}</span>
           ))}
-        </motion.div>
+        </div>
 
-        <div className="text-center mt-12">
-          <Link
-            href={`/${locale}/products`}
-            className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 font-black text-xs uppercase tracking-[0.2em] hover:bg-orange-600 transition-all"
+        <div className="mt-16">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h4 className="text-2xl font-black uppercase tracking-tighter text-slate-950 sm:text-3xl">
+                {t('featuredGridTitle')}
+              </h4>
+              <p className="mt-2 text-sm text-slate-500">{t('featuredGridSubtitle')}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {SHOWCASE_TABS.map((item, idx) => {
+                const active = idx === activeTab;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => setActiveTab(idx)}
+                    className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
+                      active
+                        ? 'bg-orange-600 text-white shadow-md'
+                        : 'border border-slate-200 bg-white text-slate-600 hover:border-orange-300 hover:text-orange-600'
+                    }`}
+                  >
+                    {item.key === 'featured' ? t('featured') : t('newArrivals')}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <motion.div
+            key={mode}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {t('viewAll')} <ArrowRight className="w-4 h-4" />
-          </Link>
+            {featuredProducts.map((product) => {
+              const img = heroImageUrl(product);
+
+              return (
+                <button
+                  key={product.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedProduct(product);
+                    setCurrentImageIndex(0);
+                  }}
+                  className="group flex min-h-[360px] flex-col overflow-hidden rounded-lg border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:border-orange-200 hover:shadow-lg"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-white ring-1 ring-inset ring-slate-100">
+                    {img ? (
+                      <Image
+                        src={img}
+                        alt={product.name}
+                        fill
+                        className="object-contain object-center p-4 transition duration-500 group-hover:scale-[1.025]"
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-sm text-slate-400">{t('noImage')}</div>
+                    )}
+                    <ProductCertBadges product={product} compact />
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h5 className="line-clamp-2 text-sm font-bold leading-snug text-slate-950 transition group-hover:text-orange-600">
+                      {product.name}
+                    </h5>
+                    {product.model_code && (
+                      <p className="mt-2 truncate font-mono text-[10px] uppercase tracking-widest text-slate-400">
+                        {product.model_code}
+                      </p>
+                    )}
+                    <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 text-xs text-slate-500">
+                      <span>
+                        {t('moqLabel')} <span className="font-semibold text-slate-800">{product.moq || '500 Pairs'}</span>
+                      </span>
+                      <span className="inline-flex items-center gap-1 font-bold text-orange-600">
+                        <Eye className="h-3.5 w-3.5" />
+                        {t('quickView')}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </motion.div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href={`/${locale}/products`}
+              className="inline-flex items-center gap-3 bg-slate-900 px-9 py-4 text-xs font-black uppercase tracking-[0.2em] text-white transition-all hover:bg-orange-600"
+            >
+              {t('viewAll')} <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
 

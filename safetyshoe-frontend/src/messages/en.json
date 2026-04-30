@@ -228,13 +228,20 @@
     "slide3": {
       "badge": "YOUR BRAND, OUR EXPERTISE",
       "title": "From Blueprint to Reality.",
-      "highlight": "Full OEM/ODM Solutions",
-      "description": "In-house R&D and 7-day rapid prototyping. We provide comprehensive customization from upper design and material selection to custom outsole molding."
+      "highlight": "OEM/ODM",
+      "description": "7-day prototypes with in-house R&D. Customize materials, uppers, branding, and outsole molds."
+    },
+    "slide4": {
+      "badge": "Production Control",
+      "title": "Built Inside A Real Factory.",
+      "highlight": "Made to Scale",
+      "description": "Stable production lines, in-process inspection, and export-ready packing for repeat industrial orders."
     },
     "slides": {
       "alt1": "Hero banner — factory or product scene (slide 1)",
-      "alt2": "Hero banner — scene 2",
+      "alt2": "Hero banner — rotary injection production machine",
       "alt3": "Hero banner — scene 3",
+      "alt4": "Hero banner — safety shoe production workshop",
       "prev": "Previous slide",
       "next": "Next slide",
       "goTo": "Go to slide {n}"
@@ -1119,13 +1126,54 @@
     }
   },
   "TechnicalMatrix": {
-    "title": "Technical Matrix",
-    "titleHighlight": "Product",
-    "titleHighlight2": "Showcase.",
-    "subtitle": "Precision engineered safety solutions for global industry.",
+    "title": "Product System",
+    "titleHighlight": "Safety Footwear",
+    "titleHighlight2": "Built for Industry.",
+    "subtitle": "Explore representative safety shoes, work boots, outsole technologies, and OEM-ready styles before entering the full catalog.",
     "featured": "Hot Products",
     "newArrivals": "New Arrivals",
     "flagship": "Flagship",
+    "oemCta": "OEM Customization",
+    "quickView": "Quick View",
+    "featuredGridTitle": "Featured Products",
+    "featuredGridSubtitle": "Eight selected styles from current hot products and new arrivals.",
+    "trust": {
+      "ce": "CE Certified",
+      "enIso": "EN ISO 20345",
+      "astm": "ASTM Options",
+      "oem": "OEM/ODM Ready",
+      "moq": "MOQ 500 Pairs"
+    },
+    "stories": {
+      "lightweight": {
+        "title": "Lightweight Safety Shoes",
+        "description": "Composite-toe styles for buyers who need certified protection with less weight.",
+        "tag1": "Composite Toe",
+        "tag2": "S1P Options",
+        "action": "Open Product"
+      },
+      "heavyDuty": {
+        "title": "Heavy-Duty Work Boots",
+        "description": "Rugged high-cut options for construction, mining, logistics, and outdoor work.",
+        "tag1": "Work Boots",
+        "tag2": "S3 / WR",
+        "action": "Open Product"
+      },
+      "outsole": {
+        "title": "Slip-Resistant Outsoles",
+        "description": "Outsole patterns and compounds designed for traction, abrasion, and long shifts.",
+        "tag1": "SRC Grip",
+        "tag2": "PU / Rubber",
+        "action": "Open Product"
+      },
+      "oem": {
+        "title": "OEM/ODM Custom Styles",
+        "description": "Customize uppers, materials, colorways, branding, packaging, and outsole molds.",
+        "tag1": "OEM Ready",
+        "tag2": "7-Day Prototype",
+        "action": "OEM Customization"
+      }
+    },
     "viewSpecs": "View Specs",
     "viewAll": "View All Products",
     "viewDetail": "View Details",

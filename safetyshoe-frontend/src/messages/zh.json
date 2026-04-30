@@ -228,13 +228,20 @@
     "slide3": {
       "badge": "您的品牌，我们的专业",
       "title": "从蓝图到成品。",
-      "highlight": "全案 OEM/ODM 定制",
-      "description": "领先的 R&D 设计能力，7 天快速打样。提供从鞋面设计、材料选配到大底开模的一站式定制解决方案。"
+      "highlight": "OEM/ODM",
+      "description": "自有 R&D 团队，7 天快速打样。支持材料、鞋面、品牌与大底开模定制。"
+    },
+    "slide4": {
+      "badge": "生产管控",
+      "title": "真实工厂制造。",
+      "highlight": "稳定交付",
+      "description": "稳定产线、过程检验与出口包装能力，适合长期工业订单合作。"
     },
     "slides": {
       "alt1": "首页轮播图一",
-      "alt2": "首页轮播图二",
+      "alt2": "圆盘注塑生产设备",
       "alt3": "首页轮播图三",
+      "alt4": "安全鞋生产车间",
       "prev": "上一张",
       "next": "下一张",
       "goTo": "第 {n} 张"
@@ -1017,12 +1024,53 @@
     }
   },
   "TechnicalMatrix": {
-    "title": "技术矩阵",
-    "titleHighlight": "产品",
-    "titleHighlight2": "展示。",
-    "subtitle": "面向全球工业场景的精密安全防护方案。",
+    "title": "产品体系",
+    "titleHighlight": "面向工业买家的",
+    "titleHighlight2": "安全鞋产品。",
+    "subtitle": "通过代表性安全鞋、工装靴、大底技术与 OEM 款式，快速了解我们的产品线，再进入完整目录。",
     "featured": "热销推荐",
     "newArrivals": "新品上架",
+    "oemCta": "OEM 定制",
+    "quickView": "快速查看",
+    "featuredGridTitle": "精选产品",
+    "featuredGridSubtitle": "从热销产品和新品中选出的 8 款代表鞋型。",
+    "trust": {
+      "ce": "CE 认证",
+      "enIso": "EN ISO 20345",
+      "astm": "ASTM 可选",
+      "oem": "支持 OEM/ODM",
+      "moq": "起订量 500 双"
+    },
+    "stories": {
+      "lightweight": {
+        "title": "轻量安全鞋",
+        "description": "复合鞋头款式，在满足认证防护的同时降低穿着负担。",
+        "tag1": "复合鞋头",
+        "tag2": "S1P 可选",
+        "action": "打开产品"
+      },
+      "heavyDuty": {
+        "title": "重型工装靴",
+        "description": "适用于建筑、矿业、物流与户外作业的高帮耐用鞋款。",
+        "tag1": "工装靴",
+        "tag2": "S3 / WR",
+        "action": "打开产品"
+      },
+      "outsole": {
+        "title": "防滑耐磨大底",
+        "description": "针对长时间作业、抓地力与耐磨需求设计的大底纹路与材料。",
+        "tag1": "SRC 防滑",
+        "tag2": "PU / 橡胶",
+        "action": "打开产品"
+      },
+      "oem": {
+        "title": "OEM/ODM 定制款",
+        "description": "支持鞋面、材料、配色、品牌标识、包装与大底开模定制。",
+        "tag1": "支持 OEM",
+        "tag2": "7 天打样",
+        "action": "OEM 定制"
+      }
+    },
     "viewAll": "查看全部产品",
     "viewDetail": "查看详情",
     "next": "下一件",
